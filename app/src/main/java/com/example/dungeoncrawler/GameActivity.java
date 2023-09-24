@@ -156,7 +156,7 @@ public class GameActivity extends AppCompatActivity {
 
                 dotCountTextView.setText("Dots Collected: " + dotCount);
                 if (dotCount >= dotsToWin) {
-                    launchGameWinActivity();
+                    launchEndActivity();
                 }
             } else if (dot.isExpired()) { // TODO: Checks if dots have expired.
 
@@ -185,9 +185,9 @@ public class GameActivity extends AppCompatActivity {
         return playerRect.intersect(dotRect);
     }
 
-    // Changes game screen to GameWinActivity
-    private void launchGameWinActivity() {
-        Intent intent = new Intent(this, GameWinActivity.class);
+    // Changes game screen to EndActivity
+    private void launchEndActivity() {
+        Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         finish();
     }

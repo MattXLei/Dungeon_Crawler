@@ -1,3 +1,5 @@
+package com.example.dungeoncrawler;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +12,10 @@ public class EndActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_win); // change screen resource
-        Button exitBtn = findViewById(R.id.exit); // change button resource
+        setContentView(R.layout.endscreen);
+        Button exitBtn = findViewById(R.id.homeButton); // change button resource
 
-        // Exits app on click
+        // Exits app on click (returns user back to Android home)
         exitBtn.setOnClickListener(v -> {
             Intent exit = new Intent(Intent.ACTION_MAIN);
             exit.addCategory(Intent.CATEGORY_HOME);

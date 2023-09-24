@@ -15,6 +15,7 @@ public class PreGameConfiguration extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button startBtn = findViewById(R.id.startButton);
 
+
         // Set difficulty based on difficulty checked
         startBtn.setOnClickListener(v -> {
             RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);

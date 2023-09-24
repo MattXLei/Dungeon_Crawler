@@ -10,7 +10,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome); // change screen resource
+        setContentView(R.layout.startscreen); // change screen resource
         Button startBtn = findViewById(R.id.start); // change button resource
 
         // Starts app on click
@@ -23,10 +23,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Exits app on click
         exitBtn.setOnClickListener(v -> {
-            Intent exit = new Intent(Intent.ACTION_MAIN);
-            exit.addCategory(Intent.CATEGORY_HOME);
-            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(exit);
+            finish();
+            System.exit(0);
         });
     }
 }

@@ -4,42 +4,100 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 
 public class PreGameConfiguration extends AppCompatActivity {
+    private boolean charSelected;
+    private int diff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingsscreen);
         Button startBtn = findViewById(R.id.beginButton);
-        //TextInputLayout textInputLayout = findViewById(R.id.playerName);
-        //Player.setName(String.valueOf(textInputLayout.getEditText().getText()));
+        TextInputLayout textInputLayout = findViewById(R.id.nameInputLayout);
+        RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
+        ImageButton knight = findViewById(R.id.knightButton);
+        ImageButton necromancer = findViewById(R.id.necromancerButton);
+        ImageButton mage = findViewById(R.id.mageButton);
+        charSelected = false;
+
+        knight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Player.setCharacter(0);
+                setChar();
+                necromancer.setSelected(false);
+                mage.setSelected(false);
+            }
+        });
+
+        necromancer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Player.setCharacter(1);
+                setChar();
+                knight.setSelected(false);
+                mage.setSelected(false);
+            }
+        });
+
+        mage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Player.setCharacter(2);
+                setChar();
+                necromancer.setSelected(false);
+                knight.setSelected(false);
+            }
+        });
+
+        RadioButton easy = findViewById(R.id.easyButton);
+        RadioButton medium = findViewById(R.id.mediumButton);
+        RadioButton hard = findViewById(R.id.hardButton);
+
+        easy.setOnClickListener(v -> {
+            ConfigureVar.setDifficulty(1);
+            setDiff(1);
+        });
+        medium.setOnClickListener(v -> {
+            ConfigureVar.setDifficulty(2);
+            setDiff(2);
+        });
+        hard.setOnClickListener(v -> {
+            ConfigureVar.setDifficulty(3);
+            setDiff(3);
+        });
 
         // Set difficulty based on difficulty checked
         startBtn.setOnClickListener(v -> {
-            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
+            Player.setName(textInputLayout.getEditText().getText().toString().trim());
+            if (TextUtils.isEmpty(Player.getName()) || difficultyRadioGroup.getCheckedRadioButtonId() == -1 || charSelected == false) {
 
-            switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
-            case 1:
-                ConfigureVar.setDifficulty(0.5);
-                break;
-            case 2:
-                ConfigureVar.setDifficulty(0.75);
-                break;
-            case 3:
-                ConfigureVar.setDifficulty(1);
-                break;
-            default:
-                ConfigureVar.setDifficulty(0.5);
-                break;
+            } else {
+
+
+                Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
+                game.putExtra("name", Player.getName());
+                game.putExtra("character", Player.getCharacter());
+                game.putExtra("difficulty", diff);
+                startActivity(game);
             }
-
-            Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
-            startActivity(game);
         });
+    }
+
+    private void setChar() {
+        charSelected = true;
+    }
+
+    private void setDiff(int d) {
+        diff = d;
     }
 }

@@ -14,6 +14,8 @@ public class Player {
 
     private static String name;
 
+    private static int character;
+
     // location implementation different than others. Only created when new Player created.
     private static Location location;
 
@@ -52,6 +54,14 @@ public class Player {
         } else {
             Player.name = name;
         }
+    }
+
+    public static void setCharacter(int id) {
+        character = id;
+    }
+
+    public static int getCharacter() {
+        return character;
     }
 
     public static int getHealth() {

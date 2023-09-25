@@ -5,39 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/playerNameTextField"
+    <RadioGroup
+        android:id="@+id/difficultyRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Enter name here"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="174dp" />
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="227dp">
 
-    <RadioButton
-        android:id="@+id/easyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Easy"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="244dp" />
+        <RadioButton
+            android:id="@+id/easyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easy" />
 
-    <RadioButton
-        android:id="@+id/mediumButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="276dp" />
+        <RadioButton
+            android:id="@+id/mediumButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium" />
 
-    <RadioButton
-        android:id="@+id/hardButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hard"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="308dp" />
+        <RadioButton
+            android:id="@+id/hardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hard" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/characterChoiceText"
@@ -78,5 +70,18 @@
         app:srcCompat="@drawable/necromancer"
         tools:layout_editor_absoluteX="266dp"
         tools:layout_editor_absoluteY="439dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="127dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/playerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter name Here" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

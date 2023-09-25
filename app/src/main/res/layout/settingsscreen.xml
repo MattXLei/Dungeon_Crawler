@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/mageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -62,29 +62,29 @@
         android:layout_marginBottom="163dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/necromancerButton"
         app:srcCompat="@drawable/mage" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/necromancerButton"
         android:layout_width="82dp"
         android:layout_height="79dp"
 
         android:layout_marginBottom="165dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/mageButton"
+        app:layout_constraintStart_toEndOf="@+id/knightButton"
         app:srcCompat="@drawable/necromancer" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/knightButton"
         android:layout_width="79dp"
         android:layout_height="81dp"
 
         android:layout_marginStart="95dp"
         android:layout_marginBottom="163dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintEnd_toStartOf="@+id/necromancerButton"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/knight" />
 

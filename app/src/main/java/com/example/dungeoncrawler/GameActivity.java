@@ -5,6 +5,8 @@ import android.os.Bundle;
 //import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
 
@@ -26,7 +28,6 @@ public class GameActivity extends AppCompatActivity {
     private int screenWidth;
     private int screenHeight;
     private Timer dotTimer;
-    private double difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,42 @@ public class GameActivity extends AppCompatActivity {
             launchEndActivity();
         });
 
+        TextView name = findViewById(R.id.nameText);
+        TextView difficulty = findViewById(R.id.difficultyText);
+        TextView health = findViewById(R.id.healthText);
+
+        ImageView knight = findViewById(R.id.knightSprite);
+        ImageView necromancer = findViewById(R.id.necroSprite);
+        ImageView mage = findViewById(R.id.mageSprite);
+
+        Intent settings = getIntent();
+
+
+        name.setText(settings.getStringExtra("name"));
+        int difficultyNum = settings.getIntExtra("difficulty", 1);
+        if (difficultyNum == 2) {
+            Player.setHealth(75);
+            difficulty.setText("Medium");
+        } else if (difficultyNum == 3) {
+            Player.setHealth(50);
+            difficulty.setText("Hard");
+        } else if (difficultyNum == 1) {
+            Player.setHealth(100);
+            difficulty.setText("Easy");
+        }
+        health.setText("Health: " + Player.getHealth());
+
+        int character = Player.getCharacter();
+        if (character == 0) {
+            necromancer.setVisibility(ImageView.INVISIBLE);
+            mage.setVisibility(ImageView.INVISIBLE);
+        } else if (character == 1) {
+            knight.setVisibility(ImageView.INVISIBLE);
+            mage.setVisibility(ImageView.INVISIBLE);
+        } else if (character == 2) {
+            necromancer.setVisibility(ImageView.INVISIBLE);
+            knight.setVisibility(ImageView.INVISIBLE);
+        }
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         // Spawn player in middle of screen

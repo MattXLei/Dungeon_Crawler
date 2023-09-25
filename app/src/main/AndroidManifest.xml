@@ -11,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chinese_Keyboard_Warriors_2dDungeonCrawler"
-        tools:targetApi="31" />
+        tools:targetApi="31" >
 
 <!-- Edit below to reflect starting screen. -->
     <activity
-        android:name=".com.example.dungeoncrawler.XXXXActivity.java"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
+        android:name="com.example.dungeoncrawler.WelcomeActivity"
+        android:exported="true"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
+    </application>
 
 </manifest>

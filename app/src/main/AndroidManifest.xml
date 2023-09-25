@@ -23,25 +23,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.dungeoncrawler.PreGameConfiguration"
-            android:exported="true"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
+            android:name=".PreGameConfiguration"
+            android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
         <activity
-            android:name="com.example.dungeoncrawler.GameActivity"
-            android:exported="true"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
+            android:name=".GameActivity"
+            android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
         <activity
-            android:name="com.example.dungeoncrawler.EndActivity"
-            android:exported="true"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
+            android:name=".EndActivity"
+            android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
     </application>
 

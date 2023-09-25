@@ -9,18 +9,10 @@
         android:id="@+id/difficultyRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="167dp"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/characterChoiceText"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="248dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="31dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerName">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/easyButton"
@@ -45,32 +37,18 @@
         android:id="@+id/characterChoiceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="145dp"
-        android:text="Choose a character"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="444dp"
         android:text="Choose a character"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficultyRadioGroup" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/beginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="78dp"
-        android:text="Start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
-        android:layout_marginBottom="79dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="72dp"
         android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -79,57 +57,65 @@
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
 
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/beginButton"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
-
-        app:srcCompat="@drawable/mage" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="79dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="82dp"
-
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="163dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
-
-        app:srcCompat="@drawable/knight" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:srcCompat="@drawable/mage" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="82dp"
         android:layout_height="79dp"
 
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="257dp"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="195dp"
+        android:layout_marginBottom="165dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/imageButton3"
         app:srcCompat="@drawable/necromancer" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="409dp"
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="79dp"
+        android:layout_height="81dp"
 
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:height="50dp"
-        android:hint="Enter name Here"
+        android:layout_marginStart="95dp"
+        android:layout_marginBottom="163dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@drawable/knight" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameInputLayout"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="enter name here" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="409dp"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="124dp"
+            android:height="50dp"
+            android:hint="Enter name Here"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" /> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

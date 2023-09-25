@@ -78,12 +78,12 @@ public class PreGameConfiguration extends AppCompatActivity {
 
         // Set difficulty based on difficulty checked
         startBtn.setOnClickListener(v -> {
-            Player.setName(textInputLayout.getEditText().getText().toString().trim());
-            if (TextUtils.isEmpty(Player.getName()) || difficultyRadioGroup.getCheckedRadioButtonId() == -1 || charSelected == false) {
+            String name = textInputLayout.getEditText().getText().toString().trim();
+            boolean invalid = TextUtils.isEmpty(name)
+                    || difficultyRadioGroup.getCheckedRadioButtonId() == -1 || !charSelected;
 
-            } else {
-
-
+            if (!invalid) {
+                Player.setName(name);
                 Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
                 game.putExtra("name", Player.getName());
                 game.putExtra("character", Player.getCharacter());

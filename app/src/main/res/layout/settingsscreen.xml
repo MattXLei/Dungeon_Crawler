@@ -58,10 +58,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginBottom="85dp"
-        android:contentDescription="mage"
+
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="84dp"
         app:layout_constraintBottom_toTopOf="@+id/beginButton"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
         app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
+
         app:srcCompat="@drawable/mage" />
 
     <ImageButton
@@ -69,28 +74,36 @@
         android:layout_width="79dp"
         android:layout_height="81dp"
         android:layout_marginStart="82dp"
+
+        android:layout_marginTop="31dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="211dp"
-        android:contentDescription="knight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
+
         app:srcCompat="@drawable/knight" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="82dp"
         android:layout_height="79dp"
+
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="257dp"
         android:layout_marginEnd="63dp"
         android:layout_marginBottom="213dp"
-        android:contentDescription="necromancer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:srcCompat="@drawable/necromancer" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/playerName"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="409dp"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:height="50dp"

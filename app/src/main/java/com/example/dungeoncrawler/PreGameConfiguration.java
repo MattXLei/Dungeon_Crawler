@@ -23,19 +23,18 @@ public class PreGameConfiguration extends AppCompatActivity {
             RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
 
             switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
-                case 1:
-                    ConfigureVar.setDifficulty(0.5);
-                    break;
-                case 2:
-                    ConfigureVar.setDifficulty(0.75);
-                    break;
-                case 3:
-                    ConfigureVar.setDifficulty(1);
-                    break;
-                default:
-                    ConfigureVar.setDifficulty(0.5);
-                    break;
-
+            case 1:
+                ConfigureVar.setDifficulty(0.5);
+                break;
+            case 2:
+                ConfigureVar.setDifficulty(0.75);
+                break;
+            case 3:
+                ConfigureVar.setDifficulty(1);
+                break;
+            default:
+                ConfigureVar.setDifficulty(0.5);
+                break;
             }
 
             TextInputLayout textInputLayout = findViewById(R.id.playerName);

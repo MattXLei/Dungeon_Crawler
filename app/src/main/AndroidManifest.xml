@@ -15,7 +15,7 @@
 
 <!-- Edit below to reflect starting screen. -->
     <activity
-        android:name=".com.example.dungeoncrawler.XXXXActivity.java"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
+        android:name=".com.example.dungeoncrawler.WelcomeActivity.java"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

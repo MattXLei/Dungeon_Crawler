@@ -27,7 +27,7 @@ public class Player {
     }
 
     private Player() {
-        this(100,10,10,0, "");
+        this(100, 10,  10, 0, "");
     }
 
 

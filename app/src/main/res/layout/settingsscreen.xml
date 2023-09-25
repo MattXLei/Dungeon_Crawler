@@ -17,6 +17,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerName">
 
         <RadioButton
             android:id="@+id/easyButton"
@@ -47,6 +51,9 @@
         android:text="Choose a character"
         app:layout_constraintBottom_toTopOf="@+id/imageButton2"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="35dp"
+        android:text="Choose a character"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/difficultyRadioGroup" />
 
@@ -63,18 +70,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        android:layout_marginBottom="79dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
+
         android:layout_marginTop="31dp"
         android:layout_marginEnd="17dp"
         app:layout_constraintBottom_toTopOf="@+id/beginButton"
         app:layout_constraintEnd_toStartOf="@+id/imageButton4"
         app:layout_constraintStart_toEndOf="@+id/imageButton3"
         app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
+
         app:srcCompat="@drawable/mage" />
 
     <ImageButton
@@ -82,6 +95,7 @@
         android:layout_width="79dp"
         android:layout_height="81dp"
         android:layout_marginStart="82dp"
+
         android:layout_marginTop="31dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="200dp"
@@ -89,12 +103,14 @@
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
+
         app:srcCompat="@drawable/knight" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="82dp"
         android:layout_height="79dp"
+
         android:layout_marginStart="11dp"
         android:layout_marginTop="257dp"
         android:layout_marginEnd="63dp"
@@ -108,15 +124,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="127dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/playerName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter name Here" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:height="50dp"
+        android:hint="Enter name Here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

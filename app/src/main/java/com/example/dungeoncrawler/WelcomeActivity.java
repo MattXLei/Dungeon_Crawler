@@ -17,6 +17,7 @@ public class WelcomeActivity extends AppCompatActivity {
         startBtn.setOnClickListener(v -> {
             Intent start = new Intent(this, PreGameConfiguration.class);
             startActivity(start);
+            finish();
         });
 
         Button exitBtn = findViewById(R.id.exit); // change button resource

@@ -62,20 +62,20 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                playerY -= 50;
-                break;
-            case KeyEvent.KEYCODE_A:
-                playerX -= 50;
-                break;
-            case KeyEvent.KEYCODE_S:
-                playerY += 50;
-                break;
-            case KeyEvent.KEYCODE_D:
-                playerX += 50;
-                break;
-            default:
-                break;
+        case KeyEvent.KEYCODE_W:
+            playerY -= 50;
+            break;
+        case KeyEvent.KEYCODE_A:
+            playerX -= 50;
+            break;
+        case KeyEvent.KEYCODE_S:
+            playerY += 50;
+            break;
+        case KeyEvent.KEYCODE_D:
+            playerX += 50;
+            break;
+        default:
+            break;
         }
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;

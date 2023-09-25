@@ -51,27 +51,46 @@
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/mage"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="439dp" />
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintBottom_toTopOf="@+id/beginButton"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
+        app:srcCompat="@drawable/mage" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="79dp"
         android:layout_height="81dp"
-        app:srcCompat="@drawable/knight"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="439dp" />
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="211dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/characterChoiceText"
+        app:srcCompat="@drawable/knight" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="82dp"
         android:layout_height="79dp"
-        app:srcCompat="@drawable/necromancer"
-        tools:layout_editor_absoluteX="266dp"
-        tools:layout_editor_absoluteY="439dp" />
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="257dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="213dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:srcCompat="@drawable/necromancer" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"

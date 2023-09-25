@@ -29,6 +29,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_game);
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         // Spawn player in middle of screen
@@ -133,6 +135,7 @@ public class GameActivity extends AppCompatActivity {
 //
 //        return playerRect.intersect(dotRect);
 //    }
+  //}
 
     // Changes game screen to EndActivity
     private void launchEndActivity() {

@@ -4,6 +4,7 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,78 +24,69 @@ public class GameActivity extends AppCompatActivity {
     RelativeLayout gameLayout;
     int screenWidth;
     int screenHeight;
-    private Timer dotTimer;
     private double difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState)
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_game);
-        screenWidth = getResources().getDisplayMetrics().widthPixels;
-        screenHeight = getResources().getDisplayMetrics().heightPixels;
-        // Spawn player in middle of screen
+        setContentView(R.layout.gamescreen);
+
         playerX = screenWidth / 2;
         playerY = screenHeight / 2;
+        Button endScreenBtn = findViewById(R.id.endScreenButton); // change button resource
 
+        // Starts app on click
+        endScreenBtn.setOnClickListener(v -> {
+            Intent end = new Intent(this, EndActivity.class);
+            startActivity(end);
+        });
 
         // Get difficulty selected from Main screen.
         difficulty = getIntent().getDoubleExtra("difficulty", 1);
-//        // Create dot list
-//        initializeDots();
-//        // Draw dots on screen
-//        drawDots();
 
-        /*
-        Timer to check every 0.5s
-         */
-        dotTimer = new Timer();
-        dotTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Loop for checks and assurances that need to run consistently
-                    }
-                });
-            }
-        }, 0, 500); // Check every .5 seconds
-    }
+        TextView textView = findViewById(R.id.healthText);
+        textView.append(" " +  ConfigureVar.getDifficulty());
 
-    // Handle key events to move the player
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                playerY -= 50;
-                break;
-            case KeyEvent.KEYCODE_A:
-                playerX -= 50;
-                break;
-            case KeyEvent.KEYCODE_S:
-                playerY += 50;
-                break;
-            case KeyEvent.KEYCODE_D:
-                playerX += 50;
-                break;
-        }
-        screenWidth = getResources().getDisplayMetrics().widthPixels;
-        screenHeight = getResources().getDisplayMetrics().heightPixels;
-        if (playerX < 0) {
-            playerX = 0;
-        }
-        if (playerX > screenWidth) {
-            playerX = screenWidth;
-        }
-        if (playerY < 0) {
-            playerY = 0;
-        }
-        if (playerY > screenHeight) {
-            playerY = screenHeight;
-        }
-        return true;
+        TextView textView2 = findViewById(R.id.nameText);
+        textView2.append(Player.getName());
+
+        TextView textView3 = findViewById(R.id.healthText);
+        textView3.append("" + Player.getHealth());
     }
+        // Handle key events to move the player
+
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_W:
+//                playerY -= 50;
+//                break;
+//            case KeyEvent.KEYCODE_A:
+//                playerX -= 50;
+//                break;
+//            case KeyEvent.KEYCODE_S:
+//                playerY += 50;
+//                break;
+//            case KeyEvent.KEYCODE_D:
+//                playerX += 50;
+//                break;
+//        }
+//        screenWidth = getResources().getDisplayMetrics().widthPixels;
+//        screenHeight = getResources().getDisplayMetrics().heightPixels;
+//        if (playerX < 0) {
+//            playerX = 0;
+//        }
+//        if (playerX > screenWidth) {
+//            playerX = screenWidth;
+//        }
+//        if (playerY < 0) {
+//            playerY = 0;
+//        }
+//        if (playerY > screenHeight) {
+//            playerY = screenHeight;
+//        }
+//        return true;
+//    }
 
 //    private void checkCollisions() {
 //        for (int i = 0; i < dots.size(); i++) {
@@ -135,13 +127,7 @@ public class GameActivity extends AppCompatActivity {
 //
 //        return playerRect.intersect(dotRect);
 //    }
-  //}
+        //}
 
-    // Changes game screen to EndActivity
-    private void launchEndActivity() {
-        Intent intent = new Intent(this, EndActivity.class);
-        startActivity(intent);
-        finish();
-    }
 }
 

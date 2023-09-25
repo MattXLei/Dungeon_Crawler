@@ -2,7 +2,7 @@ package com.example.dungeoncrawler;
 
 public class Player {
 
-    private static Player player;
+    private static Player player = new Player();
 
     private static int health;
 
@@ -18,13 +18,18 @@ public class Player {
     private static Location location;
 
     private Player(int health, int speed, int direction, long score, String name) {
-        this.health = health;
+        this.health = (int) (health * ConfigureVar.getDifficulty());
         this.speed = speed;
         this.direction = direction;
         this.score = score;
         this.name = name;
         this.location = new Location(0.0f, 0.0f);
     }
+
+    private Player() {
+        this(100,10,10,0, "");
+    }
+
 
     public static Player getPlayer(int health, int speed, int direction, long score, String name) {
         if (player == null) {

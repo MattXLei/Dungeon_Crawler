@@ -30,13 +30,12 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_game);
-        screenWidth = getResources().getDisplayMetrics().widthPixels;
+        setContentView(R.layout.gamescreen);
+        /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         // Spawn player in middle of screen
         playerX = screenWidth / 2;
         playerY = screenHeight / 2;
-
 
         // Get difficulty selected from Main screen.
         difficulty = getIntent().getDoubleExtra("difficulty", 1);
@@ -45,9 +44,6 @@ public class GameActivity extends AppCompatActivity {
         // Draw dots on screen
         // drawDots();
 
-        /*
-        Timer to check every 0.5s
-         */
         dotTimer = new Timer();
         dotTimer.schedule(new TimerTask() {
             @Override
@@ -59,7 +55,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 500); // Check every .5 seconds
+        }, 0, 500); // Check every .5 seconds*/
     }
 
     // Handle key events to move the player

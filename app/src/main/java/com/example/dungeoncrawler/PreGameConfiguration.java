@@ -16,7 +16,8 @@ public class PreGameConfiguration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingsscreen);
         Button startBtn = findViewById(R.id.beginButton);
-
+        //TextInputLayout textInputLayout = findViewById(R.id.playerName);
+        //Player.setName(String.valueOf(textInputLayout.getEditText().getText()));
 
         // Set difficulty based on difficulty checked
         startBtn.setOnClickListener(v -> {
@@ -38,8 +39,6 @@ public class PreGameConfiguration extends AppCompatActivity {
 
             }
 
-            TextInputLayout textInputLayout = findViewById(R.id.playerName);
-            Player.setName(String.valueOf(textInputLayout.getEditText().getText()));
             Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
             startActivity(game);
             finish();

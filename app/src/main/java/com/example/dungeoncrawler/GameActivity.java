@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 //import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Button;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
 
@@ -31,6 +32,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
+        Button endButton = findViewById(R.id.endScreenButton);
+
+        endButton.setOnClickListener(v -> {
+            launchEndActivity();
+        });
+
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         // Spawn player in middle of screen
@@ -129,7 +136,7 @@ public class GameActivity extends AppCompatActivity {
      */
 
     // Changes game screen to EndActivity
-    private void launchEndActivity() {
+    public void launchEndActivity() {
         Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         finish();

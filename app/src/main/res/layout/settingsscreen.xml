@@ -59,7 +59,7 @@
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Mage"
+        app:srcCompat="@drawable/mage"
         tools:layout_editor_absoluteX="175dp"
         tools:layout_editor_absoluteY="439dp" />
 
@@ -67,7 +67,7 @@
         android:id="@+id/imageButton3"
         android:layout_width="79dp"
         android:layout_height="81dp"
-        app:srcCompat="@drawable/Knight"
+        app:srcCompat="@drawable/knight"
         tools:layout_editor_absoluteX="82dp"
         tools:layout_editor_absoluteY="439dp" />
 
@@ -75,7 +75,7 @@
         android:id="@+id/imageButton4"
         android:layout_width="82dp"
         android:layout_height="79dp"
-        app:srcCompat="@drawable/Necomancer"
+        app:srcCompat="@drawable/necromancer"
         tools:layout_editor_absoluteX="266dp"
         tools:layout_editor_absoluteY="439dp" />
 

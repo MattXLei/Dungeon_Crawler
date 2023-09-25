@@ -13,7 +13,7 @@ public class PreGameConfiguration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingsscreen);
-        Button startBtn = findViewById(R.id.start);
+        Button startBtn = findViewById(R.id.beginButton);
 
 
         // Set difficulty based on difficulty checked

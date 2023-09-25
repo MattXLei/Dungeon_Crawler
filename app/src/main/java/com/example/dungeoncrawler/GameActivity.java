@@ -1,33 +1,27 @@
 package com.example.dungeoncrawler;
 import android.content.Intent;
-import android.graphics.RectF;
+//import android.graphics.RectF;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
-    private float playerX, playerY;
-    private Random random = new Random();
-    RelativeLayout gameLayout;
-    int screenWidth;
-    int screenHeight;
+
     private double difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
 
@@ -47,11 +41,13 @@ public class GameActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.healthText);
         textView.append(" " +  ConfigureVar.getDifficulty());
 
+
         TextView textView2 = findViewById(R.id.nameText);
         textView2.append(Player.getName());
 
         TextView textView3 = findViewById(R.id.healthText);
         textView3.append("" + Player.getHealth());
+
     }
         // Handle key events to move the player
 
@@ -88,27 +84,30 @@ public class GameActivity extends AppCompatActivity {
 //        return true;
 //    }
 
-//    private void checkCollisions() {
-//        for (int i = 0; i < dots.size(); i++) {
-//            Dot dot = dots.get(i);
-//            if (dot.isVisible() && isCollision(playerView, dot)) {
-//                dot.setInvisible();
-//                gameLayout.removeView(dotViewMap.get(dot));
-//                dots.remove(i);
-//                dotCount++;
-//
-//                dotCountTextView.setText("Dots Collected: " + dotCount);
-//                if (dotCount >= dotsToWin) {
-//                    launchEndActivity();
-//                }
-//            } else if (dot.isExpired()) { // TODO: Checks if dots have expired.
-//
-//            }
-//        }
-//    }
+    /*
+    private void checkCollisions() {
+        for (int i = 0; i < dots.size(); i++) {
+            Dot dot = dots.get(i);
+            if (dot.isVisible() && isCollision(playerView, dot)) {
+                dot.setInvisible();
+                gameLayout.removeView(dotViewMap.get(dot));
+                dots.remove(i);
+                dotCount++;
+
+                dotCountTextView.setText("Dots Collected: " + dotCount);
+                if (dotCount >= dotsToWin) {
+                    launchEndActivity();
+                }
+            } else if (dot.isExpired()) {
+
+            }
+        }
+    }
+     */
 
     /*
     Method that has logic to detect collisions.
+
     */
 //    private boolean isCollision(PlayerView playerView, Dot dot) {
 //        float playerX = playerView.getX();
@@ -128,6 +127,7 @@ public class GameActivity extends AppCompatActivity {
 //        return playerRect.intersect(dotRect);
 //    }
         //}
+
 
 }
 

@@ -35,6 +35,7 @@ public class PreGameConfiguration extends AppCompatActivity {
                 default:
                     ConfigureVar.setDifficulty(0.5);
                     break;
+
             }
 
             TextInputLayout textInputLayout = findViewById(R.id.playerName);

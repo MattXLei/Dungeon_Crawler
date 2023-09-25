@@ -1,7 +1,8 @@
 package com.example.dungeoncrawler;
 
 public class Location {
-    private float xCord, yCord;
+    private float xCord;
+    private float yCord;
 
     public Location(float xCord, float yCord) {
         this.xCord = xCord;

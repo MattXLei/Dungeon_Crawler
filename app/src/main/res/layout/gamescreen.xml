@@ -41,7 +41,7 @@
         android:id="@+id/knightSprite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Knight"
+        app:srcCompat="@drawable/knight"
         tools:layout_editor_absoluteX="176dp"
         tools:layout_editor_absoluteY="333dp" />
 
@@ -49,7 +49,7 @@
         android:id="@+id/mageSprite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Mage"
+        app:srcCompat="@drawable/mage"
         tools:layout_editor_absoluteX="180dp"
         tools:layout_editor_absoluteY="261dp" />
 
@@ -57,7 +57,7 @@
         android:id="@+id/necroSprite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Necomancer"
+        app:srcCompat="@drawable/necromancer"
         tools:layout_editor_absoluteX="176dp"
         tools:layout_editor_absoluteY="410dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

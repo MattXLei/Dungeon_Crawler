@@ -28,7 +28,7 @@ public class Player {
 
     public static Player getPlayer(int health, int speed, int direction, long score, String name) {
         if (player == null) {
-            player = new Player (health, speed, direction, score, name);
+            player = new Player(health, speed, direction, score, name);
         }
         return player;
     }

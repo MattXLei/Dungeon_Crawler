@@ -1,33 +1,35 @@
 package com.example.dungeoncrawler;
 import android.content.Intent;
-import android.graphics.RectF;
+//import android.graphics.RectF;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+//import android.widget.RelativeLayout;
+//import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
-    private float playerX, playerY;
-    private Random random = new Random();
-    RelativeLayout gameLayout;
-    int screenWidth;
-    int screenHeight;
+    private float playerX;
+    private float playerY;
+    //private Random random = new Random();
+    //RelativeLayout gameLayout;
+    private int screenWidth;
+    private int screenHeight;
     private Timer dotTimer;
     private double difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_game);
         screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -39,10 +41,10 @@ public class GameActivity extends AppCompatActivity {
 
         // Get difficulty selected from Main screen.
         difficulty = getIntent().getDoubleExtra("difficulty", 1);
-//        // Create dot list
-//        initializeDots();
-//        // Draw dots on screen
-//        drawDots();
+        // Create dot list
+        // initializeDots();
+        // Draw dots on screen
+        // drawDots();
 
         /*
         Timer to check every 0.5s
@@ -65,18 +67,20 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                playerY -= 50;
-                break;
-            case KeyEvent.KEYCODE_A:
-                playerX -= 50;
-                break;
-            case KeyEvent.KEYCODE_S:
-                playerY += 50;
-                break;
-            case KeyEvent.KEYCODE_D:
-                playerX += 50;
-                break;
+        case KeyEvent.KEYCODE_W:
+            playerY -= 50;
+            break;
+        case KeyEvent.KEYCODE_A:
+            playerX -= 50;
+            break;
+        case KeyEvent.KEYCODE_S:
+            playerY += 50;
+            break;
+        case KeyEvent.KEYCODE_D:
+            playerX += 50;
+            break;
+        default:
+            break;
         }
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -95,46 +99,39 @@ public class GameActivity extends AppCompatActivity {
         return true;
     }
 
-//    private void checkCollisions() {
-//        for (int i = 0; i < dots.size(); i++) {
-//            Dot dot = dots.get(i);
-//            if (dot.isVisible() && isCollision(playerView, dot)) {
-//                dot.setInvisible();
-//                gameLayout.removeView(dotViewMap.get(dot));
-//                dots.remove(i);
-//                dotCount++;
-//
-//                dotCountTextView.setText("Dots Collected: " + dotCount);
-//                if (dotCount >= dotsToWin) {
-//                    launchEndActivity();
-//                }
-//            } else if (dot.isExpired()) { // TODO: Checks if dots have expired.
-//
-//            }
-//        }
-//    }
+    /*
+    private void checkCollisions() {
+        for (int i = 0; i < dots.size(); i++) {
+            Dot dot = dots.get(i);
+            if (dot.isVisible() && isCollision(playerView, dot)) {
+                dot.setInvisible();
+                gameLayout.removeView(dotViewMap.get(dot));
+                dots.remove(i);
+                dotCount++;
+
+                dotCountTextView.setText("Dots Collected: " + dotCount);
+                if (dotCount >= dotsToWin) {
+                    launchEndActivity();
+                }
+            } else if (dot.isExpired()) {
+
+            }
+        }
+    }
+     */
 
     /*
     Method that has logic to detect collisions.
-    */
-//    private boolean isCollision(PlayerView playerView, Dot dot) {
-//        float playerX = playerView.getX();
-//        float playerY = playerView.getY();
-//        int playerRadius = playerView.getRadius();
-//        float dotX = dot.getX();
-//        float dotY = dot.getY();
-//        int dotRadius = dot.getRadius();
-//
-//            /*
-//            Creates a rectangle around dot, and checks for an intersection between player rect and
-//            dot rect. Intersection = collision.
-//             */
-//        RectF playerRect = new RectF(playerX - playerRadius, playerY - playerRadius, playerX + playerRadius, playerY + playerRadius);
-//        RectF dotRect = new RectF(dotX - dotRadius, dotY - dotRadius, dotX + dotRadius, dotY + dotRadius);
-//
-//        return playerRect.intersect(dotRect);
-//    }
-  //}
+    private boolean isCollision(PlayerView playerView, Dot dot) {
+        float playerX = playerView.getX();
+        float playerY = playerView.getY();
+        int playerRadius = playerView.getRadius();
+        float dotX = dot.getX();
+        float dotY = dot.getY();
+        int dotRadius = dot.getRadius();
+        return playerRect.intersect(dotRect);
+    }
+     */
 
     // Changes game screen to EndActivity
     private void launchEndActivity() {

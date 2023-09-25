@@ -41,7 +41,6 @@ public class PreGameConfiguration extends AppCompatActivity {
             Player.setName(String.valueOf(textInputLayout.getEditText().getText()));
             Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
             startActivity(game);
-            finish();
         });
     }
 }

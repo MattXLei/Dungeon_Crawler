@@ -2,7 +2,7 @@ package com.example.dungeoncrawler;
 
 public class Player {
 
-    private static Player player = new Player();
+    private volatile static Player player = new Player();
 
     private static int health;
 
@@ -35,7 +35,11 @@ public class Player {
 
     public static Player getPlayer(int health, int speed, int direction, long score, String name) {
         if (player == null) {
-            player = new Player(health, speed, direction, score, name);
+            synchronized (Player.class) {
+                if (player == null) {
+                    player = new Player(health, speed, direction, score, name);
+                }
+            }
         }
         return player;
     }

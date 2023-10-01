@@ -1,4 +1,6 @@
-package com.example.dungeoncrawler;
+package com.example.dungeoncrawler.model;
+
+import com.example.dungeoncrawler.ConfigureVar;
 
 public class Player {
 

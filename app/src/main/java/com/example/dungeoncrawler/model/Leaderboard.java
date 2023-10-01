@@ -1,4 +1,4 @@
-package com.example.dungeoncrawler;
+package com.example.dungeoncrawler.model;
 
 public class Leaderboard {
     private volatile static Leaderboard leaderboard;

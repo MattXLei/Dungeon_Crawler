@@ -33,7 +33,7 @@ public class Room3Activity extends AppCompatActivity {
 
 
         name.setText(Player.getName());
-        int difficultyNum = settings.getIntExtra("difficulty", 1);
+        int difficultyNum = Player.getDifficulty();
         if (difficultyNum == 2) {
             Player.setHealth(75);
             difficulty.setText("Medium");

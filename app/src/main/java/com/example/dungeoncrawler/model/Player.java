@@ -21,17 +21,20 @@ public class Player {
     // location implementation different than others. Only created when new Player created.
     private static Location location;
 
-    private Player(int health, int speed, int direction, long score, String name) {
+    private static int difficulty;
+
+    private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         this.health = (int) (health * ConfigureVar.getDifficulty());
         this.speed = speed;
         this.direction = direction;
         this.score = score;
         this.name = name;
         this.location = new Location(0.0f, 0.0f);
+        this.difficulty = difficulty;
     }
 
     private Player() {
-        this(100, 10,  10, 0, "");
+        this(100, 10,  10, 0, "", 0);
     }
 
 
@@ -122,4 +125,8 @@ public class Player {
         Player.location.setxCord(newX);
         Player.location.setyCord(newY);
     }
+
+    public static int getDifficulty() { return difficulty; }
+
+    public static void setDifficulty(int difficulty) { Player.difficulty = difficulty; }
 }

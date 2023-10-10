@@ -88,6 +88,7 @@ public class PreGameConfiguration extends AppCompatActivity {
 
             if (!invalid) {
                 Player.setName(name);
+                Player.setDifficulty(diff);
                 Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
                 game.putExtra("name", Player.getName());
                 game.putExtra("character", Player.getCharacter());

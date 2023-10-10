@@ -36,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
-        Button endButton = findViewById(R.id.endScreenButton);
+        Button endButton = findViewById(R.id.toRoom3);
 
         endButton.setOnClickListener(v -> {
             launchEndActivity();

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#25131a">
 
     <Button
         android:id="@+id/start"
@@ -44,6 +45,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="142dp"
         android:text="Welcome to China"
+        android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

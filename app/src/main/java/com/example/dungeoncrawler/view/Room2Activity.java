@@ -6,16 +6,16 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-public class EndActivity extends AppCompatActivity {
+public class Room2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.endscreen);
-        Button exitBtn = findViewById(R.id.homeButton); // change button resource
+        Button nextBtn = findViewById(R.id.homeButton); // change button resource
 
-        // Exits app to welcome activity
-        exitBtn.setOnClickListener(v -> {
-            Intent start = new Intent(this, WelcomeActivity.class);
+        // Sends player to Room3
+        nextBtn.setOnClickListener(v -> {
+            Intent start = new Intent(this, Room3Activity.class);
             startActivity(start);
             finish();
         });

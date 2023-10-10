@@ -102,6 +102,18 @@ public class Player {
         Player.score = score;
     }
 
+    public static void increaseScore(long amount) {
+        score += amount;
+    }
+
+    public void decreaseScore(long amount) {
+        if (amount > this.score) {
+            score = 0;
+        } else {
+            score -= amount;
+        }
+    }
+
     public static Location getLocation() {
         return location;
     }

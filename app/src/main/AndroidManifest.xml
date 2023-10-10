@@ -15,7 +15,7 @@
 
         <!-- Edit below to reflect starting screen. -->
         <activity
-            android:name="com.example.dungeoncrawler.WelcomeActivity"
+            android:name="com.example.dungeoncrawler.view.WelcomeActivity"
             android:exported="true"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PreGameConfiguration"
+            android:name="com.example.dungeoncrawler.view.PreGameConfiguration"
             android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
         <activity
-            android:name=".GameActivity"
+            android:name="com.example.dungeoncrawler.view.GameActivity"
             android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
         <activity
-            android:name=".EndActivity"
+            android:name="com.example.dungeoncrawler.view.EndActivity"
             android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
     </application>

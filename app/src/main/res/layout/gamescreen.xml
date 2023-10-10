@@ -26,8 +26,14 @@
         android:layout_marginBottom="626dp"
         android:text="*Placeholder Difficulty*"
         app:layout_constraintBottom_toTopOf="@+id/endScreenButton"
+<<<<<<< HEAD
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+=======
+        app:layout_constraintStart_toEndOf="@+id/nameText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+>>>>>>> b81d6d3064787211c4b2a04de5032f6fc457ac8a
 
     <TextView
         android:id="@+id/healthText"
@@ -103,6 +109,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/knightSprite"
+<<<<<<< HEAD
         app:srcCompat="@drawable/necromancer" />
 
+=======
+        app:srcCompat="@drawable/rogue" />
+>>>>>>> b81d6d3064787211c4b2a04de5032f6fc457ac8a
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,5 @@
-package com.example.dungeoncrawler;
+package com.example.dungeoncrawler.view;
+import com.example.dungeoncrawler.R;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -24,8 +24,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Exits app on click
         exitBtn.setOnClickListener(v -> {
-            finish();
             System.exit(0);
+            finish();
         });
     }
 }

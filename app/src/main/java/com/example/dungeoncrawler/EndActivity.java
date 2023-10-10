@@ -15,10 +15,9 @@ public class EndActivity extends AppCompatActivity {
 
         // Exits app on click (returns user back to Android home)
         exitBtn.setOnClickListener(v -> {
-            Intent exit = new Intent(Intent.ACTION_MAIN);
-            exit.addCategory(Intent.CATEGORY_HOME);
-            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(exit);
+            Intent start = new Intent(this, WelcomeActivity.class);
+            startActivity(start);
+            finish();
         });
     }
 }

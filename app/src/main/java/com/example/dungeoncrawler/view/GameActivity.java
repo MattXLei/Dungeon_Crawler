@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.CountDownTimer;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,23 +35,16 @@ public class GameActivity extends AppCompatActivity {
     //RelativeLayout gameLayout;
     private int screenWidth;
     private int screenHeight;
-    private Timer dotTimer;
+//    private Timer dotTimer;
 
-    private final Handler handler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message msg) {
-            Player.decreaseScore(1);
-        }
-    };
+    //in milliseconds
+    private static final long startTime = 60000;
 
-    private void scheduleTask() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                handler.sendMessage(handler.obtainMessage());
-            }
-        });
-    }
+    private long leftTime = startTime;
+
+    private CountDownTimer timer;
+
+    private TextView score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +59,7 @@ public class GameActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
         TextView health = findViewById(R.id.healthText);
-        TextView score = findViewById(R.id.scoreText);
+        score = findViewById(R.id.scoreText);
 
         ImageView knight = findViewById(R.id.knightSprite);
         ImageView necromancer = findViewById(R.id.necroSprite);
@@ -102,10 +96,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
 
-        scheduleTask();
-        score.setText("Score: " + Player.getScore());
-
-
+        doCountDown();
 
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -133,6 +124,29 @@ public class GameActivity extends AppCompatActivity {
             }
         }, 0, 500); // Check every .5 seconds*/
     }
+
+    private void doCountDown() {
+        timer = new CountDownTimer(leftTime, 1000) {
+            @Override
+            public void onTick(long remaining) {
+                leftTime = remaining;
+                updateScoreText();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
+    }
+
+    private void updateScoreText() {
+        Player.decreaseScore(1);
+        score.setText("Score: " + Player.getScore());
+    }
+
+
 
     // Handle key events to move the player
     @Override
@@ -208,6 +222,8 @@ public class GameActivity extends AppCompatActivity {
     public void launchEndActivity() {
         Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
+        timer.cancel();
+        Player.setScore(100);
         finish();
     }
 }

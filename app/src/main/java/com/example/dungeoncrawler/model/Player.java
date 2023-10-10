@@ -31,7 +31,7 @@ public class Player {
     }
 
     private Player() {
-        this(100, 10,  10, 0, "");
+        this(100, 10,  10, 100, "");
     }
 
 
@@ -103,14 +103,14 @@ public class Player {
     }
 
     public static void increaseScore(long amount) {
-        score += amount;
+        Player.score += amount;
     }
 
-    public void decreaseScore(long amount) {
-        if (amount > this.score) {
-            score = 0;
+    public static void decreaseScore(long amount) {
+        if (amount > Player.score) {
+            Player.score = 0;
         } else {
-            score -= amount;
+            Player.score -= amount;
         }
     }
 

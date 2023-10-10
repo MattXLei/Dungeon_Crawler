@@ -1,7 +1,5 @@
 package com.example.dungeoncrawler.model;
 
-import com.example.dungeoncrawler.ConfigureVar;
-
 public class Player {
 
     private volatile static Player player = new Player();
@@ -22,7 +20,7 @@ public class Player {
     private static Location location;
 
     private Player(int health, int speed, int direction, long score, String name) {
-        this.health = (int) (health * ConfigureVar.getDifficulty());
+        this.health = health;
         this.speed = speed;
         this.direction = direction;
         this.score = score;

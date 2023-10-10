@@ -90,6 +90,7 @@ public class PreGameConfiguration extends AppCompatActivity {
                 game.putExtra("character", Player.getCharacter());
                 game.putExtra("difficulty", diff);
                 startActivity(game);
+                finish();
             }
         });
     }

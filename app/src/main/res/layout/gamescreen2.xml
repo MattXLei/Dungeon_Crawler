@@ -7,7 +7,7 @@
     android:background="#25131a">
 
     <ImageView
-        android:id="@+id/room1Image"
+        android:id="@+id/room2Image"
         android:layout_width="384dp"
         android:layout_height="384dp"
         android:layout_marginStart="14dp"
@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/room1" />
+        app:srcCompat="@drawable/room2" />
 
     <TextView
         android:id="@+id/nameText"
@@ -42,7 +42,7 @@
         android:layout_marginBottom="626dp"
         android:text="*Placeholder Difficulty*"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/toRoom2"
+        app:layout_constraintBottom_toTopOf="@+id/toRoom3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
     <Button
-        android:id="@+id/toRoom2"
+        android:id="@+id/toRoom3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="235dp"

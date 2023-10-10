@@ -56,10 +56,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
-        Button endButton = findViewById(R.id.endScreenButton);
+        Button endButton = findViewById(R.id.toRoom2);
 
         endButton.setOnClickListener(v -> {
-            launchEndActivity();
+            launchNextActivity();
         });
 
         TextView name = findViewById(R.id.nameText);
@@ -205,8 +205,8 @@ public class GameActivity extends AppCompatActivity {
      */
 
     // Changes game screen to EndActivity
-    public void launchEndActivity() {
-        Intent intent = new Intent(this, EndActivity.class);
+    public void launchNextActivity() {
+        Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);
         finish();
     }

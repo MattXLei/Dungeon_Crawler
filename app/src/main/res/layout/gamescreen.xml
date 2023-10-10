@@ -11,11 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="108dp"
         android:layout_marginBottom="660dp"
         android:text="*Placeholder Name*"
         app:layout_constraintBottom_toTopOf="@+id/healthText"
-        app:layout_constraintEnd_toStartOf="@+id/difficultyText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,12 +21,12 @@
         android:id="@+id/difficultyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="109dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="626dp"
         android:text="*Placeholder Difficulty*"
         app:layout_constraintBottom_toTopOf="@+id/endScreenButton"
-        app:layout_constraintStart_toEndOf="@+id/nameText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -38,6 +36,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="636dp"
         android:text="Health:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="602dp"
+        android:text="Score:"
+        app:layout_constraintBottom_toTopOf="@+id/healthText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
@@ -94,4 +104,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/knightSprite"
         app:srcCompat="@drawable/necromancer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

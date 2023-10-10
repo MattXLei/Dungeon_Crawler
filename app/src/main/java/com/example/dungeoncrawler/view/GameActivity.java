@@ -10,6 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 //import java.util.ArrayList;
@@ -20,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dungeoncrawler.model.Player;
 
 import java.util.Timer;
-//import java.util.TimerTask;
+import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -31,6 +35,22 @@ public class GameActivity extends AppCompatActivity {
     private int screenWidth;
     private int screenHeight;
     private Timer dotTimer;
+
+    private final Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            Player.decreaseScore(1);
+        }
+    };
+
+    private void scheduleTask() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                handler.sendMessage(handler.obtainMessage());
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +65,7 @@ public class GameActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
         TextView health = findViewById(R.id.healthText);
+        TextView score = findViewById(R.id.scoreText);
 
         ImageView knight = findViewById(R.id.knightSprite);
         ImageView necromancer = findViewById(R.id.necroSprite);
@@ -66,6 +87,7 @@ public class GameActivity extends AppCompatActivity {
             difficulty.setText("Easy");
         }
         health.setText("Health: " + Player.getHealth());
+        score.setText("Score: " + Player.getScore());
 
         int character = Player.getCharacter();
         if (character == 0) {
@@ -78,6 +100,13 @@ public class GameActivity extends AppCompatActivity {
             necromancer.setVisibility(ImageView.INVISIBLE);
             knight.setVisibility(ImageView.INVISIBLE);
         }
+
+
+        scheduleTask();
+        score.setText("Score: " + Player.getScore());
+
+
+
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         // Spawn player in middle of screen

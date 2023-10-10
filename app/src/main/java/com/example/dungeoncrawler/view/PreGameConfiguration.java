@@ -1,6 +1,5 @@
 package com.example.dungeoncrawler.view;
 
-import com.example.dungeoncrawler.ConfigureVar;
 import com.example.dungeoncrawler.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -33,34 +31,25 @@ public class PreGameConfiguration extends AppCompatActivity {
         ImageButton mage = findViewById(R.id.mageButton);
         charSelected = false;
 
-        knight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Player.setCharacter(0);
-                setChar();
-                necromancer.setSelected(false);
-                mage.setSelected(false);
-            }
+        knight.setOnClickListener(view -> {
+            Player.setCharacter(0);
+            setChar();
+            necromancer.setSelected(false);
+            mage.setSelected(false);
         });
 
-        necromancer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Player.setCharacter(1);
-                setChar();
-                knight.setSelected(false);
-                mage.setSelected(false);
-            }
+        necromancer.setOnClickListener(view -> {
+            Player.setCharacter(1);
+            setChar();
+            knight.setSelected(false);
+            mage.setSelected(false);
         });
 
-        mage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Player.setCharacter(2);
-                setChar();
-                necromancer.setSelected(false);
-                knight.setSelected(false);
-            }
+        mage.setOnClickListener(view -> {
+            Player.setCharacter(2);
+            setChar();
+            necromancer.setSelected(false);
+            knight.setSelected(false);
         });
 
         RadioButton easy = findViewById(R.id.easyButton);
@@ -68,15 +57,12 @@ public class PreGameConfiguration extends AppCompatActivity {
         RadioButton hard = findViewById(R.id.hardButton);
 
         easy.setOnClickListener(v -> {
-            ConfigureVar.setDifficulty(1);
             setDiff(1);
         });
         medium.setOnClickListener(v -> {
-            ConfigureVar.setDifficulty(2);
             setDiff(2);
         });
         hard.setOnClickListener(v -> {
-            ConfigureVar.setDifficulty(3);
             setDiff(3);
         });
 

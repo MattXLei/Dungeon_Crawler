@@ -1,10 +1,13 @@
-package com.example.dungeoncrawler;
+package com.example.dungeoncrawler.view;
+import com.example.dungeoncrawler.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dungeoncrawler.view.PreGameConfiguration;
 
 public class WelcomeActivity extends AppCompatActivity {
     @Override

@@ -8,9 +8,11 @@ import java.util.Calendar;
 public class Leaderboard {
     private volatile static Leaderboard leaderboard;
 
+    private static final int SIZE = 5;
+
     private static DateFormat date = new SimpleDateFormat("MMM dd yyyy, h:mm");
 
-    private static Attempt[] attempts = new Attempt[5];
+    private static Attempt[] attempts = new Attempt[SIZE];
     private static Location location;
     private Leaderboard() {
         attempts[0] = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
@@ -28,6 +30,13 @@ public class Leaderboard {
     }
 
     public static void addAttempt() {
+        for (int i = 0; i < SIZE; i++) {
+            if (attempts[i] == null) {
+                attempts[i] = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
+                Arrays.sort(attempts, 0, i + 1);
+                return;
+            }
+        }
         if (Player.getScore() <= attempts[0].getScore())
             return;
         else {
@@ -40,6 +49,12 @@ public class Leaderboard {
     }
     public static Attempt[] getAttempts() {
         return attempts;
+    }
+
+    public static void empty() {
+        for (int i = 0; i < SIZE; i++) {
+            attempts[i] =  null;
+        }
     }
     public static void setLocation(float newX, float newY) {
         Leaderboard.location.setxCord(newX);

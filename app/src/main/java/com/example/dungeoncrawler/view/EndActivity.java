@@ -1,11 +1,11 @@
-package com.example.dungeoncrawler;
+package com.example.dungeoncrawler.view;
+import com.example.dungeoncrawler.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 public class EndActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

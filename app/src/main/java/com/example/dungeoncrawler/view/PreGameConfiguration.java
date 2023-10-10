@@ -1,4 +1,7 @@
-package com.example.dungeoncrawler;
+package com.example.dungeoncrawler.view;
+
+import com.example.dungeoncrawler.ConfigureVar;
+import com.example.dungeoncrawler.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

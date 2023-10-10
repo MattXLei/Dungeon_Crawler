@@ -1,20 +1,19 @@
 package com.example.dungeoncrawler.model;
-import java.math.*;
-public class Chest {
+
+public class Coin {
     private static Location location;
 
-    private final long chestScore;
+    private static final long coinScore = 10;
 
-    public Chest(Location location) {
+    public Coin(Location location) {
         this.location = new Location(0.0f, 0.0f);
-        chestScore = (int) (Math.random() * 51 + 50);
     }
 
     public static Location getLocation() {
         return location;
     }
     public static void setLocation(float newX, float newY) {
-        Chest.location.setxCord(newX);
-        Chest.location.setyCord(newY);
+        Coin.location.setxCord(newX);
+        Coin.location.setyCord(newY);
     }
 }

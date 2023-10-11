@@ -64,17 +64,17 @@ public class PlayerTest {
 
     @Test
     public void testDifficulty1() {
-        Player.setDifficulty(2);
+        Player.setDifficulty(3);
         assertEquals(50, Player.getHealth());
     }
     @Test
     public void testDifficulty2() {
-        Player.setDifficulty(1);
+        Player.setDifficulty(2);
         assertEquals(75, Player.getHealth());
     }
     @Test
     public void testDifficulty3() {
-        Player.setDifficulty(0);
+        Player.setDifficulty(1);
         assertEquals(100, Player.getHealth());
     }
 }

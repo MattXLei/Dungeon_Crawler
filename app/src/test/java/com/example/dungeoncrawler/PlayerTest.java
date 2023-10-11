@@ -39,4 +39,34 @@ public class PlayerTest {
         Player.setDifficulty(0);
         assertEquals(100, Player.getHealth());
     }
+
+    @Test
+    public void testScoreSubzero() { // tests that score cannot dip below 0
+        Player.setScore(0);
+        assertEquals(0, Player.getScore());
+        Player.setScore(-1);
+        assertEquals(0, Player.getScore());
+        Player.decreaseScore(10);
+        assertEquals(0, Player.getScore());
+        Player.increaseScore(20);
+        assertEquals(20, Player.getScore());
+        Player.decreaseScore(30);
+        assertEquals(0, Player.getScore());
+    }
+
+    @Test
+    public void testTrashName() { // ensures Player naming is not illegal
+        Player.setName("Bob");
+        assertEquals("Bob", Player.getName());
+        Player.setName(null);
+        assertEquals("Bob", Player.getName());
+        Player.setName(" ");
+        assertEquals("Bob", Player.getName());
+        Player.setName("         ");
+        assertEquals("Bob", Player.getName());
+        Player.setName("         Candace");
+        assertEquals("Candace", Player.getName());
+        Player.setName("Tracy         ");
+        assertEquals("Tracy", Player.getName());
+    }
 }

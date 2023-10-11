@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import com.example.dungeoncrawler.model.Leaderboard;
 import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.model.Attempt;
 
 public class LeaderboardsTest {
 
@@ -42,5 +43,17 @@ public class LeaderboardsTest {
         assertEquals(Leaderboard.getAttempts()[3].getScore(), 20);
         assertEquals(Leaderboard.getAttempts()[4].getScore(), 10);
 
+    }
+
+    //compares two attempts, dates and names are not used
+    @Test
+    public void compareAttempts() {
+        Attempt attempt1 = new Attempt("attempt1", 1, "example date");
+        Attempt attempt2 = new Attempt("attempt2", 2, "example date");
+        Attempt attempt3 = new Attempt("attempt3", 1, "example date");
+
+        assertEquals(-1, attempt2.compareTo(attempt1));
+        assertEquals(1, attempt1.compareTo(attempt2));
+        assertEquals(0, attempt1.compareTo(attempt3));
     }
 }

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 import com.example.dungeoncrawler.model.Player;
 
-public class SettingsTest {
+public class PlayerTest {
 
     Player player = Player.getPlayer();
 
@@ -25,11 +25,17 @@ public class SettingsTest {
     }
 
     @Test
-    public void testDifficulty() {
+    public void testDifficulty1() {
         Player.setDifficulty(2);
         assertEquals(50, Player.getHealth());
+    }
+    @Test
+    public void testDifficulty2() {
         Player.setDifficulty(1);
         assertEquals(75, Player.getHealth());
+    }
+    @Test
+    public void testDifficulty3() {
         Player.setDifficulty(0);
         assertEquals(100, Player.getHealth());
     }

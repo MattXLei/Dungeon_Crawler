@@ -126,9 +126,9 @@ public class Player {
 
     public static void setDifficulty(int difficulty) {
         Player.difficulty = difficulty;
-        if (difficulty == 2) {
+        if (difficulty == 3) {
             setHealth(50);
-        } else if (difficulty == 1) {
+        } else if (difficulty == 2) {
             setHealth(75);
         } else {
             setHealth(100);

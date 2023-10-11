@@ -77,6 +77,4 @@ public class PlayerTest {
         Player.setDifficulty(0);
         assertEquals(100, Player.getHealth());
     }
-
-
 }

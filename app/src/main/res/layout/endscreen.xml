@@ -47,6 +47,16 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textRecent"
+                android:padding="3dip"
+                android:textColor="#FFFFFF" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
                 android:padding="3dip"
                 android:text="Leaderboards:"
                 android:textColor="#FFFFFF"/>

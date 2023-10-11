@@ -71,13 +71,10 @@ public class GameActivity extends AppCompatActivity {
         name.setText(settings.getStringExtra("name"));
         int difficultyNum = settings.getIntExtra("difficulty", 1);
         if (difficultyNum == 2) {
-            Player.setHealth(75);
             difficulty.setText("Medium");
         } else if (difficultyNum == 3) {
-            Player.setHealth(50);
             difficulty.setText("Hard");
         } else if (difficultyNum == 1) {
-            Player.setHealth(100);
             difficulty.setText("Easy");
         }
         health.setText("Health: " + Player.getHealth());

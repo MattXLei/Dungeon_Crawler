@@ -59,7 +59,7 @@ public class Player {
         } else if (name.trim().isEmpty()) {
             System.out.println("Input name cannot only contain whitespaces!");
         } else {
-            Player.name = name;
+            Player.name = name.trim();
         }
     }
 
@@ -122,5 +122,14 @@ public class Player {
 
     public static int getDifficulty() { return difficulty; }
 
-    public static void setDifficulty(int difficulty) { Player.difficulty = difficulty; }
+    public static void setDifficulty(int difficulty) {
+        Player.difficulty = difficulty;
+        if (difficulty == 2) {
+            setHealth(50);
+        } else if (difficulty == 1) {
+            setHealth(75);
+        } else {
+            setHealth(100);
+        }
+    }
 }

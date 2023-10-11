@@ -13,16 +13,19 @@ public class Attempt implements Comparable<Attempt>{
     @Override
     public int compareTo(Attempt attempt) {
         if (this.score > attempt.score) {
-            return 1;
+            return -1;
         }
         else if (this.score < attempt.score) {
-            return -1;
+            return 1;
         }
         else {
             return 0;
         }
     }
-
+    @Override
+    public String toString() {
+        return String.format("%s: %d   %s", name, score, date);
+    }
     public long getScore() {
         return score;
     }

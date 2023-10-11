@@ -16,4 +16,8 @@ public class Powerup {
         Powerup.location.setxCord(newX);
         Powerup.location.setyCord(newY);
     }
+
+    public static long getPowerupScore() {
+        return powerupScore;
+    }
 }

@@ -11,6 +11,28 @@ public class PlayerTest {
     Player player = Player.getPlayer();
 
     @Test
+    public void playerFieldsTest() {
+        Player.setName("A");
+        Player.setScore(100);
+        Player.setDifficulty(1);
+        Player.setCharacter(1000000);
+        Player.setLocation(1f, 2f);
+        Player.setDirection(1);
+        Player.setHealth(100);
+        Player.setSpeed(10);
+
+        assertEquals("A", Player.getName());
+        assertEquals(100, Player.getScore());
+        assertEquals(1, Player.getDifficulty());
+        assertEquals(1000000, Player.getCharacter());
+        assertEquals(1f, Player.getLocation().getxCord(), 0f);
+        assertEquals(2f, Player.getLocation().getyCord(), 0f);
+        assertEquals(1, Player.getDirection());
+        assertEquals(100, Player.getHealth());
+        assertEquals(10, Player.getSpeed());
+    }
+
+    @Test
     public void testName() {
         Player.setName("helloWorld");
         assertEquals("helloWorld", Player.getName());
@@ -22,6 +44,22 @@ public class PlayerTest {
         assertEquals("hi", Player.getName());
         Player.setName(null);
         assertEquals("hi", Player.getName());
+    }
+
+    @Test
+    public void testIllegalName() { // ensures Player naming is not illegal
+        Player.setName("Bob");
+        assertEquals("Bob", Player.getName());
+        Player.setName(null);
+        assertEquals("Bob", Player.getName());
+        Player.setName(" ");
+        assertEquals("Bob", Player.getName());
+        Player.setName("         ");
+        assertEquals("Bob", Player.getName());
+        Player.setName("         Candace");
+        assertEquals("Candace", Player.getName());
+        Player.setName("Tracy         ");
+        assertEquals("Tracy", Player.getName());
     }
 
     @Test

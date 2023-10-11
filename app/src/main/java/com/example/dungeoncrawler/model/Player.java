@@ -100,7 +100,9 @@ public class Player {
     }
 
     public static void setScore(long score) {
-        Player.score = score;
+        if (score >= 0) {
+            Player.score = score;
+        }
     }
 
     public static void increaseScore(long amount) {

@@ -16,4 +16,8 @@ public class Coin {
         Coin.location.setxCord(newX);
         Coin.location.setyCord(newY);
     }
+
+    public static long getCoinScore() {
+        return coinScore;
+    }
 }

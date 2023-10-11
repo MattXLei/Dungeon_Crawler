@@ -4,6 +4,7 @@ import com.example.dungeoncrawler.model.Player;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,12 @@ public class Room2Activity extends AppCompatActivity {
     private float playerY;
     private int screenWidth;
     private int screenHeight;
+
+    private long leftTime = Player.getScore() * 1000;
+
+    private CountDownTimer timer;
+
+    private TextView score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,7 @@ public class Room2Activity extends AppCompatActivity {
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
         TextView health = findViewById(R.id.healthText);
+        score = findViewById(R.id.scoreText);
 
         ImageView knight = findViewById(R.id.knightSprite);
         ImageView necromancer = findViewById(R.id.necroSprite);
@@ -50,6 +58,7 @@ public class Room2Activity extends AppCompatActivity {
             difficulty.setText("Easy");
         }
         health.setText("Health: " + Player.getHealth());
+        score.setText("Score: " + Player.getScore());
 
         int character = Player.getCharacter();
         if (character == 0) {
@@ -62,11 +71,34 @@ public class Room2Activity extends AppCompatActivity {
             necromancer.setVisibility(ImageView.INVISIBLE);
             knight.setVisibility(ImageView.INVISIBLE);
         }
+        doCountDown();
     }
 
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room3Activity.class);
         startActivity(intent);
         finish();
+        timer.cancel();
+    }
+
+    public void doCountDown() {
+        timer = new CountDownTimer(leftTime, 1000) {
+            @Override
+            public void onTick(long remaining) {
+                leftTime = remaining;
+                updateScoreText();
+            }
+
+            @Override
+            public void onFinish() {
+                score.setText("Score: 0");
+            }
+        }.start();
+
+    }
+
+    private void updateScoreText() {
+        Player.decreaseScore(1);
+        score.setText("Score: " + Player.getScore());
     }
 }

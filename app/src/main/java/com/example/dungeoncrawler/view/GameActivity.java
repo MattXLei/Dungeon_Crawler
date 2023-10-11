@@ -223,7 +223,6 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);
         timer.cancel();
-        Player.setScore(100);
         finish();
     }
 }

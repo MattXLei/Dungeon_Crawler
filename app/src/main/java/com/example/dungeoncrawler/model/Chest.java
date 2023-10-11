@@ -17,4 +17,8 @@ public class Chest {
         Chest.location.setxCord(newX);
         Chest.location.setyCord(newY);
     }
+
+    public long getChestScore() {
+        return chestScore;
+    }
 }

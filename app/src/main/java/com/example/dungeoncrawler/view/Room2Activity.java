@@ -48,13 +48,10 @@ public class Room2Activity extends AppCompatActivity {
         name.setText(Player.getName());
         int difficultyNum = Player.getDifficulty();
         if (difficultyNum == 2) {
-            Player.setHealth(75);
             difficulty.setText("Medium");
         } else if (difficultyNum == 3) {
-            Player.setHealth(50);
             difficulty.setText("Hard");
         } else if (difficultyNum == 1) {
-            Player.setHealth(100);
             difficulty.setText("Easy");
         }
         health.setText("Health: " + Player.getHealth());

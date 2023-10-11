@@ -33,4 +33,74 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TableLayout
+        android:layout_width="405dp"
+        android:layout_height="431dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="67dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeButton">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:padding="3dip"
+                android:text="Leaderboards:"
+                android:textColor="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/LB1"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/LB2"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/LB3"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="#FFFFFF"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/LB4"
+                android:padding="3dip"
+                android:text="" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/LB5"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="#FFFFFF"/>
+
+        </TableRow>
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

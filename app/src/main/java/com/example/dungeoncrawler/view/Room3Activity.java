@@ -1,5 +1,6 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+import com.example.dungeoncrawler.model.Leaderboard;
 import com.example.dungeoncrawler.model.Player;
 
 import android.content.Intent;
@@ -18,6 +19,7 @@ public class Room3Activity extends AppCompatActivity {
         Button endButton = findViewById(R.id.toEnd);
 
         endButton.setOnClickListener(v -> {
+            Leaderboard.addAttempt();
             launchNextActivity();
         });
 

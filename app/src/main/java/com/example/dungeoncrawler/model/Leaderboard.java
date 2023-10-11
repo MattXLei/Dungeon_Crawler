@@ -37,10 +37,10 @@ public class Leaderboard {
                 return;
             }
         }
-        if (Player.getScore() <= attempts[0].getScore())
+        if (Player.getScore() <= attempts[SIZE - 1].getScore())
             return;
         else {
-            attempts[0] = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
+            attempts[SIZE - 1] = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
             Arrays.sort(attempts);
         }
     }

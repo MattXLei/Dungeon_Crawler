@@ -14,6 +14,8 @@ public class Leaderboard {
 
     private static Attempt[] attempts = new Attempt[SIZE];
     private static Location location;
+
+    private static Attempt mostRecent = null;
     private Leaderboard() {
         attempts[0] = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
         this.location = new Location(0.0f, 0.0f);
@@ -30,6 +32,7 @@ public class Leaderboard {
     }
 
     public static void addAttempt() {
+        mostRecent = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
         for (int i = 0; i < SIZE; i++) {
             if (attempts[i] == null) {
                 attempts[i] = new Attempt(Player.getName(), Player.getScore(), date.format(Calendar.getInstance().getTime()));
@@ -50,6 +53,8 @@ public class Leaderboard {
     public static Attempt[] getAttempts() {
         return attempts;
     }
+
+    public static Attempt getMostRecent() { return mostRecent; }
 
     public static void empty() {
         for (int i = 0; i < SIZE; i++) {

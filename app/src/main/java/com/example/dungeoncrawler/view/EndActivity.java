@@ -44,5 +44,7 @@ public class EndActivity extends AppCompatActivity {
             lb5.setText(Leaderboard.getAttempts()[4].toString());
         }
 
+        TextView recent = findViewById(R.id.textRecent);
+        recent.setText(Leaderboard.getMostRecent().toString());
     }
 }

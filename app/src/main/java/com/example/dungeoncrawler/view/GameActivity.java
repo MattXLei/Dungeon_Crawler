@@ -38,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
 //    private Timer dotTimer;
 
     //in milliseconds
-    private static final long startTime = 60000;
+    private static final long startTime = 50000;
 
     private long leftTime = startTime;
 
@@ -125,7 +125,7 @@ public class GameActivity extends AppCompatActivity {
         }, 0, 500); // Check every .5 seconds*/
     }
 
-    private void doCountDown() {
+    public void doCountDown() {
         timer = new CountDownTimer(leftTime, 1000) {
             @Override
             public void onTick(long remaining) {
@@ -135,7 +135,7 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
+                score.setText("Score: 0");
             }
         }.start();
 

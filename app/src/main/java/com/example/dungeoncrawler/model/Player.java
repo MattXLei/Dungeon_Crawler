@@ -32,7 +32,7 @@ public class Player {
     }
 
     private Player() {
-        this(100, 10,  10, 0, "", 0);
+        this(100, 10,  10, 50, "", 0);
     }
 
 
@@ -108,11 +108,7 @@ public class Player {
     }
 
     public static void decreaseScore(long amount) {
-        if (amount > Player.score) {
-            Player.score = 0;
-        } else {
-            Player.score -= amount;
-        }
+        Player.score = Math.max(Player.score - amount, 0);
     }
 
     public static Location getLocation() {

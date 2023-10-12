@@ -39,7 +39,7 @@ public class Room2Activity extends AppCompatActivity {
         score = findViewById(R.id.scoreText);
 
         ImageView knight = findViewById(R.id.knightSprite);
-        ImageView necromancer = findViewById(R.id.necroSprite);
+        ImageView necromancer = findViewById(R.id.rogueSprite);
         ImageView mage = findViewById(R.id.mageSprite);
 
         Intent settings = getIntent();

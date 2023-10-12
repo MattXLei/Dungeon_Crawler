@@ -10,9 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.os.CountDownTimer;
 
 
@@ -23,9 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 //import java.util.Map;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Player;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -62,7 +56,7 @@ public class GameActivity extends AppCompatActivity {
         score = findViewById(R.id.scoreText);
 
         ImageView knight = findViewById(R.id.knightSprite);
-        ImageView necromancer = findViewById(R.id.necroSprite);
+        ImageView necromancer = findViewById(R.id.rogueSprite);
         ImageView mage = findViewById(R.id.mageSprite);
 
         Intent settings = getIntent();

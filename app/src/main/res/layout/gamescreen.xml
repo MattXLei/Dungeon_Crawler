@@ -109,7 +109,7 @@
         app:srcCompat="@drawable/mage" />
 
     <ImageView
-        android:id="@+id/necroSprite"
+        android:id="@+id/rogueSprite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"

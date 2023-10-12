@@ -36,11 +36,15 @@ public class PlayerViewModel extends ViewModel {
     }
 
     public void setScore(int i) {
-        Player.setScore(i);
+        Player.setScore(Math.max(i, 0));
     }
 
     public long getScore() {
         return Player.getScore();
+    }
+
+    public void decreaseScore(long i) {
+        Player.decreaseScore(i);
     }
 
     public void setDifficulty(int diff) {
@@ -60,5 +64,10 @@ public class PlayerViewModel extends ViewModel {
 
     public boolean getCharSelected() {
         return charSelected;
+    }
+
+
+    public int getHealth() {
+        return Player.getHealth();
     }
 }

@@ -14,12 +14,14 @@ import android.os.CountDownTimer;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 //import java.util.ArrayList;
 //import java.util.HashMap;
 //import java.util.List;
 //import java.util.Map;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -40,11 +42,15 @@ public class GameActivity extends AppCompatActivity {
 
     private TextView score;
 
+    private PlayerViewModel playerVM;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
         Button endButton = findViewById(R.id.toRoom2);
+
+        playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
 
         endButton.setOnClickListener(v -> {
             launchNextActivity();
@@ -59,11 +65,9 @@ public class GameActivity extends AppCompatActivity {
         ImageView necromancer = findViewById(R.id.rogueSprite);
         ImageView mage = findViewById(R.id.mageSprite);
 
-        Intent settings = getIntent();
 
-
-        name.setText(settings.getStringExtra("name"));
-        int difficultyNum = settings.getIntExtra("difficulty", 1);
+        name.setText(playerVM.getName());
+        int difficultyNum = playerVM.getDifficulty();
         if (difficultyNum == 2) {
             difficulty.setText("Medium");
         } else if (difficultyNum == 3) {
@@ -71,10 +75,10 @@ public class GameActivity extends AppCompatActivity {
         } else if (difficultyNum == 1) {
             difficulty.setText("Easy");
         }
-        health.setText("Health: " + Player.getHealth());
-        score.setText("Score: " + Player.getScore());
+        health.setText("Health: " + playerVM.getHealth());
+        score.setText("Score: " + playerVM.getScore());
 
-        int character = Player.getCharacter();
+        int character = playerVM.getCharacter();
         if (character == 0) {
             necromancer.setVisibility(ImageView.INVISIBLE);
             mage.setVisibility(ImageView.INVISIBLE);
@@ -133,8 +137,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateScoreText() {
-        Player.decreaseScore(1);
-        score.setText("Score: " + Player.getScore());
+        playerVM.decreaseScore(1);
+        score.setText("Score: " + playerVM.getScore());
     }
 
 

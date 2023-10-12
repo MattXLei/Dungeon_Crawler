@@ -80,9 +80,6 @@ public class PreGameConfiguration extends AppCompatActivity {
                 playerVM.setScore(50);
                 playerVM.setDifficulty(playerVM.getDifficulty());
                 Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
-                game.putExtra("name", playerVM.getName());
-                game.putExtra("character", playerVM.getCharacter());
-                game.putExtra("difficulty", playerVM.getDifficulty());
                 startActivity(game);
                 finish();
             }

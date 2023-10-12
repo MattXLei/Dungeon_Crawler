@@ -8,12 +8,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.dungeoncrawler.viewmodel.LeaderboardViewModel;
+import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 public class EndActivity extends AppCompatActivity {
+
+    private LeaderboardViewModel leaderboardVM;
+    private PlayerViewModel playerVM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.endscreen);
         Button exitBtn = findViewById(R.id.homeButton); // change button resource
+
+        playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
+        leaderboardVM = new ViewModelProvider(this).get(LeaderboardViewModel.class);
 
         // Exits app to welcome activity
         exitBtn.setOnClickListener(v -> {

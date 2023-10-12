@@ -47,6 +47,18 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:padding="3dip"
+                android:text="Most Recent Attempt:"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
                 android:id="@+id/textRecent"
                 android:padding="3dip"
                 android:textColor="#FFFFFF" />
@@ -57,9 +69,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:padding="3dip"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
                 android:padding="3dip"
-                android:text="Leaderboards:"
-                android:textColor="#FFFFFF"/>
+                android:text="Leaderboard:"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -98,7 +120,8 @@
             <TextView
                 android:id="@+id/LB4"
                 android:padding="3dip"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/white" />
 
         </TableRow>
 

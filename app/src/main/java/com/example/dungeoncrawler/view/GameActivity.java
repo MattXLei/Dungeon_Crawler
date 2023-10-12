@@ -20,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.List;
 //import java.util.Map;
 //import java.util.Random;
-import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 public class GameActivity extends AppCompatActivity {

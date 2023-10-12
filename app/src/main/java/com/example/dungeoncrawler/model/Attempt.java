@@ -1,6 +1,6 @@
 package com.example.dungeoncrawler.model;
 
-public class Attempt implements Comparable<Attempt>{
+public class Attempt implements Comparable<Attempt> {
     private String name;
     private long score;
     private String date;
@@ -14,11 +14,9 @@ public class Attempt implements Comparable<Attempt>{
     public int compareTo(Attempt attempt) {
         if (this.score > attempt.score) {
             return -1;
-        }
-        else if (this.score < attempt.score) {
+        } else if (this.score < attempt.score) {
             return 1;
-        }
-        else {
+        } else {
             return 0;
         }
     }

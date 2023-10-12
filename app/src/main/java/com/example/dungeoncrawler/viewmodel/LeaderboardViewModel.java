@@ -15,7 +15,9 @@ public class LeaderboardViewModel extends ViewModel {
         return Leaderboard.getAttempts();
     }
 
-    public Attempt getMostRecent() { return Leaderboard.getMostRecent(); }
+    public Attempt getMostRecent() {
+        return Leaderboard.getMostRecent();
+    }
 
     public void empty() {
         Leaderboard.empty();

@@ -6,7 +6,7 @@ public class Chest {
     private final long chestScore;
 
     public Chest(Location location) {
-        this.location = new Location(0.0f, 0.0f);
+        this.location = new Location(location.getxCord(), location.getyCord());
         chestScore = (int) (Math.random() * 51 + 50);
     }
 

@@ -1,17 +1,21 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
-public class Room2Activity extends AppCompatActivity {
+public class Room2Activity extends GameActivity {
 
     private float playerX;
     private float playerY;
@@ -23,6 +27,8 @@ public class Room2Activity extends AppCompatActivity {
     private TextView score;
 
     private PlayerViewModel playerVM;
+
+    private PlayerView playerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +48,6 @@ public class Room2Activity extends AppCompatActivity {
         TextView health = findViewById(R.id.healthText);
         score = findViewById(R.id.scoreText);
 
-        ImageView knight = findViewById(R.id.knightSprite);
-        ImageView necromancer = findViewById(R.id.rogueSprite);
-        ImageView mage = findViewById(R.id.mageSprite);
-
-
-
         name.setText(playerVM.getName());
         int difficultyNum = playerVM.getDifficulty();
         if (difficultyNum == 2) {
@@ -60,17 +60,23 @@ public class Room2Activity extends AppCompatActivity {
         health.setText("Health: " + playerVM.getHealth());
         score.setText("Score: " + playerVM.getScore());
 
+        screenWidth = getResources().getDisplayMetrics().widthPixels;
+        screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        if (character == 0) {
-            necromancer.setVisibility(ImageView.INVISIBLE);
-            mage.setVisibility(ImageView.INVISIBLE);
-        } else if (character == 1) {
-            knight.setVisibility(ImageView.INVISIBLE);
-            mage.setVisibility(ImageView.INVISIBLE);
+        Player.setLocation(screenWidth/2, screenHeight/2);
+        playerView = new PlayerView(this, Player.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
+        if (character == 1) {
+            playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
         } else if (character == 2) {
-            necromancer.setVisibility(ImageView.INVISIBLE);
-            knight.setVisibility(ImageView.INVISIBLE);
+            playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
+
+        playerVM.startScore(score);
+
+        Player.setMovementStrategy(new WalkStrategy());
+        ConstraintLayout gameLayout = findViewById(R.id.room2);
+        super.setPlayerView(playerView);
+        gameLayout.addView(super.playerView);
 
         playerVM.startScore(score);
     }

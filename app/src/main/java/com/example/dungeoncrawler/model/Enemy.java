@@ -10,7 +10,7 @@ public class Enemy {
         this.health = health;
         this.speed = speed;
         this.direction = direction;
-        this.location = new Location(0.0f, 0.0f);
+        this.location = new Location(location.getxCord(), location.getyCord());
     }
 
     public static int getHealth() {

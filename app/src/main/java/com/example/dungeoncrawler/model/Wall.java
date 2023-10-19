@@ -1,11 +1,9 @@
 package com.example.dungeoncrawler.model;
 
-public class Coin {
+public class Wall {
     private static Location location;
 
-    private static final long COINSCORE = 10;
-
-    public Coin(Location location) {
+    public Wall(Location location) {
         this.location = new Location(location.getxCord(), location.getyCord());
     }
 
@@ -13,11 +11,8 @@ public class Coin {
         return location;
     }
     public static void setLocation(float newX, float newY) {
-        Coin.location.setxCord(newX);
-        Coin.location.setyCord(newY);
+        Wall.location.setxCord(newX);
+        Wall.location.setyCord(newY);
     }
 
-    public static long getCoinScore() {
-        return COINSCORE;
-    }
 }

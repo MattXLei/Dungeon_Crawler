@@ -21,6 +21,8 @@ public class Player {
 
     private static int difficulty;
 
+    private static MovementStrategy movementStrategy;
+
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         this.health = health;
         this.speed = speed;
@@ -135,5 +137,13 @@ public class Player {
         } else {
             setHealth(100);
         }
+    }
+
+    public static void setMovementStrategy(MovementStrategy movementStrategy) {
+        Player.movementStrategy = movementStrategy;
+    }
+
+    public static MovementStrategy getMovementStrategy() {
+        return movementStrategy;
     }
 }

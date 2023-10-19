@@ -2,11 +2,14 @@ package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
 import android.content.Intent;
 //import android.graphics.RectF;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 //import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
@@ -14,6 +17,7 @@ import android.os.CountDownTimer;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.lifecycle.ViewModelProvider;
 //import java.util.ArrayList;
 //import java.util.HashMap;
@@ -21,6 +25,18 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.Map;
 //import java.util.Random;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
+
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.dungeoncrawler.model.Player;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import com.example.dungeoncrawler.model.WalkStrategy;
+
 
 public class GameActivity extends AppCompatActivity {
 
@@ -34,6 +50,9 @@ public class GameActivity extends AppCompatActivity {
     private TextView score;
 
     private PlayerViewModel playerVM;
+
+
+    private PlayerView playerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,19 +88,28 @@ public class GameActivity extends AppCompatActivity {
         health.setText("Health: " + playerVM.getHealth());
         score.setText("Score: " + playerVM.getScore());
 
+
+
         int character = playerVM.getCharacter();
+        playerView = new PlayerView(this, Player.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 0) {
             necromancer.setVisibility(ImageView.INVISIBLE);
             mage.setVisibility(ImageView.INVISIBLE);
         } else if (character == 1) {
+//            playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
             knight.setVisibility(ImageView.INVISIBLE);
             mage.setVisibility(ImageView.INVISIBLE);
         } else if (character == 2) {
+//            playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
             necromancer.setVisibility(ImageView.INVISIBLE);
             knight.setVisibility(ImageView.INVISIBLE);
         }
 
         playerVM.startScore(score);
+
+        Player.setMovementStrategy(new WalkStrategy());
+        ConstraintLayout gameLayout = findViewById(R.id.gameLayout);
+        gameLayout.addView(playerView);
 
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -116,36 +144,23 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-        case KeyEvent.KEYCODE_W:
-            playerY -= 50;
-            break;
-        case KeyEvent.KEYCODE_A:
-            playerX -= 50;
-            break;
-        case KeyEvent.KEYCODE_S:
-            playerY += 50;
-            break;
-        case KeyEvent.KEYCODE_D:
-            playerX += 50;
-            break;
-        default:
-            break;
+            case KeyEvent.KEYCODE_W:
+                Player.getMovementStrategy().moveUp();
+                break;
+            case KeyEvent.KEYCODE_A:
+                Player.getMovementStrategy().moveLeft();
+                break;
+            case KeyEvent.KEYCODE_S:
+                Player.getMovementStrategy().moveDown();
+                break;
+            case KeyEvent.KEYCODE_D:
+                Player.getMovementStrategy().moveRight();
+                break;
+            default:
+                break;
         }
-        screenWidth = getResources().getDisplayMetrics().widthPixels;
-        screenHeight = getResources().getDisplayMetrics().heightPixels;
-        if (playerX < 0) {
-            playerX = 0;
-        }
-        if (playerX > screenWidth) {
-            playerX = screenWidth;
-        }
-        if (playerY < 0) {
-            playerY = 0;
-        }
-        if (playerY > screenHeight) {
-            playerY = screenHeight;
-        }
-        return true;
+        playerView.updatePosition();
+        return false;
     }
 
     /*

@@ -4,7 +4,6 @@ import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,8 +19,6 @@ public class Room2Activity extends AppCompatActivity {
     private int screenHeight;
 
     private long leftTime;
-
-    private CountDownTimer timer;
 
     private TextView score;
 
@@ -74,34 +71,15 @@ public class Room2Activity extends AppCompatActivity {
             necromancer.setVisibility(ImageView.INVISIBLE);
             knight.setVisibility(ImageView.INVISIBLE);
         }
-        doCountDown();
+
+        playerVM.startScore(score);
     }
 
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room3Activity.class);
         startActivity(intent);
+        playerVM.endScore();
         finish();
-        timer.cancel();
     }
 
-    public void doCountDown() {
-        timer = new CountDownTimer(leftTime, 1000) {
-            @Override
-            public void onTick(long remaining) {
-                leftTime = remaining;
-                updateScoreText();
-            }
-
-            @Override
-            public void onFinish() {
-                score.setText("Score: 0");
-            }
-        }.start();
-
-    }
-
-    private void updateScoreText() {
-        playerVM.decreaseScore(1);
-        score.setText("Score: " + playerVM.getScore());
-    }
 }

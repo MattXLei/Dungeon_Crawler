@@ -1,6 +1,9 @@
 package com.example.dungeoncrawler.viewmodel;
 
 
+import android.os.CountDownTimer;
+import android.widget.TextView;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.dungeoncrawler.model.Player;
@@ -9,10 +12,13 @@ public class PlayerViewModel extends ViewModel {
 
     private Player player;
     private boolean charSelected;
+    private CountDownTimer timer;
+    private long leftTime;
 
     public PlayerViewModel() {
         player = Player.getPlayer();
         charSelected = false;
+        leftTime = Player.getScore() * 1000;
     }
 
     public void setCharacter(int num) {
@@ -66,8 +72,25 @@ public class PlayerViewModel extends ViewModel {
         return charSelected;
     }
 
-
     public int getHealth() {
         return Player.getHealth();
+    }
+
+    public void startScore(TextView score) {
+        timer = new CountDownTimer(leftTime, 1000) {
+            @Override
+            public void onTick(long remaining) {
+                leftTime = remaining;
+                decreaseScore(1);
+                score.setText("Score: " + getScore());
+            }
+
+            @Override
+            public void onFinish() {}
+        }.start();
+    }
+
+    public void endScore() {
+        timer.cancel();
     }
 }

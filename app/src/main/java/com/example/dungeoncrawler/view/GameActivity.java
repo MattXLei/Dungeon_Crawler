@@ -31,13 +31,6 @@ public class GameActivity extends AppCompatActivity {
     private int screenWidth;
     private int screenHeight;
 
-    //in milliseconds
-    private static final long STARTTIME = 50000;
-
-    private long leftTime = STARTTIME;
-
-    private CountDownTimer timer;
-
     private TextView score;
 
     private PlayerViewModel playerVM;
@@ -88,8 +81,7 @@ public class GameActivity extends AppCompatActivity {
             knight.setVisibility(ImageView.INVISIBLE);
         }
 
-
-        doCountDown();
+        playerVM.startScore(score);
 
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -116,27 +108,6 @@ public class GameActivity extends AppCompatActivity {
                 });
             }
         }, 0, 500); // Check every .5 seconds*/
-    }
-
-    public void doCountDown() {
-        timer = new CountDownTimer(leftTime, 1000) {
-            @Override
-            public void onTick(long remaining) {
-                leftTime = remaining;
-                updateScoreText();
-            }
-
-            @Override
-            public void onFinish() {
-                score.setText("Score: 0");
-            }
-        }.start();
-
-    }
-
-    private void updateScoreText() {
-        playerVM.decreaseScore(1);
-        score.setText("Score: " + playerVM.getScore());
     }
 
 
@@ -215,7 +186,7 @@ public class GameActivity extends AppCompatActivity {
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);
-        timer.cancel();
+        playerVM.endScore();
         finish();
     }
 }

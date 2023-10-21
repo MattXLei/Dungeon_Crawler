@@ -89,7 +89,6 @@ public class PlayerViewModel extends ViewModel {
             public void onFinish() {}
         }.start();
     }
-
     public void endScore() {
         timer.cancel();
     }

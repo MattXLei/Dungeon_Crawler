@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -81,7 +80,7 @@ public class PreGameConfiguration extends AppCompatActivity {
                 playerVM.setName(name);
                 playerVM.setScore(50);
                 playerVM.setDifficulty(playerVM.getDifficulty());
-                Intent game = new Intent(PreGameConfiguration.this, GameActivity.class);
+                Intent game = new Intent(PreGameConfiguration.this, Room1Activity.class);
                 startActivity(game);
                 finish();
             }

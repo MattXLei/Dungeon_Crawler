@@ -1,35 +1,33 @@
 package com.example.dungeoncrawler.model;
 
-public class Player {
+public class Player extends Entity {
 
-    private static volatile Player player = new Player();
+    private static volatile Player player;
 
-    private static int health;
+    private int health;
 
-    private static int speed;
+    private int speed;
 
-    private static int direction;
+    private int direction;
 
-    private static long score;
+    private long score;
 
-    private static String name;
+    private String name;
 
-    private static int character;
+    private int character;
 
     // location implementation different than others. Only created when new Player created.
-    private static Location location;
+    //private Location location;
 
-    private static int difficulty;
-
-    private static MovementStrategy movementStrategy;
+    private int difficulty;
 
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
+        super(null, new Location(0.0f, 0.0f));
         this.health = health;
         this.speed = speed;
         this.direction = direction;
         this.score = score;
         this.name = name;
-        this.location = new Location(0.0f, 0.0f);
         this.difficulty = difficulty;
     }
 
@@ -49,11 +47,11 @@ public class Player {
         return player;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static void setName(String name) {
+    public void setName(String name) {
         if (name == null) {
             System.out.println("Input name cannot be null!");
         } else if (name.equals("")) {
@@ -61,75 +59,66 @@ public class Player {
         } else if (name.trim().isEmpty()) {
             System.out.println("Input name cannot only contain whitespaces!");
         } else {
-            Player.name = name.trim();
+            this.name = name.trim();
         }
     }
 
-    public static void setCharacter(int id) {
+    public void setCharacter(int id) {
         character = id;
     }
 
-    public static int getCharacter() {
+    public int getCharacter() {
         return character;
     }
 
-    public static int getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public static void setHealth(int health) {
-        Player.health = health;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
-    public static int getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public static void setSpeed(int speed) {
-        Player.speed = speed;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
-    public static int getDirection() {
+    public int getDirection() {
         return direction;
     }
 
-    public static void setDirection(int direction) {
-        Player.direction = direction;
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
-    public static long getScore() {
+    public long getScore() {
         return score;
     }
 
-    public static void setScore(long score) {
+    public void setScore(long score) {
         if (score >= 0) {
-            Player.score = score;
+            this.score = score;
         }
     }
 
-    public static void increaseScore(long amount) {
-        Player.score += amount;
+    public void increaseScore(long amount) {
+        this.score += amount;
     }
 
-    public static void decreaseScore(long amount) {
-        Player.score = Math.max(Player.score - amount, 0);
+    public void decreaseScore(long amount) {
+        this.score = Math.max(this.score - amount, 0);
     }
 
-    public static Location getLocation() {
-        return location;
-    }
-
-    public static void setLocation(float newX, float newY) {
-        Player.location.setxCord(newX);
-        Player.location.setyCord(newY);
-    }
-
-    public static int getDifficulty() {
+    public int getDifficulty() {
         return difficulty;
     }
 
-    public static void setDifficulty(int difficulty) {
-        Player.difficulty = difficulty;
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
         if (difficulty == 3) {
             setHealth(50);
         } else if (difficulty == 2) {
@@ -137,13 +126,5 @@ public class Player {
         } else {
             setHealth(100);
         }
-    }
-
-    public static void setMovementStrategy(MovementStrategy movementStrategy) {
-        Player.movementStrategy = movementStrategy;
-    }
-
-    public static MovementStrategy getMovementStrategy() {
-        return movementStrategy;
     }
 }

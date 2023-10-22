@@ -12,69 +12,69 @@ public class PlayerTest {
 
     @Test
     public void playerFieldsTest() {
-        Player.setName("A");
-        Player.setScore(100);
-        Player.setDifficulty(1);
-        Player.setCharacter(1000000);
-        Player.setLocation(1f, 2f);
-        Player.setDirection(1);
-        Player.setHealth(100);
-        Player.setSpeed(10);
+        player.setName("A");
+        player.setScore(100);
+        player.setDifficulty(1);
+        player.setCharacter(1000000);
+        player.setLocation(1f, 2f);
+        player.setDirection(1);
+        player.setHealth(100);
+        player.setSpeed(10);
 
-        assertEquals("A", Player.getName());
-        assertEquals(100, Player.getScore());
-        assertEquals(1, Player.getDifficulty());
-        assertEquals(1000000, Player.getCharacter());
-        assertEquals(1f, Player.getLocation().getxCord(), 0f);
-        assertEquals(2f, Player.getLocation().getyCord(), 0f);
-        assertEquals(1, Player.getDirection());
-        assertEquals(100, Player.getHealth());
-        assertEquals(10, Player.getSpeed());
+        assertEquals("A", player.getName());
+        assertEquals(100, player.getScore());
+        assertEquals(1, player.getDifficulty());
+        assertEquals(1000000, player.getCharacter());
+        assertEquals(1f, player.getLocation().getxCord(), 0f);
+        assertEquals(2f, player.getLocation().getyCord(), 0f);
+        assertEquals(1, player.getDirection());
+        assertEquals(100, player.getHealth());
+        assertEquals(10, player.getSpeed());
     }
 
     @Test
     public void testName() {
-        Player.setName("helloWorld");
-        assertEquals("helloWorld", Player.getName());
-        Player.setName("     ");
-        assertEquals("helloWorld", Player.getName());
-        Player.setName("");
-        assertEquals("helloWorld", Player.getName());
-        Player.setName("  hi  ");
-        assertEquals("hi", Player.getName());
-        Player.setName(null);
-        assertEquals("hi", Player.getName());
+        player.setName("helloWorld");
+        assertEquals("helloWorld", player.getName());
+        player.setName("     ");
+        assertEquals("helloWorld", player.getName());
+        player.setName("");
+        assertEquals("helloWorld", player.getName());
+        player.setName("  hi  ");
+        assertEquals("hi", player.getName());
+        player.setName(null);
+        assertEquals("hi", player.getName());
     }
 
     @Test
-    public void testIllegalName() { // ensures Player naming is not illegal
-        Player.setName("Bob");
-        assertEquals("Bob", Player.getName());
-        Player.setName(null);
-        assertEquals("Bob", Player.getName());
-        Player.setName(" ");
-        assertEquals("Bob", Player.getName());
-        Player.setName("         ");
-        assertEquals("Bob", Player.getName());
-        Player.setName("         Candace");
-        assertEquals("Candace", Player.getName());
-        Player.setName("Tracy         ");
-        assertEquals("Tracy", Player.getName());
+    public void testIllegalName() { // ensures player naming is not illegal
+        player.setName("Bob");
+        assertEquals("Bob", player.getName());
+        player.setName(null);
+        assertEquals("Bob", player.getName());
+        player.setName(" ");
+        assertEquals("Bob", player.getName());
+        player.setName("         ");
+        assertEquals("Bob", player.getName());
+        player.setName("         Candace");
+        assertEquals("Candace", player.getName());
+        player.setName("Tracy         ");
+        assertEquals("Tracy", player.getName());
     }
 
     @Test
     public void testDifficulty1() {
-        Player.setDifficulty(3);
-        assertEquals(50, Player.getHealth());
+        player.setDifficulty(3);
+        assertEquals(50, player.getHealth());
     }
     @Test
     public void testDifficulty2() {
-        Player.setDifficulty(2);
-        assertEquals(75, Player.getHealth());
+        player.setDifficulty(2);
+        assertEquals(75, player.getHealth());
     }
     @Test
     public void testDifficulty3() {
-        Player.setDifficulty(1);
-        assertEquals(100, Player.getHealth());
+        player.setDifficulty(1);
+        assertEquals(100, player.getHealth());
     }
 }

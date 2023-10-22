@@ -2,11 +2,15 @@ package com.example.dungeoncrawler.viewmodel;
 
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.dungeoncrawler.model.Location;
+import com.example.dungeoncrawler.model.MovementStrategy;
 import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.model.WalkStrategy;
 
 public class PlayerViewModel extends ViewModel {
 
@@ -18,54 +22,55 @@ public class PlayerViewModel extends ViewModel {
     public PlayerViewModel() {
         player = Player.getPlayer();
         charSelected = false;
-        leftTime = Player.getScore() * 1000;
+        leftTime = player.getScore() * 1000;
+        player.setMovementStrategy(new WalkStrategy());
     }
 
     public void setCharacter(int num) {
-        Player.setCharacter(num);
+        player.setCharacter(num);
         charSelected = true;
     }
 
     public int getCharacter() {
-        return Player.getCharacter();
+        return player.getCharacter();
     }
 
     public void setName(String name) {
         if (name == null || name.trim().equals("")) {
             return;
         }
-        Player.setName(name);
+        player.setName(name);
     }
 
     public String getName() {
-        return Player.getName();
+        return player.getName();
     }
 
     public void setScore(int i) {
-        Player.setScore(Math.max(i, 0));
+        player.setScore(Math.max(i, 0));
     }
 
     public long getScore() {
-        return Player.getScore();
+        return player.getScore();
     }
 
     public void decreaseScore(long i) {
-        Player.decreaseScore(i);
+        player.decreaseScore(i);
     }
 
     public void setDifficulty(int diff) {
-        Player.setDifficulty(diff);
+        player.setDifficulty(diff);
         if (diff == 3) {
-            Player.setHealth(50);
+            player.setHealth(50);
         } else if (diff == 2) {
-            Player.setHealth(75);
+            player.setHealth(75);
         } else {
-            Player.setHealth(100);
+            player.setHealth(100);
         }
     }
 
     public int getDifficulty() {
-        return Player.getDifficulty();
+        return player.getDifficulty();
     }
 
     public boolean getCharSelected() {
@@ -73,7 +78,7 @@ public class PlayerViewModel extends ViewModel {
     }
 
     public int getHealth() {
-        return Player.getHealth();
+        return player.getHealth();
     }
 
     public void startScore(TextView score) {
@@ -91,5 +96,26 @@ public class PlayerViewModel extends ViewModel {
     }
     public void endScore() {
         timer.cancel();
+    }
+
+    public void setMovementStrategy(MovementStrategy movementStrategy) {
+        player.setMovementStrategy(movementStrategy);
+    }
+
+    public MovementStrategy getMovementStrategy() {
+        Log.d("get ms", "Getting movement strategy");
+        return player.getMovementStrategy();
+    }
+
+    public void setDefaultMovementStrategy() {
+        player.setMovementStrategy(new WalkStrategy());
+    }
+
+    public void setLocation(int x, int y) {
+        player.setLocation(x, y);
+    }
+
+    public Location getLocation() {
+        return player.getLocation();
     }
 }

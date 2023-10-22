@@ -1,9 +1,12 @@
 package com.example.dungeoncrawler.view;
 
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.KeyEvent;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Player;
@@ -15,24 +18,24 @@ public class GameActivity extends AppCompatActivity {
     private int screenWidth, screenHeight;
     protected PlayerView playerView;
 
-    private PlayerViewModel playerVM;
+    private Player player = Player.getPlayer();      //temporary solution
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_SHIFT_LEFT:
-                Player.setMovementStrategy(new RunStrategy());
+                player.setMovementStrategy(new RunStrategy());
                 break;
             case KeyEvent.KEYCODE_W:
-                Player.getMovementStrategy().moveUp();
+                player.getMovementStrategy().moveUp();
                 break;
             case KeyEvent.KEYCODE_A:
-                Player.getMovementStrategy().moveLeft();
+                player.getMovementStrategy().moveLeft();
                 break;
             case KeyEvent.KEYCODE_S:
-                Player.getMovementStrategy().moveDown();
+                player.getMovementStrategy().moveDown();
                 break;
             case KeyEvent.KEYCODE_D:
-                Player.getMovementStrategy().moveRight();
+                player.getMovementStrategy().moveRight();
                 break;
             default:
                 break;
@@ -43,7 +46,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
-            Player.setMovementStrategy(new WalkStrategy());
+            player.setMovementStrategy(new WalkStrategy());
         }
         return false;
     }

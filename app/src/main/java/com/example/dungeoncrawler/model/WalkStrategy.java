@@ -1,16 +1,17 @@
 package com.example.dungeoncrawler.model;
 
 public class WalkStrategy implements MovementStrategy{
+    private Player player = Player.getPlayer();
     public void moveUp() {
-        Player.getLocation().setyCord(Player.getLocation().getyCord() - 25);
+        player.getLocation().setyCord(player.getLocation().getyCord() - 25);
     }
     public void moveDown() {
-        Player.getLocation().setyCord(Player.getLocation().getyCord() + 25);
+        player.getLocation().setyCord(player.getLocation().getyCord() + 25);
     }
     public void moveLeft() {
-        Player.getLocation().setxCord(Player.getLocation().getxCord() - 25);
+        player.getLocation().setxCord(player.getLocation().getxCord() - 25);
     }
     public void moveRight() {
-        Player.getLocation().setxCord(Player.getLocation().getxCord() + 25);
+        player.getLocation().setxCord(player.getLocation().getxCord() + 25);
     }
 }

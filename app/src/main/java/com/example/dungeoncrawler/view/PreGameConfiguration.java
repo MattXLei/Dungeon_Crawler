@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
+import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -80,6 +81,7 @@ public class PreGameConfiguration extends AppCompatActivity {
                 playerVM.setName(name);
                 playerVM.setScore(50);
                 playerVM.setDifficulty(playerVM.getDifficulty());
+                playerVM.setDefaultMovementStrategy();
                 Intent game = new Intent(PreGameConfiguration.this, Room1Activity.class);
                 startActivity(game);
                 finish();

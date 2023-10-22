@@ -7,10 +7,12 @@ import android.view.View;
 
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 public class PlayerView extends View {
     Location location;
 
+    private Player player = Player.getPlayer();  //temp solution, need to make it reference the view model
 
 
     private Bitmap sprite;
@@ -27,7 +29,7 @@ public class PlayerView extends View {
     }
 
     public void updatePosition() {
-        this.location = Player.getLocation();
+        this.location = player.getLocation();
         invalidate();
     }
 

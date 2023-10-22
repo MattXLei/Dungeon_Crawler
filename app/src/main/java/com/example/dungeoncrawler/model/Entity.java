@@ -24,6 +24,20 @@ public abstract class Entity {
         this.movementStrategy = movementStrategy;
     }
 
+    public void moveUp() {
+        movementStrategy.moveUp();
+    }
+    public void moveDown() {
+        movementStrategy.moveDown();
+    }
+    public void moveLeft() {
+        movementStrategy.moveLeft();
+    }
+    public void moveRight() {
+        movementStrategy.moveRight();
+    }
+
+
     public MovementStrategy getMovementStrategy() {
         return movementStrategy;
     }

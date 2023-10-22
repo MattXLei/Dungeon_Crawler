@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.model.RunStrategy;
+import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 public class GameActivity extends AppCompatActivity {
@@ -17,6 +19,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
+            case KeyEvent.KEYCODE_SHIFT_LEFT:
+                Player.setMovementStrategy(new RunStrategy());
+                break;
             case KeyEvent.KEYCODE_W:
                 Player.getMovementStrategy().moveUp();
                 break;
@@ -35,7 +40,13 @@ public class GameActivity extends AppCompatActivity {
         playerView.updatePosition();
         return false;
     }
-
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+            Player.setMovementStrategy(new WalkStrategy());
+        }
+        return false;
+    }
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }

@@ -21,7 +21,6 @@ public abstract class Entity {
     }
 
     public void setMovementStrategy(MovementStrategy movementStrategy) {
-        Log.d("set mvmt strat", "Changing movement Strategy to: " + movementStrategy.getClass());
         this.movementStrategy = movementStrategy;
     }
 

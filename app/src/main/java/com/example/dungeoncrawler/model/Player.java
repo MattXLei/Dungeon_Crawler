@@ -1,10 +1,10 @@
 package com.example.dungeoncrawler.model;
 
-public class Player {
+public class Player extends Entity {
 
     private static volatile Player player = new Player();
 
-    private static int health;
+    private int health;
 
     private static int speed;
 
@@ -20,8 +20,6 @@ public class Player {
     private static Location location;
 
     private static int difficulty;
-
-    private static MovementStrategy movementStrategy;
 
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         this.health = health;
@@ -137,13 +135,5 @@ public class Player {
         } else {
             setHealth(100);
         }
-    }
-
-    public static void setMovementStrategy(MovementStrategy movementStrategy) {
-        Player.movementStrategy = movementStrategy;
-    }
-
-    public static MovementStrategy getMovementStrategy() {
-        return movementStrategy;
     }
 }

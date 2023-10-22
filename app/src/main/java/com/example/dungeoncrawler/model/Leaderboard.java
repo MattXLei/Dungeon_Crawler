@@ -20,8 +20,8 @@ public class Leaderboard {
     private static Attempt mostRecent = null;
     private Leaderboard() {
         player = Player.getPlayer();
-        attempts[0] = new Attempt(player.getName(), player.getScore(),
-                date.format(Calendar.getInstance().getTime()));
+//        attempts[0] = new Attempt(player.getName(), player.getScore(),
+//                date.format(Calendar.getInstance().getTime()));
         location = new Location(0.0f, 0.0f);
     }
     public static Leaderboard getLeaderboard() {

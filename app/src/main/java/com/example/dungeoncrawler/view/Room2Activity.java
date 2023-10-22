@@ -6,6 +6,7 @@ import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,15 @@ public class Room2Activity extends GameActivity {
     private PlayerViewModel playerVM;
 
     private PlayerView playerView;
+
+    private Handler handler = new Handler();
+    private Runnable update = new Runnable() {
+        @Override
+        public void run() {
+            score.setText("Score: " + playerVM.getScore());
+            handler.postDelayed(this, 50);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,20 +80,21 @@ public class Room2Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        playerVM.startScore(score);
+        playerVM.startScore();
 
         playerVM.setMovementStrategy(new WalkStrategy());
         ConstraintLayout gameLayout = findViewById(R.id.room2);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
 
-        playerVM.startScore(score);
+        handler.post(update);
     }
 
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room3Activity.class);
         startActivity(intent);
         playerVM.endScore();
+        handler.removeCallbacks(update);
         finish();
     }
 

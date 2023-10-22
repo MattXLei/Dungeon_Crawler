@@ -92,7 +92,7 @@ public class Room1Activity extends GameActivity {
         playerVM.startScore(score);
 
         Player.setMovementStrategy(new WalkStrategy());
-        ConstraintLayout gameLayout = findViewById(R.id.gameLayout);
+        ConstraintLayout gameLayout = findViewById(R.id.room1);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
 

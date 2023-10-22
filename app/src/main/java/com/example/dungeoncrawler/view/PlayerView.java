@@ -12,7 +12,7 @@ import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 public class PlayerView extends View {
     Location location;
 
-    private Player player;  //temp solution, need to make it reference the view model
+    private Player player = Player.getPlayer();  //temp solution, need to make it reference the view model
 
 
     private Bitmap sprite;

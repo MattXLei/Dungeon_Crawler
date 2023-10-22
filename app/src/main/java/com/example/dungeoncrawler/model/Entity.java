@@ -1,14 +1,11 @@
 package com.example.dungeoncrawler.model;
 
+import android.util.Log;
+
 public abstract class Entity {
     MovementStrategy movementStrategy;
 
     Location location;
-
-    public Entity() {
-        movementStrategy = null;
-        location = new Location(0.0f, 0.0f);
-    }
     public Entity(MovementStrategy ms, Location location) {
         movementStrategy = ms;
         this.location = location;
@@ -18,12 +15,17 @@ public abstract class Entity {
         return location;
     }
 
+    public void setLocation(float newX, float newY) {
+        location.setxCord(newX);
+        location.setyCord(newY);
+    }
+
     public void setMovementStrategy(MovementStrategy movementStrategy) {
+        Log.d("set mvmt strat", "Changing movement Strategy to: " + movementStrategy.getClass());
         this.movementStrategy = movementStrategy;
     }
 
     public MovementStrategy getMovementStrategy() {
-
         return movementStrategy;
     }
 }

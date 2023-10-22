@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MovementStrategy;
 import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.model.WalkStrategy;
 
 public class PlayerViewModel extends ViewModel {
 
@@ -22,6 +23,7 @@ public class PlayerViewModel extends ViewModel {
         player = Player.getPlayer();
         charSelected = false;
         leftTime = player.getScore() * 1000;
+        player.setMovementStrategy(new WalkStrategy());
     }
 
     public void setCharacter(int num) {
@@ -103,6 +105,10 @@ public class PlayerViewModel extends ViewModel {
     public MovementStrategy getMovementStrategy() {
         Log.d("get ms", "Getting movement strategy");
         return player.getMovementStrategy();
+    }
+
+    public void setDefaultMovementStrategy() {
+        player.setMovementStrategy(new WalkStrategy());
     }
 
     public void setLocation(int x, int y) {

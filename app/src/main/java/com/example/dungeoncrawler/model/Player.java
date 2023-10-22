@@ -2,7 +2,7 @@ package com.example.dungeoncrawler.model;
 
 public class Player extends Entity {
 
-    private static volatile Player player = new Player();
+    private static volatile Player player;
 
     private int health;
 
@@ -17,17 +17,17 @@ public class Player extends Entity {
     private int character;
 
     // location implementation different than others. Only created when new Player created.
-    private Location location;
+    //private Location location;
 
     private int difficulty;
 
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
+        super(null, new Location(0.0f, 0.0f));
         this.health = health;
         this.speed = speed;
         this.direction = direction;
         this.score = score;
         this.name = name;
-        this.location = new Location(0.0f, 0.0f);
         this.difficulty = difficulty;
     }
 
@@ -111,15 +111,6 @@ public class Player extends Entity {
 
     public void decreaseScore(long amount) {
         this.score = Math.max(this.score - amount, 0);
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(float newX, float newY) {
-        this.location.setxCord(newX);
-        this.location.setyCord(newY);
     }
 
     public int getDifficulty() {

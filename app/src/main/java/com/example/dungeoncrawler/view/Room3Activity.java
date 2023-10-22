@@ -3,6 +3,7 @@ import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Leaderboard;
 import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.model.WalkStrategy;
+import com.example.dungeoncrawler.viewmodel.LeaderboardViewModel;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 import android.content.Intent;
@@ -27,6 +28,7 @@ public class Room3Activity extends GameActivity {
     private int screenWidth, screenHeight;
 
     private PlayerView playerView;
+    private LeaderboardViewModel leaderboardVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,10 @@ public class Room3Activity extends GameActivity {
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
         leftTime = playerVM.getScore() * 1000;
 
+        leaderboardVM = new ViewModelProvider(this).get(LeaderboardViewModel.class);
+
         endButton.setOnClickListener(v -> {
-            Leaderboard.addAttempt();
+            leaderboardVM.addAttempt();
             launchNextActivity();
         });
 
@@ -66,14 +70,14 @@ public class Room3Activity extends GameActivity {
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        Player.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
-        playerView = new PlayerView(this, Player.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
+        playerVM.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
+        playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
-        Player.setMovementStrategy(new WalkStrategy());
+        playerVM.setMovementStrategy(new WalkStrategy());
         ConstraintLayout gameLayout = findViewById(R.id.room3);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);

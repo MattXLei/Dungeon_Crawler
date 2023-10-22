@@ -16,49 +16,49 @@ public class ScoreTest {
 
     @Test
     public void testIncreaseDecreaseScore() {
-        Player.setScore(0);
-        Player.increaseScore(10);
-        assertEquals(10, Player.getScore());
-        Player.increaseScore(100);
-        assertEquals(110, Player.getScore());
-        Player.decreaseScore(100);
-        assertEquals(10, Player.getScore());
+        player.setScore(0);
+        player.increaseScore(10);
+        assertEquals(10, player.getScore());
+        player.increaseScore(100);
+        assertEquals(110, player.getScore());
+        player.decreaseScore(100);
+        assertEquals(10, player.getScore());
     }
 
     @Test
     public void testScoreSubzero() { // tests that score cannot dip below 0
-        Player.setScore(0);
-        assertEquals(0, Player.getScore());
-        Player.setScore(-1);
-        assertEquals(0, Player.getScore());
-        Player.decreaseScore(10);
-        assertEquals(0, Player.getScore());
-        Player.increaseScore(20);
-        assertEquals(20, Player.getScore());
-        Player.decreaseScore(30);
-        assertEquals(0, Player.getScore());
+        player.setScore(0);
+        assertEquals(0, player.getScore());
+        player.setScore(-1);
+        assertEquals(0, player.getScore());
+        player.decreaseScore(10);
+        assertEquals(0, player.getScore());
+        player.increaseScore(20);
+        assertEquals(20, player.getScore());
+        player.decreaseScore(30);
+        assertEquals(0, player.getScore());
     }
 
     @Test
     public void testModelScore() {
-        Player.setScore(0);
+        player.setScore(0);
 
         //location is dummy value in this test
         Location location = new Location(0f, 0f);
         Coin coin = new Coin(location);
-        Player.increaseScore(coin.getCoinScore());
-        assertEquals(10, Player.getScore());
+        player.increaseScore(coin.getCoinScore());
+        assertEquals(10, player.getScore());
 
-        Player.setScore(0);
+        player.setScore(0);
         Powerup powerup = new Powerup(location);
-        Player.increaseScore(powerup.getPowerupScore());
-        assertEquals(50, Player.getScore());
+        player.increaseScore(powerup.getPowerupScore());
+        assertEquals(50, player.getScore());
 
-        Player.setScore(0);
+        player.setScore(0);
         Chest chest = new Chest(location);
-        Player.increaseScore(chest.getChestScore());
-        assertTrue(Player.getScore() >= 50);
-        assertTrue(Player.getScore() <= 100);
+        player.increaseScore(chest.getChestScore());
+        assertTrue(player.getScore() >= 50);
+        assertTrue(player.getScore() <= 100);
     }
 
 }

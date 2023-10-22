@@ -8,18 +8,18 @@ public class LeaderboardViewModel extends ViewModel {
     private Leaderboard leaderboard;
 
     public void addAttempt() {
-        Leaderboard.addAttempt();
+        leaderboard.addAttempt();
     }
 
     public Attempt[] getAttempts() {
-        return Leaderboard.getAttempts();
+        return leaderboard.getAttempts();
     }
 
     public Attempt getMostRecent() {
-        return Leaderboard.getMostRecent();
+        return leaderboard.getMostRecent();
     }
 
     public void empty() {
-        Leaderboard.empty();
+        leaderboard.empty();
     }
 }

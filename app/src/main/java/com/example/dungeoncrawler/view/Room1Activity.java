@@ -79,8 +79,8 @@ public class Room1Activity extends GameActivity {
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        Player.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
-        playerView = new PlayerView(this, Player.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
+        playerVM.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
+        playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
         } else if (character == 2) {
@@ -89,7 +89,7 @@ public class Room1Activity extends GameActivity {
 
         playerVM.startScore(score);
 
-        Player.setMovementStrategy(new WalkStrategy());
+        playerVM.setMovementStrategy(new WalkStrategy());
         ConstraintLayout gameLayout = findViewById(R.id.gameLayout);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);

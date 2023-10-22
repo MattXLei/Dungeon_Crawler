@@ -15,33 +15,33 @@ public class LeaderboardsTest {
     // Tests whether or not the correct score of the player shows up  on the leaderboard
     @Test
     public void addAttempt() {
-        Leaderboard.empty();
-        Player.setScore(100);
-        Leaderboard.addAttempt();
-        assertEquals(Leaderboard.getAttempts()[0].getScore(), Player.getScore());
+        leaderboard.empty();
+        player.setScore(100);
+        leaderboard.addAttempt();
+        assertEquals(leaderboard.getAttempts()[0].getScore(), player.getScore());
     }
     // Test whether attempts automatically sorts
     @Test
     public void SortedAttempts() {
-        Leaderboard.empty();
-        Player.setScore(20);
-        Leaderboard.addAttempt();
-        Player.setScore(5);
-        Leaderboard.addAttempt();
-        Player.setScore(30);
-        Leaderboard.addAttempt();
-        Player.setScore(50);
-        Leaderboard.addAttempt();
-        Player.setScore(40);
-        Leaderboard.addAttempt();
-        Player.setScore(10);
-        Leaderboard.addAttempt();
+        leaderboard.empty();
+        player.setScore(20);
+        leaderboard.addAttempt();
+        player.setScore(5);
+        leaderboard.addAttempt();
+        player.setScore(30);
+        leaderboard.addAttempt();
+        player.setScore(50);
+        leaderboard.addAttempt();
+        player.setScore(40);
+        leaderboard.addAttempt();
+        player.setScore(10);
+        leaderboard.addAttempt();
 
-        assertEquals(Leaderboard.getAttempts()[0].getScore(), 50);
-        assertEquals(Leaderboard.getAttempts()[1].getScore(), 40);
-        assertEquals(Leaderboard.getAttempts()[2].getScore(), 30);
-        assertEquals(Leaderboard.getAttempts()[3].getScore(), 20);
-        assertEquals(Leaderboard.getAttempts()[4].getScore(), 10);
+        assertEquals(leaderboard.getAttempts()[0].getScore(), 50);
+        assertEquals(leaderboard.getAttempts()[1].getScore(), 40);
+        assertEquals(leaderboard.getAttempts()[2].getScore(), 30);
+        assertEquals(leaderboard.getAttempts()[3].getScore(), 20);
+        assertEquals(leaderboard.getAttempts()[4].getScore(), 10);
 
     }
 

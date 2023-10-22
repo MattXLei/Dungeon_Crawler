@@ -26,16 +26,16 @@ public class GameActivity extends AppCompatActivity {
                 player.setMovementStrategy(new RunStrategy());
                 break;
             case KeyEvent.KEYCODE_W:
-                player.getMovementStrategy().moveUp();
+                player.moveUp();
                 break;
             case KeyEvent.KEYCODE_A:
-                player.getMovementStrategy().moveLeft();
+                player.moveLeft();
                 break;
             case KeyEvent.KEYCODE_S:
-                player.getMovementStrategy().moveDown();
+                player.moveDown();
                 break;
             case KeyEvent.KEYCODE_D:
-                player.getMovementStrategy().moveRight();
+                player.moveRight();
                 break;
             default:
                 break;

@@ -1,6 +1,7 @@
 package com.example.dungeoncrawler.model;
+import java.util.*;
 
-public class Player extends Entity {
+public class Player extends Entity implements Observable{
 
     private static volatile Player player;
 
@@ -23,6 +24,8 @@ public class Player extends Entity {
 
     private Location location;
 
+    private List<Observer> wallList;
+
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         super(null);
         this.health = health;
@@ -32,6 +35,7 @@ public class Player extends Entity {
         this.name = name;
         this.location = new Location(0.0f, 0.0f);
         this.difficulty = difficulty;
+        wallList = new ArrayList<>();
     }
 
     private Player() {
@@ -138,5 +142,22 @@ public class Player extends Entity {
     public void setLocation(float newX, float newY) {
         location.setxCord(newX);
         location.setyCord(newY);
+    }
+
+    public void addObserver(Observer wall) {
+        wallList.add(wall);
+    }
+
+    public void removeObserver(Observer wall) {
+        wallList.remove(wall);
+    }
+
+    public boolean validMove(int changeX, int changeY) {
+        for (Observer currWall : wallList) {
+            if (currWall.checkCollision(location, changeX, changeY)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

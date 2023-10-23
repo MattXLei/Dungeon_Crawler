@@ -37,6 +37,8 @@ public class Room3Activity extends GameActivity {
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
+
+            checkEnd();
         }
     };
 
@@ -44,17 +46,12 @@ public class Room3Activity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen3);
-        Button endButton = findViewById(R.id.toEnd);
 
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
         leftTime = playerVM.getScore() * 1000;
 
         leaderboardVM = new ViewModelProvider(this).get(LeaderboardViewModel.class);
-
-        endButton.setOnClickListener(v -> {
-            leaderboardVM.addAttempt();
-            launchNextActivity();
-        });
+        
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
@@ -93,6 +90,14 @@ public class Room3Activity extends GameActivity {
         gameLayout.addView(super.playerView);
         playerVM.startScore();
         handler.post(update);
+    }
+
+    private void checkEnd() {
+        float x = playerVM.getLocation().getxCord();
+        if (x >= 950) {
+            leaderboardVM.addAttempt();
+            launchNextActivity();
+        }
     }
 
     public void launchNextActivity() {

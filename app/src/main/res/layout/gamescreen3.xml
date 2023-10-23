@@ -40,10 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="626dp"
         android:text="*Placeholder Difficulty*"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/toEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,17 +68,5 @@
         app:layout_constraintBottom_toTopOf="@+id/healthText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
-
-    <Button
-        android:id="@+id/toEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="235dp"
-        android:layout_marginTop="626dp"
-        android:layout_marginEnd="25dp"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/healthText"
-        app:layout_constraintTop_toBottomOf="@+id/difficultyText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

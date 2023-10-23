@@ -7,6 +7,12 @@ import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+<<<<<<< HEAD
+
+//import com.example.dungeoncrawler.view.PreGameConfiguration;
+
+=======
+>>>>>>> 7a1f03aa94fd178e71934b14ddb9a03584110ba6
 public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

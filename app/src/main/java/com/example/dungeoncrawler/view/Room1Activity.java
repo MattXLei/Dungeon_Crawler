@@ -29,6 +29,9 @@ import com.example.dungeoncrawler.model.Player;
 
 import com.example.dungeoncrawler.model.WalkStrategy;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class Room1Activity extends GameActivity {
 
@@ -39,10 +42,14 @@ public class Room1Activity extends GameActivity {
 
     private TextView score;
 
+    private Timer timer;
+
     private PlayerViewModel playerVM;
 
 
     private PlayerView playerView;
+
+    private TextView temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,31 +101,10 @@ public class Room1Activity extends GameActivity {
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
 
-        /*screenWidth = getResources().getDisplayMetrics().widthPixels;
-        screenHeight = getResources().getDisplayMetrics().heightPixels;
-        // Spawn player in middle of screen
-        playerX = screenWidth / 2;
-        playerY = screenHeight / 2;
 
-        // Get difficulty selected from Main screen.
-        difficulty = getIntent().getDoubleExtra("difficulty", 1);
-        // Create dot list
-        // initializeDots();
-        // Draw dots on screen
-        // drawDots();
+        temp = findViewById(R.id.temp);
+        gameLoop();
 
-        dotTimer = new Timer();
-        dotTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Loop for checks and assurances that need to run consistently
-                    }
-                });
-            }
-        }, 0, 500); // Check every .5 seconds*/
     }
 
 
@@ -159,8 +145,38 @@ public class Room1Activity extends GameActivity {
         return playerRect.intersect(dotRect);
     }
      */
-
-    // Changes game screen to EndActivity
+    public void gameLoop() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkExit();
+                    }
+                });
+            }
+        }, 0, 500);
+    }
+    public void checkExit() {
+        if (playerVM.getLocation().getxCord() < -130) {
+            System.out.println("1");
+            timer.cancel();
+            launchPreviousActivity();
+        }
+        if (playerVM.getLocation().getxCord() > 1340) {
+            temp.setText("2");
+            timer.cancel();
+            launchNextActivity();
+        }
+    }
+    public void launchPreviousActivity() {
+        Intent intent = new Intent(this, Room3Activity.class);
+        startActivity(intent);
+        playerVM.endScore();
+        finish();
+    }
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);

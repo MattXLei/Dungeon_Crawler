@@ -118,4 +118,8 @@ public class PlayerViewModel extends ViewModel {
     public Location getLocation() {
         return player.getLocation();
     }
+
+    public void resetLocation() {
+        setLocation(0,0);
+    }
 }

@@ -14,6 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Room2Activity extends GameActivity {
 
     private float playerX;
@@ -28,6 +33,8 @@ public class Room2Activity extends GameActivity {
     private PlayerViewModel playerVM;
 
     private PlayerView playerView;
+
+    private Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +85,30 @@ public class Room2Activity extends GameActivity {
         gameLayout.addView(super.playerView);
 
         playerVM.startScore(score);
+        gameLoop();
     }
-
+    public void gameLoop() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkExit();
+                    }
+                });
+            }
+        }, 0, 500);
+    }
+    public void checkExit() {
+        if (playerVM.getLocation().getxCord() < -130) {
+            timer.cancel();
+            launchNextActivity();
+        }
+    }
     public void launchNextActivity() {
-        Intent intent = new Intent(this, Room3Activity.class);
+        Intent intent = new Intent(this, Room1Activity.class);
         startActivity(intent);
         playerVM.endScore();
         finish();

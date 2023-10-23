@@ -82,7 +82,7 @@ public class PreGameConfiguration extends AppCompatActivity {
                 playerVM.setScore(50);
                 playerVM.setDifficulty(playerVM.getDifficulty());
                 playerVM.setDefaultMovementStrategy();
-                Intent game = new Intent(PreGameConfiguration.this, Room1Activity.class);
+                Intent game = new Intent(PreGameConfiguration.this, Room3Activity.class);
                 startActivity(game);
                 finish();
             }

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
+import android.os.Handler;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,10 +47,19 @@ public class Room1Activity extends GameActivity {
 
     private PlayerViewModel playerVM;
 
-
     private PlayerView playerView;
 
+
     private TextView temp;
+
+    private Handler handler = new Handler();
+    private Runnable update = new Runnable() {
+        @Override
+        public void run() {
+            score.setText("Score: " + playerVM.getScore());
+            handler.postDelayed(this, 50);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +92,10 @@ public class Room1Activity extends GameActivity {
         score.setText("Score: " + playerVM.getScore());
 
 
-
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        playerVM.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
+        playerVM.setLocation(screenWidth / 2 - 100, screenHeight / 2 - 100);
         playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
@@ -94,13 +103,24 @@ public class Room1Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        playerVM.startScore(score);
+        playerVM.startScore();
 
         playerVM.setMovementStrategy(new WalkStrategy());
         ConstraintLayout gameLayout = findViewById(R.id.room1);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
 
+
+        handler.post(update);
+        gameLoop();
+    }
+
+        /*screenWidth = getResources().getDisplayMetrics().widthPixels;
+        screenHeight = getResources().getDisplayMetrics().heightPixels;
+        // Spawn player in middle of screen
+        playerX = screenWidth / 2;
+        playerY = screenHeight / 2;
+>>>>>>> e35efef2560489de59ae408b9f4968b212de8034
 
         temp = findViewById(R.id.temp);
         gameLoop();
@@ -160,13 +180,8 @@ public class Room1Activity extends GameActivity {
         }, 0, 500);
     }
     public void checkExit() {
-        if (playerVM.getLocation().getxCord() < -130) {
-            System.out.println("1");
-            timer.cancel();
-            launchPreviousActivity();
-        }
+
         if (playerVM.getLocation().getxCord() > 1340) {
-            temp.setText("2");
             timer.cancel();
             launchNextActivity();
         }

@@ -21,13 +21,16 @@ public class Player extends Entity {
 
     private int difficulty;
 
+    private Location location;
+
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
-        super(null, new Location(0.0f, 0.0f));
+        super(null);
         this.health = health;
         this.speed = speed;
         this.direction = direction;
         this.score = score;
         this.name = name;
+        this.location = new Location(0.0f, 0.0f);
         this.difficulty = difficulty;
     }
 
@@ -126,5 +129,14 @@ public class Player extends Entity {
         } else {
             setHealth(100);
         }
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(float newX, float newY) {
+        location.setxCord(newX);
+        location.setyCord(newY);
     }
 }

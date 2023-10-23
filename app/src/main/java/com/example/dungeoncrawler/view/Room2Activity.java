@@ -47,11 +47,8 @@ public class Room2Activity extends GameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen2);
 
-
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
         leftTime = playerVM.getScore() * 1000;
-
-
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
@@ -86,6 +83,7 @@ public class Room2Activity extends GameActivity {
         ConstraintLayout gameLayout = findViewById(R.id.room2);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
+        playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
     }
     public void checkExit() {
@@ -98,6 +96,7 @@ public class Room2Activity extends GameActivity {
     }
     public void launchPreviousActivity() {
         Intent intent = new Intent(this, Room1Activity.class);
+        intent.putExtra("startx", 900);
         startActivity(intent);
         playerVM.endScore();
         handler.removeCallbacks(update);
@@ -105,6 +104,7 @@ public class Room2Activity extends GameActivity {
     }
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room3Activity.class);
+        intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
         handler.removeCallbacks(update);

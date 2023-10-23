@@ -36,9 +36,6 @@ public class Room3Activity extends GameActivity {
     private PlayerView playerView;
     private LeaderboardViewModel leaderboardVM;
 
-
-    private Timer timer;
-
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
@@ -59,7 +56,6 @@ public class Room3Activity extends GameActivity {
         leftTime = playerVM.getScore() * 1000;
 
         leaderboardVM = new ViewModelProvider(this).get(LeaderboardViewModel.class);
-        
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
@@ -98,6 +94,7 @@ public class Room3Activity extends GameActivity {
         gameLayout.addView(super.playerView);
 
         playerVM.startScore();
+        playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
     }
     private void checkExit() {
@@ -111,6 +108,7 @@ public class Room3Activity extends GameActivity {
     }
     public void launchPreviousActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
+        intent.putExtra("startx", 900);
         startActivity(intent);
         playerVM.endScore();
         handler.removeCallbacks(update);

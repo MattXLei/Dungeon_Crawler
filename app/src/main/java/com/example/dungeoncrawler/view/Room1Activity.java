@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.List;
 //import java.util.Map;
 //import java.util.Random;
+import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 
@@ -60,10 +61,7 @@ public class Room1Activity extends GameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
 
-
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
-
-
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
@@ -102,7 +100,7 @@ public class Room1Activity extends GameActivity {
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
 
-
+        playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
     }
 
@@ -163,7 +161,7 @@ public class Room1Activity extends GameActivity {
     }
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
-        intent.putExtra("startX", 25);
+        intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
         handler.removeCallbacks(update);

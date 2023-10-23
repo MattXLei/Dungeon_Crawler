@@ -8,11 +8,11 @@ import java.util.Calendar;
 public class Leaderboard {
     private static volatile Leaderboard leaderboard;
 
-    private final int SIZE = 5;
+    private final int size = 5;
 
     private DateFormat date = new SimpleDateFormat("MMM dd yyyy, h:mm");
 
-    private Attempt[] attempts = new Attempt[SIZE];
+    private Attempt[] attempts = new Attempt[size];
     private Location location;
 
     private Player player;
@@ -20,8 +20,8 @@ public class Leaderboard {
     private static Attempt mostRecent = null;
     private Leaderboard() {
         player = Player.getPlayer();
-//        attempts[0] = new Attempt(player.getName(), player.getScore(),
-//                date.format(Calendar.getInstance().getTime()));
+        //   attempts[0] = new Attempt(player.getName(), player.getScore(),
+        //   date.format(Calendar.getInstance().getTime()));
         location = new Location(0.0f, 0.0f);
     }
     public static Leaderboard getLeaderboard() {
@@ -38,7 +38,7 @@ public class Leaderboard {
     public void addAttempt() {
         mostRecent = new Attempt(player.getName(), player.getScore(),
                 date.format(Calendar.getInstance().getTime()));
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < size; i++) {
             if (attempts[i] == null) {
                 attempts[i] = new Attempt(player.getName(), player.getScore(),
                         date.format(Calendar.getInstance().getTime()));
@@ -46,10 +46,10 @@ public class Leaderboard {
                 return;
             }
         }
-        if (player.getScore() <= attempts[SIZE - 1].getScore()) {
+        if (player.getScore() <= attempts[size - 1].getScore()) {
             return;
         } else {
-            attempts[SIZE - 1] = new Attempt(player.getName(), player.getScore(),
+            attempts[size - 1] = new Attempt(player.getName(), player.getScore(),
                     date.format(Calendar.getInstance().getTime()));
             Arrays.sort(attempts);
         }
@@ -66,7 +66,7 @@ public class Leaderboard {
     }
 
     public void empty() {
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < size; i++) {
             attempts[i] =  null;
         }
     }

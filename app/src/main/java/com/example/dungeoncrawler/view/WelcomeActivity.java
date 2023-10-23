@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dungeoncrawler.view.PreGameConfiguration;
+//import com.example.dungeoncrawler.view.PreGameConfiguration;
 
 public class WelcomeActivity extends AppCompatActivity {
     @Override

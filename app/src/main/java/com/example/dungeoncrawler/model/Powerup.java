@@ -3,7 +3,7 @@ package com.example.dungeoncrawler.model;
 public class Powerup {
     private static Location location;
 
-    private static final long powerupScore = 50;
+    private static final long POWERUPSCORE = 50;
 
     public Powerup(Location location) {
         this.location = new Location(0.0f, 0.0f);

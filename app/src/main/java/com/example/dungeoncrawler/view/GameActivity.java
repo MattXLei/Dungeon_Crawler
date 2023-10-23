@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
+//import android.os.Handler;
+//import android.os.Looper;
+//import android.os.Message;
 import android.os.CountDownTimer;
 
 
@@ -24,8 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Player;
 
-import java.util.Timer;
-import java.util.TimerTask;
+//import java.util.Timer;
+//import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -35,12 +35,12 @@ public class GameActivity extends AppCompatActivity {
     //RelativeLayout gameLayout;
     private int screenWidth;
     private int screenHeight;
-//    private Timer dotTimer;
+    //    private Timer dotTimer;
 
     //in milliseconds
-    private static final long startTime = 50000;
+    private static final long STARTTIME = 50000;
 
-    private long leftTime = startTime;
+    private long leftTime = STARTTIME;
 
     private CountDownTimer timer;
 

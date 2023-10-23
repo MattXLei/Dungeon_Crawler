@@ -2,7 +2,7 @@ package com.example.dungeoncrawler.model;
 
 public class Player {
 
-    private volatile static Player player = new Player();
+    private static volatile Player player = new Player();
 
     private static int health;
 
@@ -120,7 +120,9 @@ public class Player {
         Player.location.setyCord(newY);
     }
 
-    public static int getDifficulty() { return difficulty; }
+    public static int getDifficulty() {
+        return difficulty;
+    }
 
     public static void setDifficulty(int difficulty) {
         Player.difficulty = difficulty;

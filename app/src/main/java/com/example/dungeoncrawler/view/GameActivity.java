@@ -18,37 +18,41 @@ public class GameActivity extends AppCompatActivity {
     private Timer timer;
 
     private Player player = Player.getPlayer();      //temporary solution
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_SHIFT_LEFT:
-                player.setMovementStrategy(new RunStrategy());
-                break;
-            case KeyEvent.KEYCODE_W:
-                player.moveUp();
-                break;
-            case KeyEvent.KEYCODE_A:
-                player.moveLeft();
-                break;
-            case KeyEvent.KEYCODE_S:
-                player.moveDown();
-                break;
-            case KeyEvent.KEYCODE_D:
-                player.moveRight();
-                break;
-            default:
-                break;
-        }
-        playerView.updatePosition();
-        return false;
-    }
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
-            player.setMovementStrategy(new WalkStrategy());
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_SHIFT_LEFT:
+//                player.setMovementStrategy(new RunStrategy());
+//                break;
+//            case KeyEvent.KEYCODE_W:
+//                if (player.validMove(0, -25))
+//                    player.moveUp();
+//                break;
+//            case KeyEvent.KEYCODE_A:
+//                if (player.validMove(-25, 0))
+//                    player.moveLeft();
+//                break;
+//            case KeyEvent.KEYCODE_S:
+//                if (player.validMove(0, 25))
+//                    player.moveDown();
+//                break;
+//            case KeyEvent.KEYCODE_D:
+//                if (player.validMove(25, 0))
+//                    player.moveRight();
+//                break;
+//            default:
+//                break;
+//        }
+//        playerView.updatePosition();
+//        return false;
+//    }
+//    @Override
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+//            player.setMovementStrategy(new WalkStrategy());
+//        }
+//        return false;
+//    }
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }

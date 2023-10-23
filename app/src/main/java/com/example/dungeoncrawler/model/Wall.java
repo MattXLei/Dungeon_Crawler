@@ -43,18 +43,18 @@ public class Wall implements Observer{
                 return true;
             }
         }
-        if (direction == 1) {
+        else if (direction == 1) {
             if (newY > start.getyCord()) {
                 return true;
             }
         }
-        if (direction == 2) {
+        else if (direction == 2) {
             if (newX < start.getxCord()) {
                 return true;
             }
         }
-        if (direction == 3) {
-            if (newY < start.getxCord()) {
+        else {
+            if (newY < start.getyCord()) {
                 return true;
             }
         }

@@ -139,4 +139,11 @@ public class PlayerViewModel extends ViewModel {
         player.moveDown();
 
     }
+
+    public boolean callValidMove(int changeX, int changeY) {
+        if (player.validMove(changeX, changeY)) {
+            return true;
+        }
+        return false;
+    }
 }

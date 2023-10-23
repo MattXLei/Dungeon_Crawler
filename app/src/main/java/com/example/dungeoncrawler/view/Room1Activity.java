@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.Map;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Location;
+import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 
@@ -104,56 +105,44 @@ public class Room1Activity extends GameActivity {
         handler.post(update);
     }
 
-        /*screenWidth = getResources().getDisplayMetrics().widthPixels;
-        screenHeight = getResources().getDisplayMetrics().heightPixels;
-        // Spawn player in middle of screen
-        playerX = screenWidth / 2;
-        playerY = screenHeight / 2;
->>>>>>> e35efef2560489de59ae408b9f4968b212de8034
-
-        temp = findViewById(R.id.temp);
-        gameLoop();
-
-    }
-
-
-
-    // Handle key events to move the player
-
-
-    /*
-    private void checkCollisions() {
-        for (int i = 0; i < dots.size(); i++) {
-            Dot dot = dots.get(i);
-            if (dot.isVisible() && isCollision(playerView, dot)) {
-                dot.setInvisible();
-                gameLayout.removeView(dotViewMap.get(dot));
-                dots.remove(i);
-                dotCount++;
-
-                dotCountTextView.setText("Dots Collected: " + dotCount);
-                if (dotCount >= dotsToWin) {
-                    launchEndActivity();
-                }
-            } else if (dot.isExpired()) {
-
-            }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_SHIFT_LEFT:
+                playerVM.setMovementStrategy(new RunStrategy());
+                break;
+            case KeyEvent.KEYCODE_W:
+                if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep()))
+                    playerVM.moveUp();
+                break;
+            case KeyEvent.KEYCODE_A:
+                if (playerVM.callValidMove(-1 * playerVM.getMovementStrategy().getStep(), 0))
+                    playerVM.moveLeft();
+                break;
+            case KeyEvent.KEYCODE_S:
+                if (playerVM.callValidMove(0, playerVM.getMovementStrategy().getStep()))
+                    playerVM.moveDown();
+                break;
+            case KeyEvent.KEYCODE_D:
+                if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0))
+                    playerVM.moveRight();
+                break;
+            default:
+                break;
         }
+        playerView.updatePosition();
+        return false;
     }
-     */
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+            playerVM.setMovementStrategy(new WalkStrategy());
+        }
+        return false;
+    }
 
-    /*
-    Method that has logic to detect collisions.
-    private boolean isCollision(PlayerView playerView, Dot dot) {
-        float playerX = playerView.getX();
-        float playerY = playerView.getY();
-        int playerRadius = playerView.getRadius();
-        float dotX = dot.getX();
-        float dotY = dot.getY();
-        int dotRadius = dot.getRadius();
-        return playerRect.intersect(dotRect);
-    }
-     */
+
+
     public void checkExit() {
         if (playerVM.getLocation().getxCord() > 950) {
             launchNextActivity();

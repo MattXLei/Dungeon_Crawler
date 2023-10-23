@@ -1,6 +1,7 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Location;
+import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,7 +42,6 @@ public class Room2Activity extends GameActivity {
             checkExit();
         }
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,43 @@ public class Room2Activity extends GameActivity {
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_SHIFT_LEFT:
+                playerVM.setMovementStrategy(new RunStrategy());
+                break;
+            case KeyEvent.KEYCODE_W:
+                if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep()))
+                    playerVM.moveUp();
+                break;
+            case KeyEvent.KEYCODE_A:
+                if (playerVM.callValidMove(-1 * playerVM.getMovementStrategy().getStep(), 0))
+                    playerVM.moveLeft();
+                break;
+            case KeyEvent.KEYCODE_S:
+                if (playerVM.callValidMove(0, playerVM.getMovementStrategy().getStep()))
+                    playerVM.moveDown();
+                break;
+            case KeyEvent.KEYCODE_D:
+                if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0))
+                    playerVM.moveRight();
+                break;
+            default:
+                break;
+        }
+        playerView.updatePosition();
+        return false;
+    }
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+            playerVM.setMovementStrategy(new WalkStrategy());
+        }
+        return false;
+    }
+
     public void checkExit() {
         if (playerVM.getLocation().getxCord() < 0) {
             launchPreviousActivity();

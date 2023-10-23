@@ -5,4 +5,6 @@ public interface MovementStrategy {
     void moveDown();
     void moveLeft();
     void moveRight();
+
+    int getStep();
 }

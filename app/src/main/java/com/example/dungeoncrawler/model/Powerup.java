@@ -6,7 +6,7 @@ public class Powerup {
     private static final long POWERUPSCORE = 50;
 
     public Powerup(Location location) {
-        this.location = new Location(0.0f, 0.0f);
+        this.location = new Location(location.getxCord(), location.getyCord());
     }
 
     public static Location getLocation() {
@@ -15,5 +15,9 @@ public class Powerup {
     public static void setLocation(float newX, float newY) {
         Powerup.location.setxCord(newX);
         Powerup.location.setyCord(newY);
+    }
+
+    public static long getPowerupScore() {
+        return POWERUPSCORE;
     }
 }

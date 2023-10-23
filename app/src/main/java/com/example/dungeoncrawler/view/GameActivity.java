@@ -1,10 +1,7 @@
 package com.example.dungeoncrawler.view;
-import com.example.dungeoncrawler.R;
-import android.content.Intent;
-//import android.graphics.RectF;
-import android.os.Bundle;
-//import android.util.Log;
+
 import android.view.KeyEvent;
+<<<<<<< HEAD
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,16 +11,13 @@ import android.widget.TextView;
 //import android.os.Looper;
 //import android.os.Message;
 import android.os.CountDownTimer;
+=======
+>>>>>>> 7a1f03aa94fd178e71934b14ddb9a03584110ba6
 
 
 import androidx.appcompat.app.AppCompatActivity;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Random;
-import com.example.dungeoncrawler.model.Player;
 
+<<<<<<< HEAD
 //import java.util.Timer;
 //import java.util.TimerTask;
 
@@ -179,47 +173,59 @@ public class GameActivity extends AppCompatActivity {
             playerY = screenHeight;
         }
         return true;
+=======
+import com.example.dungeoncrawler.model.Player;
+import com.example.dungeoncrawler.model.RunStrategy;
+import com.example.dungeoncrawler.model.WalkStrategy;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class GameActivity extends AppCompatActivity {
+    private int screenWidth, screenHeight;
+    protected PlayerView playerView;
+
+    private Timer timer;
+
+    private Player player = Player.getPlayer();      //temporary solution
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_SHIFT_LEFT:
+//                player.setMovementStrategy(new RunStrategy());
+//                break;
+//            case KeyEvent.KEYCODE_W:
+//                if (player.validMove(0, -25))
+//                    player.moveUp();
+//                break;
+//            case KeyEvent.KEYCODE_A:
+//                if (player.validMove(-25, 0))
+//                    player.moveLeft();
+//                break;
+//            case KeyEvent.KEYCODE_S:
+//                if (player.validMove(0, 25))
+//                    player.moveDown();
+//                break;
+//            case KeyEvent.KEYCODE_D:
+//                if (player.validMove(25, 0))
+//                    player.moveRight();
+//                break;
+//            default:
+//                break;
+//        }
+//        playerView.updatePosition();
+//        return false;
+//    }
+//    @Override
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+//            player.setMovementStrategy(new WalkStrategy());
+//        }
+//        return false;
+//    }
+    public void setPlayerView(PlayerView playerView) {
+        this.playerView = playerView;
+>>>>>>> 7a1f03aa94fd178e71934b14ddb9a03584110ba6
     }
 
-    /*
-    private void checkCollisions() {
-        for (int i = 0; i < dots.size(); i++) {
-            Dot dot = dots.get(i);
-            if (dot.isVisible() && isCollision(playerView, dot)) {
-                dot.setInvisible();
-                gameLayout.removeView(dotViewMap.get(dot));
-                dots.remove(i);
-                dotCount++;
-
-                dotCountTextView.setText("Dots Collected: " + dotCount);
-                if (dotCount >= dotsToWin) {
-                    launchEndActivity();
-                }
-            } else if (dot.isExpired()) {
-
-            }
-        }
-    }
-     */
-
-    /*
-    Method that has logic to detect collisions.
-    private boolean isCollision(PlayerView playerView, Dot dot) {
-        float playerX = playerView.getX();
-        float playerY = playerView.getY();
-        int playerRadius = playerView.getRadius();
-        float dotX = dot.getX();
-        float dotY = dot.getY();
-        int dotRadius = dot.getRadius();
-        return playerRect.intersect(dotRect);
-    }
-     */
-
-    // Changes game screen to EndActivity
-    public void launchNextActivity() {
-        Intent intent = new Intent(this, Room2Activity.class);
-        startActivity(intent);
-        timer.cancel();
-        finish();
-    }
 }
+

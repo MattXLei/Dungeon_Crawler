@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#25131a">
+    android:background="#25131a"
+    android:id="@+id/room3">
 
     <ImageView
         android:id="@+id/room3Image"
@@ -18,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/room3" />
+        app:srcCompat="@drawable/room4" />
 
     <TextView
         android:id="@+id/nameText"
@@ -39,10 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="626dp"
         android:text="*Placeholder Difficulty*"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/toEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,56 +68,5 @@
         app:layout_constraintBottom_toTopOf="@+id/healthText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
-
-    <Button
-        android:id="@+id/toEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="235dp"
-        android:layout_marginTop="626dp"
-        android:layout_marginEnd="25dp"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/healthText"
-        app:layout_constraintTop_toBottomOf="@+id/difficultyText" />
-
-    <ImageView
-        android:id="@+id/knightSprite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="332dp"
-        android:layout_marginEnd="177dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/knight" />
-
-    <ImageView
-        android:id="@+id/mageSprite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="332dp"
-        android:layout_marginEnd="181dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mage" />
-
-    <ImageView
-        android:id="@+id/necroSprite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="340dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rogue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

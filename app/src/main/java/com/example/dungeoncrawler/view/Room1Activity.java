@@ -1,32 +1,42 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+import android.content.Intent;
+//import android.graphics.RectF;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+//import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Button;
+import android.widget.TextView;
+//import android.widget.RelativeLayout;
+//import android.widget.TextView;
+import android.os.Handler;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.lifecycle.ViewModelProvider;
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.Random;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.RunStrategy;
-import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.KeyEvent;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModelProvider;
+import com.example.dungeoncrawler.model.WalkStrategy;
 
-public class Room2Activity extends GameActivity {
+
+public class Room1Activity extends GameActivity {
 
     private float playerX;
     private float playerY;
     private int screenWidth;
     private int screenHeight;
-
-    private long leftTime;
 
     private TextView score;
 
@@ -38,12 +48,17 @@ public class Room2Activity extends GameActivity {
 
     private Wall down;
 
+    private Wall left;
+
+    private TextView temp;
+
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
+
             checkExit();
         }
     };
@@ -51,15 +66,15 @@ public class Room2Activity extends GameActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gamescreen2);
+        setContentView(R.layout.gamescreen);
 
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
-        leftTime = playerVM.getScore() * 1000;
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
         TextView health = findViewById(R.id.healthText);
         score = findViewById(R.id.scoreText);
+
 
         name.setText(playerVM.getName());
         int difficultyNum = playerVM.getDifficulty();
@@ -73,10 +88,11 @@ public class Room2Activity extends GameActivity {
         health.setText("Health: " + playerVM.getHealth());
         score.setText("Score: " + playerVM.getScore());
 
+
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        playerVM.setLocation(screenWidth/2 - 100, screenHeight/2 -100);
+        playerVM.setLocation(screenWidth / 2 - 100, screenHeight / 2 - 100);
         playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
@@ -90,12 +106,17 @@ public class Room2Activity extends GameActivity {
         down = new Wall(new Location(0,1250), new Location (1000, 1250),
                 1);
         playerVM.addWall(down);
+        left = new Wall(new Location(0,350), new Location (0, 1250),
+                2);
+        playerVM.addWall(left);
 
         playerVM.startScore();
+
         playerVM.setMovementStrategy(new WalkStrategy());
-        ConstraintLayout gameLayout = findViewById(R.id.room2);
+        ConstraintLayout gameLayout = findViewById(R.id.room1);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
+
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
     }
@@ -137,30 +158,19 @@ public class Room2Activity extends GameActivity {
     }
 
     public void checkExit() {
-        if (playerVM.getLocation().getxCord() < 0) {
-            launchPreviousActivity();
-        }
         if (playerVM.getLocation().getxCord() > 950) {
             launchNextActivity();
         }
     }
-    public void launchPreviousActivity() {
-        Intent intent = new Intent(this, Room1Activity.class);
-        intent.putExtra("startx", 900);
-        startActivity(intent);
-        playerVM.endScore();
-        handler.removeCallbacks(update);
-        finish();
-    }
     public void launchNextActivity() {
-        Intent intent = new Intent(this, Room3Activity.class);
+        Intent intent = new Intent(this, Room2Activity.class);
         intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeWall(up);
         playerVM.removeWall(down);
+        playerVM.removeWall(left);
         handler.removeCallbacks(update);
         finish();
     }
-
 }

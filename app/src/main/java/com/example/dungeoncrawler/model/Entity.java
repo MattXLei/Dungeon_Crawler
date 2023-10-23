@@ -5,19 +5,8 @@ import android.util.Log;
 public abstract class Entity {
     MovementStrategy movementStrategy;
 
-    Location location;
-    public Entity(MovementStrategy ms, Location location) {
+    public Entity(MovementStrategy ms) {
         movementStrategy = ms;
-        this.location = location;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(float newX, float newY) {
-        location.setxCord(newX);
-        location.setyCord(newY);
     }
 
     public void setMovementStrategy(MovementStrategy movementStrategy) {
@@ -26,5 +15,21 @@ public abstract class Entity {
 
     public MovementStrategy getMovementStrategy() {
         return movementStrategy;
+    }
+
+    public void moveLeft() {
+        movementStrategy.moveLeft();
+    }
+
+    public void moveRight() {
+        movementStrategy.moveRight();
+    }
+
+    public void moveUp() {
+        movementStrategy.moveUp();
+    }
+
+    public void moveDown() {
+        movementStrategy.moveDown();
     }
 }

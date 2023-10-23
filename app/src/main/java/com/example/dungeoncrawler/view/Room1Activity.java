@@ -53,7 +53,6 @@ public class Room1Activity extends GameActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

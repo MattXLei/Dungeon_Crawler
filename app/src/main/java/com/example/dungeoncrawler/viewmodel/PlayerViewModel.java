@@ -81,13 +81,12 @@ public class PlayerViewModel extends ViewModel {
         return player.getHealth();
     }
 
-    public void startScore(TextView score) {
+    public void startScore() {
         timer = new CountDownTimer(leftTime, 1000) {
             @Override
             public void onTick(long remaining) {
                 leftTime = remaining;
                 decreaseScore(1);
-                score.setText("Score: " + getScore());
             }
 
             @Override
@@ -117,5 +116,21 @@ public class PlayerViewModel extends ViewModel {
 
     public Location getLocation() {
         return player.getLocation();
+    }
+
+    public void moveLeft() {
+        player.moveLeft();
+    }
+
+    public void moveRight() {
+        player.moveRight();
+    }
+
+    public void moveUp() {
+        player.moveUp();
+    }
+
+    public void moveDown() {
+        player.moveDown();
     }
 }

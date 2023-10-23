@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
+import android.os.Handler;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +42,16 @@ public class Room1Activity extends GameActivity {
 
     private PlayerViewModel playerVM;
 
-
     private PlayerView playerView;
+
+    private Handler handler = new Handler();
+    private Runnable update = new Runnable() {
+        @Override
+        public void run() {
+            score.setText("Score: " + playerVM.getScore());
+            handler.postDelayed(this, 50);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +96,16 @@ public class Room1Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        playerVM.startScore(score);
+        playerVM.startScore();
 
         playerVM.setMovementStrategy(new WalkStrategy());
         ConstraintLayout gameLayout = findViewById(R.id.room1);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
+
+        handler.post(update);
+
+
 
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -165,6 +178,7 @@ public class Room1Activity extends GameActivity {
         Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);
         playerVM.endScore();
+        handler.removeCallbacks(update);
         finish();
     }
 }

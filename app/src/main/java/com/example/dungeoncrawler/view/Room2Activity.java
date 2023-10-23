@@ -1,5 +1,6 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
@@ -14,11 +15,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Room2Activity extends GameActivity {
 
@@ -35,15 +31,13 @@ public class Room2Activity extends GameActivity {
 
     private PlayerView playerView;
 
-
-    private Timer timer;
-
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
+            checkExit();
         }
     };
 
@@ -88,37 +82,17 @@ public class Room2Activity extends GameActivity {
         }
 
         playerVM.startScore();
-
         playerVM.setMovementStrategy(new WalkStrategy());
         ConstraintLayout gameLayout = findViewById(R.id.room2);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
-
-
-        playerVM.startScore();
-        gameLoop();
-    }
-    public void gameLoop() {
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        checkExit();
-                    }
-                });
-            }
-        }, 0, 500);
+        handler.post(update);
     }
     public void checkExit() {
-        if (playerVM.getLocation().getxCord() < -130) {
-            timer.cancel();
+        if (playerVM.getLocation().getxCord() < 0) {
             launchPreviousActivity();
         }
-        if (playerVM.getLocation().getxCord() > 1340) {
-            timer.cancel();
+        if (playerVM.getLocation().getxCord() > 950) {
             launchNextActivity();
         }
     }
@@ -126,6 +100,7 @@ public class Room2Activity extends GameActivity {
         Intent intent = new Intent(this, Room1Activity.class);
         startActivity(intent);
         playerVM.endScore();
+        handler.removeCallbacks(update);
         finish();
     }
     public void launchNextActivity() {

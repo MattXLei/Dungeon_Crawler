@@ -25,13 +25,7 @@ import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.example.dungeoncrawler.model.Player;
-
 import com.example.dungeoncrawler.model.WalkStrategy;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class Room1Activity extends GameActivity {
@@ -42,8 +36,6 @@ public class Room1Activity extends GameActivity {
     private int screenHeight;
 
     private TextView score;
-
-    private Timer timer;
 
     private PlayerViewModel playerVM;
 
@@ -58,6 +50,8 @@ public class Room1Activity extends GameActivity {
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
+
+            checkExit();
         }
     };
 
@@ -110,7 +104,6 @@ public class Room1Activity extends GameActivity {
 
 
         handler.post(update);
-        gameLoop();
     }
 
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
@@ -163,37 +156,17 @@ public class Room1Activity extends GameActivity {
         return playerRect.intersect(dotRect);
     }
      */
-    public void gameLoop() {
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        checkExit();
-                    }
-                });
-            }
-        }, 0, 500);
-    }
     public void checkExit() {
-
-        if (playerVM.getLocation().getxCord() > 1340) {
-            timer.cancel();
+        if (playerVM.getLocation().getxCord() > 950) {
             launchNextActivity();
         }
     }
-    public void launchPreviousActivity() {
-        Intent intent = new Intent(this, Room3Activity.class);
-        startActivity(intent);
-        playerVM.endScore();
-        finish();
-    }
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
+        intent.putExtra("startX", 25);
         startActivity(intent);
         playerVM.endScore();
+        handler.removeCallbacks(update);
         finish();
     }
 }

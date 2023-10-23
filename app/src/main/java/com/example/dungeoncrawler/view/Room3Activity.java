@@ -45,7 +45,7 @@ public class Room3Activity extends GameActivity {
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
-            checkEnd();
+            checkExit();
         }
     };
 
@@ -98,40 +98,19 @@ public class Room3Activity extends GameActivity {
         gameLayout.addView(super.playerView);
 
         playerVM.startScore();
-        gameLoop();
+        handler.post(update);
     }
-    public void gameLoop() {
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        checkExit();
-                        checkEnd();
-                    }
-                });
-            }
-        }, 0, 500);
-    }
-    public void checkExit() {
-        if (playerVM.getLocation().getxCord() < -130) {
-            timer.cancel();
+    private void checkExit() {
+        float x = playerVM.getLocation().getxCord();
+        if (x >= 950) {
+            leaderboardVM.addAttempt();
+            launchEndActivity();
+        } else if (x <= 0) {
             launchPreviousActivity();
         }
     }
-
-    private void checkEnd() {
-        float x = playerVM.getLocation().getxCord();
-        if (x >= 1340) {
-            timer.cancel();
-            leaderboardVM.addAttempt();
-            launchEndActivity();
-        }
-    }
     public void launchPreviousActivity() {
-        Intent intent = new Intent(this, Room1Activity.class);
+        Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);
         playerVM.endScore();
         handler.removeCallbacks(update);

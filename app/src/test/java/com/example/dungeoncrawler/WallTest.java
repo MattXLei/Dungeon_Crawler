@@ -22,6 +22,7 @@ public class WallTest {
         assertTrue(valid);
         valid = player.validMove(101, 0);
         assertFalse(valid);
+        player.removeObserver(right);
     }
 
     @Test
@@ -34,6 +35,7 @@ public class WallTest {
         assertTrue(valid);
         valid = player.validMove(0, 60);
         assertFalse(valid);
+        player.removeObserver(down);
     }
 
     @Test
@@ -46,6 +48,7 @@ public class WallTest {
         assertTrue(valid);
         valid = player.validMove(-101, 0);
         assertFalse(valid);
+        player.removeObserver(left);
     }
 
     @Test
@@ -58,5 +61,6 @@ public class WallTest {
         assertTrue(valid);
         valid = player.validMove(0, -100);
         assertFalse(valid);
+        player.removeObserver(up);
     }
 }

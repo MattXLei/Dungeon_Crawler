@@ -34,6 +34,10 @@ public class Room2Activity extends GameActivity {
 
     private PlayerView playerView;
 
+    private Wall up;
+
+    private Wall down;
+
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
@@ -80,10 +84,10 @@ public class Room2Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        Wall up = new Wall(new Location(0,350), new Location (1000, 350),
+        up = new Wall(new Location(0,350), new Location (1000, 350),
                 3);
         playerVM.addWall(up);
-        Wall down = new Wall(new Location(0,1250), new Location (1000, 1250),
+        down = new Wall(new Location(0,1250), new Location (1000, 1250),
                 1);
         playerVM.addWall(down);
 
@@ -153,6 +157,8 @@ public class Room2Activity extends GameActivity {
         intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
+        playerVM.removeWall(up);
+        playerVM.removeWall(down);
         handler.removeCallbacks(update);
         finish();
     }

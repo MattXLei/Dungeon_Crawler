@@ -1,15 +1,15 @@
 package com.example.dungeoncrawler.model;
 
 public class Wall implements Observer{
-    private static Location start;
+    private Location start;
 
-    private static Location end;
+    private Location end;
 
     /*
        direction of a wall prevents an entity from moving past that wall in the saved direction
        0 = right, 1 = down, 2 = left, 3 = up
     */
-    private static int direction;
+    private int direction;
 
     public Wall(Location start, Location end, int direction) {
         this.start = new Location(start.getxCord(), start.getyCord());
@@ -17,22 +17,22 @@ public class Wall implements Observer{
         this.direction = direction;
     }
 
-    public static Location getStart() {
+    public Location getStart() {
         return start;
     }
 
-    public static Location getEnd() {
+    public Location getEnd() {
         return end;
     }
 
-    public static void setStart(float newX, float newY) {
-        Wall.start.setxCord(newX);
-        Wall.start.setyCord(newY);
+    public void setStart(float newX, float newY) {
+        start.setxCord(newX);
+        start.setyCord(newY);
     }
 
-    public static void setEnd(float newX, float newY) {
-        Wall.end.setxCord(newX);
-        Wall.end.setyCord(newY);
+    public void setEnd(float newX, float newY) {
+        end.setxCord(newX);
+        end.setyCord(newY);
     }
 
     public boolean checkCollision(Location entityLocation, int changeX, int changeY) {

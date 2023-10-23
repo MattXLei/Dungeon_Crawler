@@ -44,6 +44,11 @@ public class Room1Activity extends GameActivity {
 
     private PlayerView playerView;
 
+    private Wall up;
+
+    private Wall down;
+
+    private Wall left;
 
     private TextView temp;
 
@@ -95,16 +100,15 @@ public class Room1Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        Wall up = new Wall(new Location(0,350), new Location (1000, 350),
+        up = new Wall(new Location(0,350), new Location (1000, 350),
                 3);
         playerVM.addWall(up);
-        Wall down = new Wall(new Location(0,1250), new Location (1000, 1250),
+        down = new Wall(new Location(0,1250), new Location (1000, 1250),
                 1);
         playerVM.addWall(down);
-        Wall left = new Wall(new Location(0,350), new Location (0, 1250),
+        left = new Wall(new Location(0,350), new Location (0, 1250),
                 2);
         playerVM.addWall(left);
-        //not sure why this isn't working
 
         playerVM.startScore();
 
@@ -163,6 +167,9 @@ public class Room1Activity extends GameActivity {
         intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
+        playerVM.removeWall(up);
+        playerVM.removeWall(down);
+        playerVM.removeWall(left);
         handler.removeCallbacks(update);
         finish();
     }

@@ -52,14 +52,12 @@ public class Room2Activity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen2);
-        Button endButton = findViewById(R.id.toRoom3);
+
 
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
         leftTime = playerVM.getScore() * 1000;
 
-        endButton.setOnClickListener(v -> {
-            launchNextActivity();
-        });
+
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);

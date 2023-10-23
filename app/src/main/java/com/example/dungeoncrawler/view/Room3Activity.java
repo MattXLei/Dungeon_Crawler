@@ -1,8 +1,6 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
-import com.example.dungeoncrawler.model.Leaderboard;
 import com.example.dungeoncrawler.model.Location;
-import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
@@ -14,18 +12,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Room3Activity extends GameActivity {
 
@@ -35,7 +25,8 @@ public class Room3Activity extends GameActivity {
 
     private PlayerViewModel playerVM;
 
-    private int screenWidth, screenHeight;
+    private int screenWidth;
+    private int screenHeight;
 
     private PlayerView playerView;
 
@@ -89,19 +80,20 @@ public class Room3Activity extends GameActivity {
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        playerVM.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
-        playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
+        playerVM.setLocation(screenWidth / 2 - 100, screenHeight / 2 - 100);
+        playerView = new PlayerView(this, playerVM.getLocation(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        up = new Wall(new Location(0,350), new Location (1000, 350),
+        up = new Wall(new Location(0, 380), new Location(1000, 380),
                 3);
         playerVM.addWall(up);
 
-        down = new Wall(new Location(0,1100), new Location (1000, 1100),
+        down = new Wall(new Location(0, 970), new Location(1000, 970),
                 1);
         playerVM.addWall(down);
 
@@ -118,27 +110,31 @@ public class Room3Activity extends GameActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_SHIFT_LEFT:
-                playerVM.setMovementStrategy(new RunStrategy());
-                break;
-            case KeyEvent.KEYCODE_W:
-                if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep()))
-                    playerVM.moveUp();
-                break;
-            case KeyEvent.KEYCODE_A:
-                if (playerVM.callValidMove(-1 * playerVM.getMovementStrategy().getStep(), 0))
-                    playerVM.moveLeft();
-                break;
-            case KeyEvent.KEYCODE_S:
-                if (playerVM.callValidMove(0, playerVM.getMovementStrategy().getStep()))
-                    playerVM.moveDown();
-                break;
-            case KeyEvent.KEYCODE_D:
-                if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0))
-                    playerVM.moveRight();
-                break;
-            default:
-                break;
+        case KeyEvent.KEYCODE_SHIFT_LEFT:
+            playerVM.setMovementStrategy(new RunStrategy());
+            break;
+        case KeyEvent.KEYCODE_W:
+            if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep())) {
+                playerVM.moveUp();
+            }
+            break;
+        case KeyEvent.KEYCODE_A:
+            if (playerVM.callValidMove(-1 * playerVM.getMovementStrategy().getStep(), 0)) {
+                playerVM.moveLeft();
+            }
+            break;
+        case KeyEvent.KEYCODE_S:
+            if (playerVM.callValidMove(0, playerVM.getMovementStrategy().getStep())) {
+                playerVM.moveDown();
+            }
+            break;
+        case KeyEvent.KEYCODE_D:
+            if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0)) {
+                playerVM.moveRight();
+            }
+            break;
+        default:
+            break;
         }
         playerView.updatePosition();
         return false;

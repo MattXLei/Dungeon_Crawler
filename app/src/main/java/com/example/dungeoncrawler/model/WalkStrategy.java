@@ -1,6 +1,6 @@
 package com.example.dungeoncrawler.model;
 
-public class WalkStrategy implements MovementStrategy{
+public class WalkStrategy implements MovementStrategy {
     private int step = 25;
     private Player player = Player.getPlayer();
     public void moveUp() {

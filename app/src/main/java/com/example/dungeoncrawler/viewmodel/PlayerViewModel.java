@@ -3,7 +3,6 @@ package com.example.dungeoncrawler.viewmodel;
 
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
 
@@ -91,7 +90,9 @@ public class PlayerViewModel extends ViewModel {
             }
 
             @Override
-            public void onFinish() {}
+            public void onFinish() {
+
+            }
         }.start();
     }
     public void endScore() {
@@ -152,5 +153,7 @@ public class PlayerViewModel extends ViewModel {
         player.addObserver(wall);
     }
 
-    public void removeWall(Wall wall) {player.removeObserver(wall);}
+    public void removeWall(Wall wall) {
+        player.removeObserver(wall);
+    }
 }

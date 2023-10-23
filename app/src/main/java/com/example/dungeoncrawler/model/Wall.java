@@ -1,6 +1,6 @@
 package com.example.dungeoncrawler.model;
 
-public class Wall implements Observer{
+public class Wall implements Observer {
     private Location start;
 
     private Location end;
@@ -42,18 +42,15 @@ public class Wall implements Observer{
             if (newX > start.getxCord()) {
                 return true;
             }
-        }
-        else if (direction == 1) {
+        } else if (direction == 1) {
             if (newY > start.getyCord()) {
                 return true;
             }
-        }
-        else if (direction == 2) {
+        } else if (direction == 2) {
             if (newX < start.getxCord()) {
                 return true;
             }
-        }
-        else {
+        } else {
             if (newY < start.getyCord()) {
                 return true;
             }

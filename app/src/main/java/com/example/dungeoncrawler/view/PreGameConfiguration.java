@@ -14,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
-import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 

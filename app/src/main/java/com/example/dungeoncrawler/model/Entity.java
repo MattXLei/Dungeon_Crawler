@@ -1,9 +1,7 @@
 package com.example.dungeoncrawler.model;
 
-import android.util.Log;
-
 public abstract class Entity {
-    MovementStrategy movementStrategy;
+    private MovementStrategy movementStrategy;
 
     public Entity(MovementStrategy ms) {
         movementStrategy = ms;

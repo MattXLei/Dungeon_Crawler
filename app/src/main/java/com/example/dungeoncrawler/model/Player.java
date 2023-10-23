@@ -1,13 +1,10 @@
 package com.example.dungeoncrawler.model;
 import java.util.*;
 
-public class Player extends Entity implements Observable{
+public class Player extends Entity implements Observable {
 
-<<<<<<< HEAD
+
     private static volatile Player player = new Player();
-=======
-    private static volatile Player player;
->>>>>>> 7a1f03aa94fd178e71934b14ddb9a03584110ba6
 
     private int health;
 
@@ -128,19 +125,10 @@ public class Player extends Entity implements Observable{
         return difficulty;
     }
 
-<<<<<<< HEAD
-    public static int getDifficulty() {
-        return difficulty;
-    }
 
-    public static void setDifficulty(int difficulty) {
-        Player.difficulty = difficulty;
-        if (difficulty == 2) {
-=======
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
         if (difficulty == 3) {
->>>>>>> 7a1f03aa94fd178e71934b14ddb9a03584110ba6
             setHealth(50);
         } else if (difficulty == 2) {
             setHealth(75);

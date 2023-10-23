@@ -37,22 +37,6 @@ public class EndActivity extends AppCompatActivity {
         TextView lb4 = findViewById(R.id.LB4);
         TextView lb5 = findViewById(R.id.LB5);
 
-<<<<<<< HEAD
-        if (Leaderboard.getAttempts()[0] != null) {
-            lb1.setText(Leaderboard.getAttempts()[0].toString());
-        }
-        if (Leaderboard.getAttempts()[1] != null) {
-            lb2.setText(Leaderboard.getAttempts()[1].toString());
-        }
-        if (Leaderboard.getAttempts()[2] != null) {
-            lb3.setText(Leaderboard.getAttempts()[2].toString());
-        }
-        if (Leaderboard.getAttempts()[3] != null) {
-            lb4.setText(Leaderboard.getAttempts()[3].toString());
-        }
-        if (Leaderboard.getAttempts()[4] != null) {
-            lb5.setText(Leaderboard.getAttempts()[4].toString());
-=======
         if (leaderboardVM.getAttempts()[0] != null) {
             lb1.setText(leaderboardVM.getAttempts()[0].toString());
         }
@@ -67,7 +51,6 @@ public class EndActivity extends AppCompatActivity {
         }
         if (leaderboardVM.getAttempts()[4] != null) {
             lb5.setText(leaderboardVM.getAttempts()[4].toString());
->>>>>>> 7a1f03aa94fd178e71934b14ddb9a03584110ba6
         }
 
         TextView recent = findViewById(R.id.textRecent);

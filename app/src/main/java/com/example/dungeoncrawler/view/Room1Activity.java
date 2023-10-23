@@ -6,14 +6,11 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 //import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Button;
+//import android.widget.Button;
 import android.widget.TextView;
 //import android.widget.RelativeLayout;
 //import android.widget.TextView;
 import android.os.Handler;
-
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.lifecycle.ViewModelProvider;
 //import java.util.ArrayList;
@@ -93,20 +90,21 @@ public class Room1Activity extends GameActivity {
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
         playerVM.setLocation(screenWidth / 2 - 100, screenHeight / 2 - 100);
-        playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
+        playerView = new PlayerView(this, playerVM.getLocation(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        up = new Wall(new Location(0,350), new Location (1000, 350),
+        up = new Wall(new Location(0, 380), new Location(900, 380),
                 3);
         playerVM.addWall(up);
-        down = new Wall(new Location(0,1250), new Location (1000, 1250),
+        down = new Wall(new Location(100, 1150), new Location(1000, 1150),
                 1);
         playerVM.addWall(down);
-        left = new Wall(new Location(0,350), new Location (0, 1250),
+        left = new Wall(new Location(100, 380), new Location(100, 1150),
                 2);
         playerVM.addWall(left);
 
@@ -124,27 +122,31 @@ public class Room1Activity extends GameActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_SHIFT_LEFT:
-                playerVM.setMovementStrategy(new RunStrategy());
-                break;
-            case KeyEvent.KEYCODE_W:
-                if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep()))
-                    playerVM.moveUp();
-                break;
-            case KeyEvent.KEYCODE_A:
-                if (playerVM.callValidMove(-1 * playerVM.getMovementStrategy().getStep(), 0))
-                    playerVM.moveLeft();
-                break;
-            case KeyEvent.KEYCODE_S:
-                if (playerVM.callValidMove(0, playerVM.getMovementStrategy().getStep()))
-                    playerVM.moveDown();
-                break;
-            case KeyEvent.KEYCODE_D:
-                if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0))
-                    playerVM.moveRight();
-                break;
-            default:
-                break;
+        case KeyEvent.KEYCODE_SHIFT_LEFT:
+            playerVM.setMovementStrategy(new RunStrategy());
+            break;
+        case KeyEvent.KEYCODE_W:
+            if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep())) {
+                playerVM.moveUp();
+            }
+            break;
+        case KeyEvent.KEYCODE_A:
+            if (playerVM.callValidMove(-1 * playerVM.getMovementStrategy().getStep(), 0)) {
+                playerVM.moveLeft();
+            }
+            break;
+        case KeyEvent.KEYCODE_S:
+            if (playerVM.callValidMove(0, playerVM.getMovementStrategy().getStep())) {
+                playerVM.moveDown();
+            }
+            break;
+        case KeyEvent.KEYCODE_D:
+            if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0)) {
+                playerVM.moveRight();
+            }
+            break;
+        default:
+            break;
         }
         playerView.updatePosition();
         return false;

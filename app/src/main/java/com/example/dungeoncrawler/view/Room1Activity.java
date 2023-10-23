@@ -141,8 +141,6 @@ public class Room1Activity extends GameActivity {
         return false;
     }
 
-
-
     public void checkExit() {
         if (playerVM.getLocation().getxCord() > 950) {
             launchNextActivity();

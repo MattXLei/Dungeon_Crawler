@@ -1,22 +1,21 @@
 package com.example.dungeoncrawler.view;
 
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.view.KeyEvent;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.dungeoncrawler.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.WalkStrategy;
-import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     private int screenWidth, screenHeight;
     protected PlayerView playerView;
+
+    private Timer timer;
 
     private Player player = Player.getPlayer();      //temporary solution
     @Override
@@ -45,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
     }
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
             player.setMovementStrategy(new WalkStrategy());
         }
         return false;
@@ -53,4 +52,6 @@ public class GameActivity extends AppCompatActivity {
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }
+
 }
+

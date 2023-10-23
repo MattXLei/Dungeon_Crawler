@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/room1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#25131a"
-    android:id="@+id/room1">
+    android:background="#25131a">
 
     <ImageView
         android:id="@+id/room1Image"
@@ -40,10 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="626dp"
         android:text="*Placeholder Difficulty*"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/toRoom2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,18 +68,6 @@
         app:layout_constraintBottom_toTopOf="@+id/healthText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
-
-    <Button
-        android:id="@+id/toRoom2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="235dp"
-        android:layout_marginTop="626dp"
-        android:layout_marginEnd="25dp"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/healthText"
-        app:layout_constraintTop_toBottomOf="@+id/difficultyText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

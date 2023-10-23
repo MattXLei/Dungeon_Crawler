@@ -18,6 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Room3Activity extends GameActivity {
 
     private long leftTime;
@@ -31,16 +36,19 @@ public class Room3Activity extends GameActivity {
     private PlayerView playerView;
     private LeaderboardViewModel leaderboardVM;
 
+
+    private Timer timer;
+
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
-
             checkEnd();
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,19 +96,48 @@ public class Room3Activity extends GameActivity {
         ConstraintLayout gameLayout = findViewById(R.id.room3);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
+
         playerVM.startScore();
-        handler.post(update);
+        gameLoop();
+    }
+    public void gameLoop() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkExit();
+                        checkEnd();
+                    }
+                });
+            }
+        }, 0, 500);
+    }
+    public void checkExit() {
+        if (playerVM.getLocation().getxCord() < -130) {
+            timer.cancel();
+            launchPreviousActivity();
+        }
     }
 
     private void checkEnd() {
         float x = playerVM.getLocation().getxCord();
-        if (x >= 950) {
+        if (x >= 1340) {
+            timer.cancel();
             leaderboardVM.addAttempt();
-            launchNextActivity();
+            launchEndActivity();
         }
     }
-
-    public void launchNextActivity() {
+    public void launchPreviousActivity() {
+        Intent intent = new Intent(this, Room1Activity.class);
+        startActivity(intent);
+        playerVM.endScore();
+        handler.removeCallbacks(update);
+        finish();
+    }
+    public void launchEndActivity() {
         Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         playerVM.endScore();
@@ -108,3 +145,5 @@ public class Room3Activity extends GameActivity {
         finish();
     }
 }
+
+

@@ -30,6 +30,9 @@ import com.example.dungeoncrawler.model.Player;
 
 import com.example.dungeoncrawler.model.WalkStrategy;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class Room1Activity extends GameActivity {
 
@@ -40,9 +43,14 @@ public class Room1Activity extends GameActivity {
 
     private TextView score;
 
+    private Timer timer;
+
     private PlayerViewModel playerVM;
 
     private PlayerView playerView;
+
+
+    private TextView temp;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
@@ -57,13 +65,11 @@ public class Room1Activity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
-        Button endButton = findViewById(R.id.toRoom2);
+
 
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
 
-        endButton.setOnClickListener(v -> {
-            launchNextActivity();
-        });
+
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
@@ -84,11 +90,10 @@ public class Room1Activity extends GameActivity {
         score.setText("Score: " + playerVM.getScore());
 
 
-
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         int character = playerVM.getCharacter();
-        playerVM.setLocation(screenWidth/2 - 100, screenHeight/2 - 100);
+        playerVM.setLocation(screenWidth / 2 - 100, screenHeight / 2 - 100);
         playerView = new PlayerView(this, playerVM.getLocation(), BitmapFactory.decodeResource(getResources(), R.drawable.knight));
         if (character == 1) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.rogue));
@@ -103,35 +108,21 @@ public class Room1Activity extends GameActivity {
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
 
+
         handler.post(update);
-
-
+        gameLoop();
+    }
 
         /*screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         // Spawn player in middle of screen
         playerX = screenWidth / 2;
         playerY = screenHeight / 2;
+>>>>>>> e35efef2560489de59ae408b9f4968b212de8034
 
-        // Get difficulty selected from Main screen.
-        difficulty = getIntent().getDoubleExtra("difficulty", 1);
-        // Create dot list
-        // initializeDots();
-        // Draw dots on screen
-        // drawDots();
+        temp = findViewById(R.id.temp);
+        gameLoop();
 
-        dotTimer = new Timer();
-        dotTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Loop for checks and assurances that need to run consistently
-                    }
-                });
-            }
-        }, 0, 500); // Check every .5 seconds*/
     }
 
 
@@ -172,13 +163,37 @@ public class Room1Activity extends GameActivity {
         return playerRect.intersect(dotRect);
     }
      */
+    public void gameLoop() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkExit();
+                    }
+                });
+            }
+        }, 0, 500);
+    }
+    public void checkExit() {
 
-    // Changes game screen to EndActivity
+        if (playerVM.getLocation().getxCord() > 1340) {
+            timer.cancel();
+            launchNextActivity();
+        }
+    }
+    public void launchPreviousActivity() {
+        Intent intent = new Intent(this, Room3Activity.class);
+        startActivity(intent);
+        playerVM.endScore();
+        finish();
+    }
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
         startActivity(intent);
         playerVM.endScore();
-        handler.removeCallbacks(update);
         finish();
     }
 }

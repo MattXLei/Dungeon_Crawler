@@ -118,6 +118,11 @@ public class PlayerViewModel extends ViewModel {
         return player.getLocation();
     }
 
+
+    public void resetLocation() {
+        setLocation(0, 0);
+    }
+
     public void moveLeft() {
         player.moveLeft();
     }
@@ -132,5 +137,6 @@ public class PlayerViewModel extends ViewModel {
 
     public void moveDown() {
         player.moveDown();
+
     }
 }

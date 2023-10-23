@@ -3,6 +3,7 @@ import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.WalkStrategy;
+import com.example.dungeoncrawler.model.Wall;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 import android.content.Intent;
@@ -78,6 +79,13 @@ public class Room2Activity extends GameActivity {
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
+
+        Wall up = new Wall(new Location(0,350), new Location (1000, 350),
+                3);
+        playerVM.addWall(up);
+        Wall down = new Wall(new Location(0,1250), new Location (1000, 1250),
+                1);
+        playerVM.addWall(down);
 
         playerVM.startScore();
         playerVM.setMovementStrategy(new WalkStrategy());

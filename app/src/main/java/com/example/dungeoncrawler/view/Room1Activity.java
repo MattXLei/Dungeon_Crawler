@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.RunStrategy;
+import com.example.dungeoncrawler.model.Wall;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 
@@ -93,6 +94,17 @@ public class Room1Activity extends GameActivity {
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
+
+        Wall up = new Wall(new Location(0,350), new Location (1000, 350),
+                3);
+        playerVM.addWall(up);
+        Wall down = new Wall(new Location(0,1250), new Location (1000, 1250),
+                1);
+        playerVM.addWall(down);
+        Wall left = new Wall(new Location(0,350), new Location (0, 1250),
+                2);
+        playerVM.addWall(left);
+        //not sure why this isn't working
 
         playerVM.startScore();
 

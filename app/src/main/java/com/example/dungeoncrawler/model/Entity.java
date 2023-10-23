@@ -30,20 +30,4 @@ public abstract class Entity {
     public MovementStrategy getMovementStrategy() {
         return movementStrategy;
     }
-
-    public void moveLeft() {
-        movementStrategy.moveLeft();
-    }
-
-    public void moveRight() {
-        movementStrategy.moveRight();
-    }
-
-    public void moveUp() {
-        movementStrategy.moveUp();
-    }
-
-    public void moveDown() {
-        movementStrategy.moveDown();
-    }
 }

@@ -149,6 +149,7 @@ public class Room1Activity extends GameActivity {
             break;
         }
         playerView.updatePosition();
+        playerVM.notifyObservers();
         return false;
     }
     @Override

@@ -5,6 +5,8 @@ public class Wall implements Observer {
 
     private Location end;
 
+    private Location playerLocation;
+
     /*
        direction of a wall prevents an entity from moving past that wall in the saved direction
        0 = right, 1 = down, 2 = left, 3 = up
@@ -57,4 +59,9 @@ public class Wall implements Observer {
         }
         return false;
     }
+
+    public void update(Location location) {
+        playerLocation = location;
+    }
+
 }

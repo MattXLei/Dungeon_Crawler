@@ -156,4 +156,8 @@ public class PlayerViewModel extends ViewModel {
     public void removeWall(Wall wall) {
         player.removeObserver(wall);
     }
+
+    public void notifyObservers() {
+        player.notifyObservers();
+    }
 }

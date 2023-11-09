@@ -1,6 +1,6 @@
 package com.example.dungeoncrawler.model;
 
-public abstract class Enemy implements Observer{
+public abstract class Enemy{
     private int health;
     private int speed;
     private Location location;
@@ -14,6 +14,10 @@ public abstract class Enemy implements Observer{
 
     public void update(Location location) {
         playerLocation = location;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public void movement() {

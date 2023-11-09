@@ -1,8 +1,7 @@
 package com.example.dungeoncrawler.model;
 
-public class Enemy1 extends Enemy{
-
-    public Enemy1() {
+public class ScytheSkeleton extends Enemy{
+    public ScytheSkeleton() {
         super(100, 10, new Location(0,0));
     }
 }

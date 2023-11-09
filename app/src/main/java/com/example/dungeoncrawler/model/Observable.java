@@ -7,4 +7,6 @@ public interface Observable {
 
     public void removeObserver(Observer wall);
 
+    public void notifyObservers();
+
 }

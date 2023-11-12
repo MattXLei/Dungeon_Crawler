@@ -5,6 +5,7 @@ public class SwordSkeleton extends Enemy {
         health = 100;
         speed = 10;
         defense = 20;
+        damage = 25;
         location = new Location(0f, 0f);
     }
 }

@@ -5,6 +5,7 @@ public class Spirit extends Enemy {
         health = 100;
         speed = 20;
         defense = 10;
+        damage = 10;
         location = new Location(0f, 0f);
     }
 }

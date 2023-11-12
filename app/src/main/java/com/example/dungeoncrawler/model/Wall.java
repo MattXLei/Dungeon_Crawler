@@ -27,12 +27,12 @@ public class Wall implements Observer {
         return end;
     }
 
-    public void setStart(float newX, float newY) {
+    public void setStart(int newX, int newY) {
         start.setxCord(newX);
         start.setyCord(newY);
     }
 
-    public void setEnd(float newX, float newY) {
+    public void setEnd(int newX, int newY) {
         end.setxCord(newX);
         end.setyCord(newY);
     }
@@ -40,22 +40,28 @@ public class Wall implements Observer {
     public boolean checkCollision(Location entityLocation, int changeX, int changeY) {
         float newX = entityLocation.getxCord() + changeX;
         float newY = entityLocation.getyCord() + changeY;
-        if (direction == 0) {
-            if (newX > start.getxCord()) {
-                return true;
-            }
-        } else if (direction == 1) {
-            if (newY > start.getyCord()) {
-                return true;
-            }
-        } else if (direction == 2) {
-            if (newX < start.getxCord()) {
-                return true;
-            }
-        } else {
-            if (newY < start.getyCord()) {
-                return true;
-            }
+        if (direction == 0 && newX > start.getxCord() && inY(entityLocation.getyCord())) {
+            return true;
+        } else if (direction == 1 && newY > start.getyCord() && inX(entityLocation.getxCord())) {
+            return true;
+        } else if (direction == 2 && newX < start.getxCord() && inY(entityLocation.getyCord())) {
+            return true;
+        } else if (direction == 3 && newY < start.getyCord() && inX(entityLocation.getxCord())){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean inX(int x) {
+        if ((x > start.getxCord() && x < end.getxCord())) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean inY(int y) {
+        if ((y > start.getyCord() && y < end.getyCord())) {
+            return true;
         }
         return false;
     }

@@ -12,7 +12,7 @@ public class Powerup {
     public static Location getLocation() {
         return location;
     }
-    public static void setLocation(float newX, float newY) {
+    public static void setLocation(int newX, int newY) {
         Powerup.location.setxCord(newX);
         Powerup.location.setyCord(newY);
     }

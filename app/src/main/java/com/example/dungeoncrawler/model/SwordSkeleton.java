@@ -7,6 +7,6 @@ public class SwordSkeleton extends Enemy {
         yMove = 0;
         defense = 20;
         damage = 25;
-        location = new Location(0f, 0f);
+        location = new Location(0, 0);
     }
 }

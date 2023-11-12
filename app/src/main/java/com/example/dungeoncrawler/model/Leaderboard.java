@@ -22,7 +22,7 @@ public class Leaderboard {
         player = Player.getPlayer();
         //        attempts[0] = new Attempt(player.getName(), player.getScore(),
         //                date.format(Calendar.getInstance().getTime()));
-        location = new Location(0.0f, 0.0f);
+        location = new Location(0, 0);
     }
     public static Leaderboard getLeaderboard() {
         if (leaderboard == null) {
@@ -70,7 +70,7 @@ public class Leaderboard {
             attempts[i] =  null;
         }
     }
-    public void setLocation(float newX, float newY) {
+    public void setLocation(int newX, int newY) {
         this.location.setxCord(newX);
         this.location.setyCord(newY);
     }

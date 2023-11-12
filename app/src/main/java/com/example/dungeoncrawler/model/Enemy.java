@@ -41,4 +41,10 @@ public abstract class Enemy {
     public int getDamage() {
         return damage;
     }
+    public int getxMove() {
+        return xMove;
+    }
+    public int getyMove() {
+        return yMove;
+    }
 }

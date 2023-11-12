@@ -5,35 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.dungeoncrawler.viewmodel.LeaderboardViewModel;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
-public class EndActivity extends AppCompatActivity {
+public class GameOver extends AppCompatActivity {
 
     private LeaderboardViewModel leaderboardVM;
     private PlayerViewModel playerVM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.endscreen);
-        Button exitBtn = findViewById(R.id.homeButton); // change button resource
+        setContentView(R.layout.gameoverscreen);
+        Button exitBtn = findViewById(R.id.goHome); // change button resource
 
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
         leaderboardVM = new ViewModelProvider(this).get(LeaderboardViewModel.class);
-        TextView result = findViewById(R.id.textView2);
-        TextView result1 = findViewById(R.id.resultText);
-
-        if (playerVM.getHealth() == 0) { // Change screen depending on if player won or not
-            result.setText("You didn't make it to China");
-            result1.setText("You Lost");
-        } else {
-            result.setText("Thank You For Visiting China!");
-            result1.setText("You Won!");
-        }
 
         // Exits app to welcome activity
         exitBtn.setOnClickListener(v -> {

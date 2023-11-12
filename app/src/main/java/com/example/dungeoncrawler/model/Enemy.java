@@ -32,5 +32,13 @@ public abstract class Enemy {
     public void movement() {
 
     }
-
+    public int getHealth() {
+        return health;
+    }
+    public int getDefense() {
+        return defense;
+    }
+    public int getDamage() {
+        return damage;
+    }
 }

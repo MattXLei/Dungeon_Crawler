@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
@@ -47,7 +46,8 @@ public class Room2Activity extends GameActivity {
             health.setText("Health: " + playerVM.getHealth());
             checkGameOver();
             checkExit();
-            //Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
+            //Log.d("Player Location", playerVM.getLocation().getxCord() +
+            // "," + playerVM.getLocation().getyCord());
         }
     };
 
@@ -89,7 +89,7 @@ public class Room2Activity extends GameActivity {
         }
 
         //upper left up wall
-        Wall up1 = new Wall(new Location (-20, 600), new Location(150, 600), 3);
+        Wall up1 = new Wall(new Location(-20, 600), new Location(150, 600), 3);
         playerVM.addWall(up1);
         //upper left left wall
         Wall left1 = new Wall(new Location(150, 380), new Location(150, 600), 2);
@@ -106,7 +106,7 @@ public class Room2Activity extends GameActivity {
         playerVM.addWall(up3);
 
         //lower left down wall
-        Wall down1 = new Wall(new Location(-20, 950), new Location (150, 950), 1);
+        Wall down1 = new Wall(new Location(-20, 950), new Location(150, 950), 1);
         playerVM.addWall(down1);
         //lower left left wall
         Wall left2 = new Wall(new Location(150, 950), new Location(150, 1175), 2);
@@ -206,7 +206,7 @@ public class Room2Activity extends GameActivity {
         }
     }
     public void launchGameOver() {
-        Intent intent = new Intent(this, GameOverActivity.class);
+        Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();
@@ -215,10 +215,10 @@ public class Room2Activity extends GameActivity {
     }
     public void createEnemy(ConstraintLayout gameLayout) {
         Spawner spawner = new SwordSkeletonSpawner();
-        Location temp = new Location(0,0);
+        Location temp = new Location(0, 0);
         enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
         spawner = new MageSpawner();
-        Location temp2 = new Location(100,100);
+        Location temp2 = new Location(100, 100);
         enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);

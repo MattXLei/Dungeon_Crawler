@@ -16,7 +16,7 @@ public class PlayerTest {
         player.setScore(100);
         player.setDifficulty(1);
         player.setCharacter(1000000);
-        player.setLocation(1f, 2f);
+        player.setLocation(1, 2);
         player.setDirection(1);
         player.setHealth(100);
         player.setSpeed(10);

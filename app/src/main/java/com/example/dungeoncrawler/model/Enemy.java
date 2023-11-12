@@ -80,5 +80,19 @@ public abstract class Enemy implements Observable {
             o.update(location);
         }
     }
-
+    public int getHealth() {
+        return health;
+    }
+    public int getDefense() {
+        return defense;
+    }
+    public int getDamage() {
+        return damage;
+    }
+    public int getxMove() {
+        return xMove;
+    }
+    public int getyMove() {
+        return yMove;
+    }
 }

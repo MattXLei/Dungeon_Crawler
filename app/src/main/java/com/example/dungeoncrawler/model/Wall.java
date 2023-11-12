@@ -46,7 +46,7 @@ public class Wall implements Observer {
             return true;
         } else if (direction == 2 && newX < start.getxCord() && inY(entityLocation.getyCord())) {
             return true;
-        } else if (direction == 3 && newY < start.getyCord() && inX(entityLocation.getxCord())){
+        } else if (direction == 3 && newY < start.getyCord() && inX(entityLocation.getxCord())) {
             return true;
         }
         return false;

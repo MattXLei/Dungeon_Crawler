@@ -168,7 +168,7 @@ public class Player extends Entity implements Observable {
     }
 
     public void notifyObservers() {
-        for(Observer o: wallList) {
+        for (Observer o: wallList) {
             o.update(location);
         }
     }

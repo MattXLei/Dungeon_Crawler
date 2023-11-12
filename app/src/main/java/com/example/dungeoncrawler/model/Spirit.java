@@ -7,6 +7,6 @@ public class Spirit extends Enemy {
         yMove = -25;
         defense = 10;
         damage = 10;
-        location = new Location(0f, 0f);
+        location = new Location(0, 0);
     }
 }

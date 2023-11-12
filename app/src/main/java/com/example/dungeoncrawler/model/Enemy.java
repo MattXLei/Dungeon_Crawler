@@ -1,6 +1,9 @@
 package com.example.dungeoncrawler.model;
 
-public abstract class Enemy {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Enemy implements Observable {
     protected int health;
     protected int xMove;
     protected int yMove;
@@ -9,6 +12,8 @@ public abstract class Enemy {
     protected Location location;
     protected Location playerLocation;
 
+    private List<Observer> wallList;
+
     public Enemy(int health, int xMove, int yMove, int defense, int damage, Location location) {
         this.health = health;
         this.xMove = xMove;
@@ -16,9 +21,7 @@ public abstract class Enemy {
         this.defense = defense;
         this.damage = damage;
         this.location = new Location(location.getxCord(), location.getyCord());
-    }
-    public Enemy() {
-
+        wallList = new ArrayList<>();
     }
 
     public void update(Location location) {
@@ -29,8 +32,37 @@ public abstract class Enemy {
         return location;
     }
 
-    public void movement() {
+    public void setCoords(int newX, int newY) {
+        xMove = newX;
+        yMove = newY;
+    }
 
+    public void movement() {
+        location.setxCord(location.getxCord() + xMove);
+        location.setyCord(location.getyCord() + yMove);
+    }
+
+    public void addObserver(Observer wall) {
+        wallList.add(wall);
+    }
+
+    public void removeObserver(Observer wall) {
+        wallList.remove(wall);
+    }
+
+    public boolean validMove(int changeX, int changeY) {
+        for (Observer currWall : wallList) {
+            if (currWall.checkCollision(location, changeX, changeY)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void notifyObservers() {
+        for(Observer o: wallList) {
+            o.update(location);
+        }
     }
 
 }

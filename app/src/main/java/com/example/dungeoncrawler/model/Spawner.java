@@ -1,11 +1,11 @@
 package com.example.dungeoncrawler.model;
 
 public abstract class Spawner {
-    public Enemy spawnEnemy(String type) {
+    public Enemy spawnEnemy() {
         Enemy enemy;
 
-        enemy = createEnemy(type);
+        enemy = createEnemy();
         return enemy;
     }
-    abstract Enemy createEnemy(String type);
+    abstract Enemy createEnemy();
 }

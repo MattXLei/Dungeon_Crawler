@@ -188,10 +188,10 @@ public class Room1Activity extends GameActivity {
     public void createEnemy(ConstraintLayout gameLayout) {
         spawner = new SpiritSpawner();
         Location temp = new Location(0,0);
-        enemyView1 = new EnemyView(this, temp, spawner.createEnemy());
+        enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
         spawner = new ScytheSkeletonSpawner();
         Location temp2 = new Location(100,100);
-        enemyView2 = new EnemyView(this, temp2, spawner.createEnemy());
+        enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
     }

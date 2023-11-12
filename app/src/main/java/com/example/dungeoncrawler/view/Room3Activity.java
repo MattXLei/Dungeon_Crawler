@@ -1,6 +1,7 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Location;
+import com.example.dungeoncrawler.model.MageSpawner;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.ScytheSkeletonSpawner;
 import com.example.dungeoncrawler.model.Spawner;
@@ -185,10 +186,10 @@ public class Room3Activity extends GameActivity {
     public void createEnemy(ConstraintLayout gameLayout) {
         Spawner spawner = new SpiritSpawner();
         Location temp = new Location(0,0);
-        enemyView1 = new EnemyView(this, temp, spawner.createEnemy());
-        spawner = new ScytheSkeletonSpawner();
+        enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
+        spawner = new MageSpawner();
         Location temp2 = new Location(100,100);
-        enemyView2 = new EnemyView(this, temp2, spawner.createEnemy());
+        enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
     }

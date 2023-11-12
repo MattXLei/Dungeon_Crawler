@@ -22,5 +22,44 @@ public class FactoryTest {
         assertEquals(100, enemy.getHealth());
         assertEquals(10, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
+        assertEquals(25, enemy.getxMove());
+        assertEquals(-25, enemy.getyMove());
+    }
+    @Test
+    public void mageTest() {
+        Spawner mageSpawner = new MageSpawner();
+
+        Enemy enemy = mageSpawner.spawnEnemy();
+        assertEquals(100, enemy.getHealth());
+        assertEquals(15, enemy.getDamage());
+        assertEquals(10, enemy.getDefense());
+        assertEquals(-15, enemy.getxMove());
+        assertEquals(15, enemy.getyMove());
+    }
+    @Test
+    public void spiritMageTest() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner mageSpawner = new MageSpawner();
+
+        Enemy enemy = spiritSpawner.spawnEnemy();
+        assertEquals(100, enemy.getHealth());
+        assertEquals(10, enemy.getDamage());
+        assertEquals(10, enemy.getDefense());
+        assertEquals(25, enemy.getxMove());
+        assertEquals(-25, enemy.getyMove());
+
+        enemy = mageSpawner.spawnEnemy();
+        assertEquals(100, enemy.getHealth());
+        assertEquals(15, enemy.getDamage());
+        assertEquals(10, enemy.getDefense());
+        assertEquals(-15, enemy.getxMove());
+        assertEquals(15, enemy.getyMove());
+
+        enemy = spiritSpawner.spawnEnemy();
+        assertFalse(enemy.getHealth() != 100);
+        assertFalse(enemy.getDamage() == 15);
+        assertFalse(enemy.getDefense() != 10);
+        assertFalse(enemy.getxMove() == -15);
+        assertFalse(enemy.getyMove() == 15);
     }
 }

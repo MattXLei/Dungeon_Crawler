@@ -44,7 +44,7 @@ public class ScoreTest {
         player.setScore(0);
 
         //location is dummy value in this test
-        Location location = new Location(0f, 0f);
+        Location location = new Location(0, 0);
         Coin coin = new Coin(location);
         player.increaseScore(coin.getCoinScore());
         assertEquals(10, player.getScore());

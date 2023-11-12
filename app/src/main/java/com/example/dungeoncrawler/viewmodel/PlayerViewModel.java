@@ -81,6 +81,10 @@ public class PlayerViewModel extends ViewModel {
         return player.getHealth();
     }
 
+    public void setHealth(int health) {
+        player.setHealth(health);
+    }
+
     public void startScore() {
         timer = new CountDownTimer(leftTime, 1000) {
             @Override

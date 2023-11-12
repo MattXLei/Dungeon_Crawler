@@ -1,7 +1,10 @@
 package com.example.dungeoncrawler.model;
 
-public class SwordSkeleton extends  Enemy{
-    public SwordSkeleton() {
-        super(100, 10, new Location(0,0));
+public class SwordSkeleton extends Enemy {
+    SwordSkeleton() {
+        health = 100;
+        speed = 10;
+        defense = 20;
+        location = new Location(0f, 0f);
     }
 }

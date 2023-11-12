@@ -1,8 +1,12 @@
 package com.example.dungeoncrawler.model;
 
-public class SpiritSpawner extends Spawner{
+public class SpiritSpawner extends Spawner {
     @Override
-    public Enemy createEnemy() {
-        return new Spirit();
+    protected Enemy createEnemy(String type) {
+        if (type.equals("Spirit")) {
+            return new Spirit();
+        } else {
+            return null;
+        }
     }
 }

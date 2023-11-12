@@ -1,10 +1,12 @@
 package com.example.dungeoncrawler.model;
 
-public class SwordSkeletonSpawner extends Spawner{
+public class SwordSkeletonSpawner extends Spawner {
     @Override
-    public Enemy createEnemy() {
-        return new SwordSkeleton();
+    protected Enemy createEnemy(String type) {
+        if (type.equals("SwordSkeleton")) {
+            return new SwordSkeleton();
+        } else {
+            return null;
+        }
     }
-
-
 }

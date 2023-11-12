@@ -42,6 +42,10 @@
             android:name="com.example.dungeoncrawler.view.Room3Activity"
             android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
         </activity>
+        <activity
+            android:name="com.example.dungeoncrawler.view.GameOverActivity"
+            android:exported="false"> <!-- Edit '.XXXX' with the actual name of your main activity class -->
+        </activity>
     </application>
 
 </manifest>

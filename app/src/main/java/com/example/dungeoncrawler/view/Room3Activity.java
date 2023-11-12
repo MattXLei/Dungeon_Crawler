@@ -3,7 +3,6 @@ import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MageSpawner;
 import com.example.dungeoncrawler.model.RunStrategy;
-import com.example.dungeoncrawler.model.ScytheSkeletonSpawner;
 import com.example.dungeoncrawler.model.Spawner;
 import com.example.dungeoncrawler.model.SpiritSpawner;
 import com.example.dungeoncrawler.model.WalkStrategy;
@@ -26,6 +25,7 @@ public class Room3Activity extends GameActivity {
     private long leftTime;
 
     private TextView score;
+    private TextView health;
 
     private PlayerViewModel playerVM;
 
@@ -44,6 +44,8 @@ public class Room3Activity extends GameActivity {
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
+            health.setText("Health: " + playerVM.getHealth());
+            checkGameOver();
             checkExit();
         }
     };
@@ -61,7 +63,7 @@ public class Room3Activity extends GameActivity {
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
-        TextView health = findViewById(R.id.healthText);
+        health = findViewById(R.id.healthText);
 
         score = findViewById(R.id.scoreText);
 
@@ -152,6 +154,10 @@ public class Room3Activity extends GameActivity {
                 playerVM.moveRight();
             }
             break;
+        //for testing health and game over
+        case KeyEvent.KEYCODE_P:
+            playerVM.setHealth(playerVM.getHealth() - 5);
+            break;
         default:
             break;
         }
@@ -185,6 +191,19 @@ public class Room3Activity extends GameActivity {
     }
     public void launchEndActivity() {
         Intent intent = new Intent(this, EndActivity.class);
+        startActivity(intent);
+        playerVM.endScore();
+        playerVM.removeAllObservers();
+        handler.removeCallbacks(update);
+        finish();
+    }
+    public void checkGameOver() {
+        if (playerVM.getHealth() <= 0) {
+            launchGameOver();
+        }
+    }
+    public void launchGameOver() {
+        Intent intent = new Intent(this, GameOverActivity.class);
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();

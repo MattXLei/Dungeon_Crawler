@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 //import android.util.Log;
-import android.util.Log;
 import android.view.KeyEvent;
 //import android.widget.Button;
 import android.widget.TextView;
@@ -40,6 +39,7 @@ public class Room1Activity extends GameActivity {
     private int screenHeight;
 
     private TextView score;
+    private TextView health;
 
     private PlayerViewModel playerVM;
 
@@ -54,8 +54,9 @@ public class Room1Activity extends GameActivity {
         @Override
         public void run() {
             score.setText("Score: " + playerVM.getScore());
+            health.setText("Health: " + playerVM.getHealth());
             handler.postDelayed(this, 50);
-
+            checkGameOver();
             checkExit();
             //Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
         }
@@ -70,7 +71,7 @@ public class Room1Activity extends GameActivity {
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
-        TextView health = findViewById(R.id.healthText);
+        health = findViewById(R.id.healthText);
         score = findViewById(R.id.scoreText);
 
 
@@ -164,6 +165,10 @@ public class Room1Activity extends GameActivity {
                 playerVM.moveRight();
             }
             break;
+        //for testing health and game over
+        case KeyEvent.KEYCODE_P:
+            playerVM.setHealth(playerVM.getHealth() - 5);
+            break;
         default:
             break;
         }
@@ -187,6 +192,19 @@ public class Room1Activity extends GameActivity {
     public void launchNextActivity() {
         Intent intent = new Intent(this, Room2Activity.class);
         intent.putExtra("startx", 50);
+        startActivity(intent);
+        playerVM.endScore();
+        playerVM.removeAllObservers();
+        handler.removeCallbacks(update);
+        finish();
+    }
+    public void checkGameOver() {
+        if (playerVM.getHealth() <= 0) {
+            launchGameOver();
+        }
+    }
+    public void launchGameOver() {
+        Intent intent = new Intent(this, GameOverActivity.class);
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();

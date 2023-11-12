@@ -29,10 +29,6 @@ public class Room3Activity extends GameActivity {
     private int screenHeight;
 
     private PlayerView playerView;
-
-    private Wall up;
-
-    private Wall down;
     private LeaderboardViewModel leaderboardVM;
 
     private Handler handler = new Handler();
@@ -89,11 +85,25 @@ public class Room3Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        up = new Wall(new Location(0, 380), new Location(1000, 380),
+        //upper left up wall
+        Wall up1 = new Wall(new Location (-20, 600), new Location(150, 600), 3);
+        playerVM.addWall(up1);
+        //upper left left wall
+        Wall left1 = new Wall(new Location(150, 380), new Location(150, 600), 2);
+        playerVM.addWall(left1);
+        //upper middle wall
+        Wall up2 = new Wall(new Location(0, 380), new Location(1000, 380),
                 3);
-        playerVM.addWall(up);
+        playerVM.addWall(up2);
+        //upper right right wall
+        Wall right1 = new Wall(new Location(775, 380), new Location(775, 600), 0);
+        playerVM.addWall(right1);
+        //upper right up wall
+        Wall up3 = new Wall(new Location(775, 600), new Location(1000, 600), 3);
+        playerVM.addWall(up3);
 
-        down = new Wall(new Location(0, 970), new Location(1000, 970),
+        //main down wall
+        Wall down = new Wall(new Location(0, 970), new Location(1000, 970),
                 1);
         playerVM.addWall(down);
 
@@ -168,8 +178,7 @@ public class Room3Activity extends GameActivity {
         Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         playerVM.endScore();
-        playerVM.removeWall(up);
-        playerVM.removeWall(down);
+        playerVM.removeAllObservers();
         handler.removeCallbacks(update);
         finish();
     }

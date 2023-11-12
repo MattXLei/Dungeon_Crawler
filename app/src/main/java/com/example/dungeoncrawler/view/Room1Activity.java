@@ -52,7 +52,7 @@ public class Room1Activity extends GameActivity {
             handler.postDelayed(this, 50);
 
             checkExit();
-            Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
+            //Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
         }
     };
 

@@ -27,12 +27,12 @@ public class Wall implements Observer {
         return end;
     }
 
-    public void setStart(float newX, float newY) {
+    public void setStart(int newX, int newY) {
         start.setxCord(newX);
         start.setyCord(newY);
     }
 
-    public void setEnd(float newX, float newY) {
+    public void setEnd(int newX, int newY) {
         end.setxCord(newX);
         end.setyCord(newY);
     }

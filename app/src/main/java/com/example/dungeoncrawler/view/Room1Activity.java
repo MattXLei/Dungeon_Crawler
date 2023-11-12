@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 //import android.util.Log;
+import android.util.Log;
 import android.view.KeyEvent;
 //import android.widget.Button;
 import android.widget.TextView;
@@ -41,12 +42,6 @@ public class Room1Activity extends GameActivity {
 
     private PlayerView playerView;
 
-    private Wall up;
-
-    private Wall down;
-
-    private Wall left;
-
     private TextView temp;
 
     private Handler handler = new Handler();
@@ -57,6 +52,7 @@ public class Room1Activity extends GameActivity {
             handler.postDelayed(this, 50);
 
             checkExit();
+            Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
         }
     };
 
@@ -98,13 +94,29 @@ public class Room1Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        up = new Wall(new Location(0, 380), new Location(900, 380),
+        //main upper wall
+        Wall wallUp1 = new Wall(new Location(0, 380), new Location(900, 380),
                 3);
-        playerVM.addWall(up);
-        down = new Wall(new Location(100, 1150), new Location(1000, 1150),
+        playerVM.addWall(wallUp1);
+        //right upper wall
+        Wall wallRight1 = new Wall(new Location(775, 360), new Location(775, 580), 0);
+        playerVM.addWall(wallRight1);
+        //smaller upper wall
+        Wall wallUp2 = new Wall(new Location(775, 580), new Location(1000, 580), 3);
+        playerVM.addWall(wallUp2);
+        //main down wall
+        Wall wallDown1 = new Wall(new Location(100, 1150), new Location(1000, 1150),
                 1);
-        playerVM.addWall(down);
-        left = new Wall(new Location(100, 380), new Location(100, 1150),
+        //right lower wall
+        Wall wallRight2 = new Wall(new Location(775, 950), new Location(775, 1200), 0);
+        playerVM.addWall(wallRight2);
+        //smaller lower wall
+        Wall wallDown2 = new Wall(new Location(775, 950), new Location(1000, 950), 1);
+        playerVM.addWall(wallDown2);
+        //main lower wall
+        playerVM.addWall(wallDown1);
+        //main left wall
+        Wall left = new Wall(new Location(125, 380), new Location(125, 1300),
                 2);
         playerVM.addWall(left);
 
@@ -170,9 +182,7 @@ public class Room1Activity extends GameActivity {
         intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
-        playerVM.removeWall(up);
-        playerVM.removeWall(down);
-        playerVM.removeWall(left);
+        playerVM.removeAllObservers();
         handler.removeCallbacks(update);
         finish();
     }

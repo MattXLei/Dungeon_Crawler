@@ -154,6 +154,10 @@ public class Player extends Entity implements Observable {
         wallList.remove(wall);
     }
 
+    public void removeAllObservers() {
+        wallList = new ArrayList<>();
+    }
+
     public boolean validMove(int changeX, int changeY) {
         for (Observer currWall : wallList) {
             if (currWall.checkCollision(location, changeX, changeY)) {

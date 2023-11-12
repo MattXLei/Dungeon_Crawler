@@ -24,6 +24,10 @@ public abstract class Enemy implements Observable {
         wallList = new ArrayList<>();
     }
 
+    public Enemy() {
+
+    }
+
     public void update(Location location) {
         playerLocation = location;
     }
@@ -42,12 +46,24 @@ public abstract class Enemy implements Observable {
         location.setyCord(location.getyCord() + yMove);
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void addObserver(Observer wall) {
         wallList.add(wall);
     }
 
     public void removeObserver(Observer wall) {
         wallList.remove(wall);
+    }
+
+    public void removeAllObservers() {
+        wallList = new ArrayList<>();
     }
 
     public boolean validMove(int changeX, int changeY) {

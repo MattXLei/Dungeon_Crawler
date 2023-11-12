@@ -44,7 +44,8 @@ public class Room1Activity extends GameActivity {
     private PlayerViewModel playerVM;
 
     private PlayerView playerView;
-    private EnemyView enemyView1, enemyView2;
+    private EnemyView enemyView1;
+    private EnemyView enemyView2;
     private TextView temp;
 
     private Spawner spawner;
@@ -58,7 +59,8 @@ public class Room1Activity extends GameActivity {
             handler.postDelayed(this, 50);
             checkGameOver();
             checkExit();
-            //Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
+            //Log.d("Player Location", playerVM.getLocation().getxCord() + "," +
+            // playerVM.getLocation().getyCord());
         }
     };
 
@@ -204,7 +206,7 @@ public class Room1Activity extends GameActivity {
         }
     }
     public void launchGameOver() {
-        Intent intent = new Intent(this, GameOverActivity.class);
+        Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();
@@ -213,10 +215,10 @@ public class Room1Activity extends GameActivity {
     }
     public void createEnemy(ConstraintLayout gameLayout) {
         spawner = new SpiritSpawner();
-        Location temp = new Location(0,0);
+        Location temp = new Location(0, 0);
         enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
         spawner = new ScytheSkeletonSpawner();
-        Location temp2 = new Location(100,100);
+        Location temp2 = new Location(100, 100);
         enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);

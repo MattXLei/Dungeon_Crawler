@@ -23,6 +23,16 @@ public class EndActivity extends AppCompatActivity {
 
         playerVM = new ViewModelProvider(this).get(PlayerViewModel.class);
         leaderboardVM = new ViewModelProvider(this).get(LeaderboardViewModel.class);
+        TextView result = findViewById(R.id.textView2);
+        TextView result1 = findViewById(R.id.resultText);
+
+        if (playerVM.getHealth() > 0) {
+            result.setText("Thank you for visiting China!");
+            result1.setText("You Won!");
+        } else {
+            result.setText("Thank you for visiting China ;)");
+            result1.setText("You Lost");
+        }
 
         // Exits app to welcome activity
         exitBtn.setOnClickListener(v -> {

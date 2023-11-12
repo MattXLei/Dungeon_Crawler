@@ -1,7 +1,13 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Location;
+import com.example.dungeoncrawler.model.MageSpawner;
 import com.example.dungeoncrawler.model.RunStrategy;
+import com.example.dungeoncrawler.model.ScytheSkeletonSpawner;
+import com.example.dungeoncrawler.model.Spawner;
+import com.example.dungeoncrawler.model.SpiritSpawner;
+import com.example.dungeoncrawler.model.SwordSkeleton;
+import com.example.dungeoncrawler.model.SwordSkeletonSpawner;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
@@ -31,6 +37,8 @@ public class Room2Activity extends GameActivity {
     private PlayerViewModel playerVM;
 
     private PlayerView playerView;
+    private EnemyView enemyView1;
+    private EnemyView enemyView2;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
@@ -120,6 +128,7 @@ public class Room2Activity extends GameActivity {
         gameLayout.addView(super.playerView);
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
+        createEnemy(gameLayout);
     }
 
     @Override
@@ -186,6 +195,16 @@ public class Room2Activity extends GameActivity {
         playerVM.removeAllObservers();
         handler.removeCallbacks(update);
         finish();
+    }
+    public void createEnemy(ConstraintLayout gameLayout) {
+        Spawner spawner = new SwordSkeletonSpawner();
+        Location temp = new Location(0,0);
+        enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
+        spawner = new MageSpawner();
+        Location temp2 = new Location(100,100);
+        enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
+        gameLayout.addView(enemyView1);
+        gameLayout.addView(enemyView2);
     }
 
 }

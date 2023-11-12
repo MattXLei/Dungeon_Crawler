@@ -1,8 +1,10 @@
 package com.example.dungeoncrawler.model;
 
-public class Spirit extends Enemy{
-
-    public Spirit() {
-        super(100, 10, new Location(0,0));
+public class Spirit extends Enemy {
+    Spirit() {
+        health = 100;
+        speed = 20;
+        defense = 10;
+        location = new Location(0f, 0f);
     }
 }

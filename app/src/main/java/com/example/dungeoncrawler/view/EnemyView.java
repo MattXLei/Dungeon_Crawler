@@ -17,7 +17,7 @@ import com.example.dungeoncrawler.model.SwordSkeleton;
 public class EnemyView extends View {
     private Location location;
 
-    private Enemy enemy;  //temp solution, need to reference the view model
+    private Enemy enemy;
 
 
     private Bitmap sprite;

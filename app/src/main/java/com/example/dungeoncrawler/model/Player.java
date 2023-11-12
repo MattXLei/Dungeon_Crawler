@@ -34,7 +34,7 @@ public class Player extends Entity implements Observable {
         this.direction = direction;
         this.score = score;
         this.name = name;
-        this.location = new Location(0.0f, 0.0f);
+        this.location = new Location(0, 0);
         this.difficulty = difficulty;
         wallList = new ArrayList<>();
     }
@@ -141,7 +141,7 @@ public class Player extends Entity implements Observable {
         return location;
     }
 
-    public void setLocation(float newX, float newY) {
+    public void setLocation(int newX, int newY) {
         location.setxCord(newX);
         location.setyCord(newY);
     }
@@ -152,6 +152,10 @@ public class Player extends Entity implements Observable {
 
     public void removeObserver(Observer wall) {
         wallList.remove(wall);
+    }
+
+    public void removeAllObservers() {
+        wallList = new ArrayList<>();
     }
 
     public boolean validMove(int changeX, int changeY) {

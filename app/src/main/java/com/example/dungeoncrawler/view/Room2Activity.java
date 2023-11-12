@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
@@ -36,14 +37,8 @@ public class Room2Activity extends GameActivity {
     private PlayerViewModel playerVM;
 
     private PlayerView playerView;
-
     private EnemyView enemyView1;
-
     private EnemyView enemyView2;
-
-    private Wall up;
-
-    private Wall down;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
@@ -52,6 +47,7 @@ public class Room2Activity extends GameActivity {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
             checkExit();
+            Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
         }
     };
 
@@ -92,12 +88,38 @@ public class Room2Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        up = new Wall(new Location(0, 380), new Location(1000, 380),
+        //upper left up wall
+        Wall up1 = new Wall(new Location (-20, 600), new Location(150, 600), 3);
+        playerVM.addWall(up1);
+        //upper left left wall
+        Wall left1 = new Wall(new Location(150, 380), new Location(150, 600), 2);
+        playerVM.addWall(left1);
+        //upper middle wall
+        Wall up2 = new Wall(new Location(0, 380), new Location(1000, 380),
                 3);
-        playerVM.addWall(up);
-        down = new Wall(new Location(0, 1150), new Location(1000, 1150),
-                1);
-        playerVM.addWall(down);
+        playerVM.addWall(up2);
+        //upper right right wall
+        Wall right1 = new Wall(new Location(775, 380), new Location(775, 600), 0);
+        playerVM.addWall(right1);
+        //upper right up wall
+        Wall up3 = new Wall(new Location(775, 600), new Location(1000, 600), 3);
+        playerVM.addWall(up3);
+
+        //lower left down wall
+        Wall down1 = new Wall(new Location(-20, 950), new Location (150, 950), 1);
+        playerVM.addWall(down1);
+        //lower left left wall
+        Wall left2 = new Wall(new Location(150, 950), new Location(150, 1175), 2);
+        playerVM.addWall(left2);
+        //middle down wall
+        Wall down2 = new Wall(new Location(0, 1150), new Location(1000, 1150), 1);
+        playerVM.addWall(down2);
+        //lower right right wall
+        Wall right2 = new Wall(new Location(775, 950), new Location(775, 1175), 0);
+        playerVM.addWall(right2);
+        //lower right down wall
+        Wall down3 = new Wall(new Location(775, 950), new Location(1000, 950), 1);
+        playerVM.addWall(down3);
 
         playerVM.startScore();
         playerVM.setMovementStrategy(new WalkStrategy());
@@ -170,8 +192,7 @@ public class Room2Activity extends GameActivity {
         intent.putExtra("startx", 50);
         startActivity(intent);
         playerVM.endScore();
-        playerVM.removeWall(up);
-        playerVM.removeWall(down);
+        playerVM.removeAllObservers();
         handler.removeCallbacks(update);
         finish();
     }

@@ -95,7 +95,7 @@ public class Room3Activity extends GameActivity {
         }
 
         //upper left up wall
-        Wall up1 = new Wall(new Location (-20, 600), new Location(150, 600), 3);
+        Wall up1 = new Wall(new Location(-20, 600), new Location(150, 600), 3);
         playerVM.addWall(up1);
         //upper left left wall
         Wall left1 = new Wall(new Location(150, 380), new Location(150, 600), 2);
@@ -203,7 +203,7 @@ public class Room3Activity extends GameActivity {
         }
     }
     public void launchGameOver() {
-        Intent intent = new Intent(this, GameOverActivity.class);
+        Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();
@@ -212,10 +212,10 @@ public class Room3Activity extends GameActivity {
     }
     public void createEnemy(ConstraintLayout gameLayout) {
         Spawner spawner = new SpiritSpawner();
-        Location temp = new Location(0,0);
+        Location temp = new Location(0, 0);
         enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
         spawner = new MageSpawner();
-        Location temp2 = new Location(100,100);
+        Location temp2 = new Location(100, 100);
         enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);

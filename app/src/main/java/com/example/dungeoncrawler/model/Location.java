@@ -1,27 +1,27 @@
 package com.example.dungeoncrawler.model;
 
 public class Location {
-    private float xCord;
-    private float yCord;
+    private int xCord;
+    private int yCord;
 
-    public Location(float xCord, float yCord) {
+    public Location(int xCord, int yCord) {
         this.xCord = xCord;
         this.yCord = yCord;
     }
 
-    public float getxCord() {
+    public int getxCord() {
         return xCord;
     }
 
-    public void setxCord(float xCord) {
+    public void setxCord(int xCord) {
         this.xCord = xCord;
     }
 
-    public float getyCord() {
+    public int getyCord() {
         return yCord;
     }
 
-    public void setyCord(float yCord) {
+    public void setyCord(int yCord) {
         this.yCord = yCord;
     }
 }

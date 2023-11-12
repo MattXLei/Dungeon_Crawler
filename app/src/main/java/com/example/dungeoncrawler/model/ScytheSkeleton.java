@@ -7,6 +7,6 @@ public class ScytheSkeleton extends Enemy {
         yMove = 10;
         defense = 10;
         damage = 50;
-        location = new Location(0f, 0f);
+        location = new Location(0, 0);
     }
 }

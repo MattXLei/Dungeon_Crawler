@@ -30,6 +30,7 @@ public class Room2Activity extends GameActivity {
     private long leftTime;
 
     private TextView score;
+    private TextView health;
 
     private PlayerViewModel playerVM;
 
@@ -43,9 +44,10 @@ public class Room2Activity extends GameActivity {
         public void run() {
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
+            health.setText("Health: " + playerVM.getHealth());
             checkGameOver();
             checkExit();
-            Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
+            //Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
         }
     };
 
@@ -59,7 +61,7 @@ public class Room2Activity extends GameActivity {
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
-        TextView health = findViewById(R.id.healthText);
+        health = findViewById(R.id.healthText);
         score = findViewById(R.id.scoreText);
 
         name.setText(playerVM.getName());
@@ -154,6 +156,10 @@ public class Room2Activity extends GameActivity {
             if (playerVM.callValidMove(playerVM.getMovementStrategy().getStep(), 0)) {
                 playerVM.moveRight();
             }
+            break;
+        //for testing health and game over
+        case KeyEvent.KEYCODE_P:
+            playerVM.setHealth(playerVM.getHealth() - 5);
             break;
         default:
             break;

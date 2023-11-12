@@ -39,6 +39,7 @@ public class Room1Activity extends GameActivity {
     private int screenHeight;
 
     private TextView score;
+    private TextView health;
 
     private PlayerViewModel playerVM;
 
@@ -53,8 +54,8 @@ public class Room1Activity extends GameActivity {
         @Override
         public void run() {
             score.setText("Score: " + playerVM.getScore());
+            health.setText("Health: " + playerVM.getHealth());
             handler.postDelayed(this, 50);
-
             checkGameOver();
             checkExit();
             //Log.d("Player Location", playerVM.getLocation().getxCord() + "," + playerVM.getLocation().getyCord());
@@ -70,7 +71,7 @@ public class Room1Activity extends GameActivity {
 
         TextView name = findViewById(R.id.nameText);
         TextView difficulty = findViewById(R.id.difficultyText);
-        TextView health = findViewById(R.id.healthText);
+        health = findViewById(R.id.healthText);
         score = findViewById(R.id.scoreText);
 
 

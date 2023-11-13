@@ -110,4 +110,116 @@ public class FactoryTest {
         assertFalse(enemy.getxMove() == 0);
         assertFalse(enemy.getyMove() == 10);
     }
+    @Test
+    public void spiritSwordSkeletonTest() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner swordSkeletonSpawner = new SwordSkeletonSpawner();
+
+        Enemy enemy = swordSkeletonSpawner.spawnEnemy();
+        assertEquals(100, enemy.getHealth());
+        assertEquals(25, enemy.getDamage());
+        assertEquals(20, enemy.getDefense());
+        assertEquals(-20, enemy.getxMove());
+        assertEquals(0, enemy.getyMove());
+
+        enemy = spiritSpawner.spawnEnemy();
+        assertEquals(100, enemy.getHealth());
+        assertEquals(10, enemy.getDamage());
+        assertEquals(10, enemy.getDefense());
+        assertEquals(25, enemy.getxMove());
+        assertEquals(-25, enemy.getyMove());
+
+        enemy = swordSkeletonSpawner.spawnEnemy();
+        assertFalse(enemy.getHealth() != 100);
+        assertFalse(enemy.getDamage() == 10);
+        assertFalse(enemy.getDefense() == 10);
+        assertFalse(enemy.getxMove() == 25);
+        assertFalse(enemy.getyMove() == -25);
+    }
+    @Test
+    public void spawnerNullTest() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner mageSpawner = new MageSpawner();
+        Spawner swordSkeletonSpawner = new SwordSkeletonSpawner();
+        Spawner scytheSkeletonSpawner = new ScytheSkeletonSpawner();
+
+        assertNotNull(spiritSpawner);
+        assertNotNull(mageSpawner);
+        assertNotNull(swordSkeletonSpawner);
+        assertNotNull(scytheSkeletonSpawner);
+    }
+    @Test
+    public void enemyNullTest() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner mageSpawner = new MageSpawner();
+        Spawner swordSkeletonSpawner = new SwordSkeletonSpawner();
+        Spawner scytheSkeletonSpawner = new ScytheSkeletonSpawner();
+
+        Enemy enemy = spiritSpawner.spawnEnemy();
+        assertNotNull(enemy);
+        enemy = mageSpawner.spawnEnemy();
+        assertNotNull(enemy);
+        enemy = swordSkeletonSpawner.spawnEnemy();
+        assertNotNull(enemy);
+        enemy = scytheSkeletonSpawner.spawnEnemy();
+        assertNotNull(enemy);
+    }
+    @Test
+    public void notSameTest1() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner mageSpawner = new MageSpawner();
+        Spawner swordSkeletonSpawner = new SwordSkeletonSpawner();
+        Spawner scytheSkeletonSpawner = new ScytheSkeletonSpawner();
+
+        Enemy enemy1 = spiritSpawner.spawnEnemy();
+        Enemy enemy2 = mageSpawner.spawnEnemy();
+        Enemy enemy3 = swordSkeletonSpawner.spawnEnemy();
+        Enemy enemy4 = scytheSkeletonSpawner.spawnEnemy();
+        assertNotSame(enemy1, enemy2);
+        assertNotSame(enemy1, enemy3);
+        assertNotSame(enemy1, enemy4);
+        assertNotSame(enemy2, enemy3);
+        assertNotSame(enemy2, enemy3);
+        assertNotSame(enemy3, enemy4);
+    }
+    @Test
+    public void notSameTest2() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner mageSpawner = new MageSpawner();
+        Spawner swordSkeletonSpawner = new SwordSkeletonSpawner();
+        Spawner scytheSkeletonSpawner = new ScytheSkeletonSpawner();
+
+        Enemy enemy1 = spiritSpawner.spawnEnemy();
+        Enemy enemy2 = spiritSpawner.spawnEnemy();
+        Enemy enemy3 = mageSpawner.spawnEnemy();
+        Enemy enemy4 = mageSpawner.spawnEnemy();
+        Enemy enemy5 = swordSkeletonSpawner.spawnEnemy();
+        Enemy enemy6 = swordSkeletonSpawner.spawnEnemy();
+        Enemy enemy7 = scytheSkeletonSpawner.spawnEnemy();
+        Enemy enemy8 = scytheSkeletonSpawner.spawnEnemy();
+
+        assertNotSame(enemy1, enemy2);
+        assertNotSame(enemy3, enemy4);
+        assertNotSame(enemy5, enemy6);
+        assertNotSame(enemy7, enemy8);
+    }
+    @Test
+    public void sameTest() {
+        Spawner spiritSpawner = new SpiritSpawner();
+        Spawner mageSpawner = new MageSpawner();
+        Spawner swordSkeletonSpawner = new SwordSkeletonSpawner();
+        Spawner scytheSkeletonSpawner = new ScytheSkeletonSpawner();
+
+        Enemy enemy1 = spiritSpawner.spawnEnemy();
+        Enemy enemy2 = mageSpawner.spawnEnemy();
+        Enemy enemy3 = swordSkeletonSpawner.spawnEnemy();
+        Enemy enemy4 = scytheSkeletonSpawner.spawnEnemy();
+
+        enemy1 = enemy2;
+        assertSame(enemy1, enemy2);
+        enemy1 = enemy3;
+        assertSame(enemy1, enemy3);
+        enemy1 = enemy4;
+        assertSame(enemy1, enemy4);
+    }
 }

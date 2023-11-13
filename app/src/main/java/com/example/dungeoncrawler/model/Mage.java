@@ -6,7 +6,7 @@ public class Mage extends Enemy {
         xMove = -15;
         yMove = 15;
         defense = 10;
-        damage = 15;
+        damage = 10;
         location = new Location(0, 0);
     }
 }

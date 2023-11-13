@@ -52,33 +52,6 @@ public class EnemyView extends View {
             sprite = BitmapFactory.decodeResource(getResources(), R.drawable.skeleton_sword_enemy);
         }
     }
-
-    public int getHealth() {
-        return enemy.getHealth();
-    }
-
-    public boolean callValidMove(int changeX, int changeY) {
-        if (enemy.validMove(changeX, changeY)) {
-            return true;
-        }
-        return false;
-    }
-
-    public void addWall(Wall wall) {
-        enemy.addObserver(wall);
-    }
-
-    public void removeWall(Wall wall) {
-        enemy.removeObserver(wall);
-    }
-
-    public void removeAllObservers() {
-        enemy.removeAllObservers();
-    }
-
-    public void notifyObservers() {
-        enemy.notifyObservers();
-    }
 }
 
 

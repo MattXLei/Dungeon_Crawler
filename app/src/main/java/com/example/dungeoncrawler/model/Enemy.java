@@ -9,12 +9,15 @@ public abstract class Enemy implements Observable {
     protected int yMove;
     protected int defense;
     protected int damage;
+    protected int damageMultiplier = 1;
+
     protected Location location;
     protected Location playerLocation;
 
     private List<Observer> wallList;
 
-    public Enemy(int health, int xMove, int yMove, int defense, int damage, Location location) {
+    public Enemy(int health, int xMove, int yMove, int defense, int damage,
+                 Location location) {
         this.health = health;
         this.xMove = xMove;
         this.yMove = yMove;
@@ -36,6 +39,10 @@ public abstract class Enemy implements Observable {
         return location;
     }
 
+    public void setDamageMultiplier(int multiplier) {
+        damageMultiplier = multiplier;
+    }
+
     public void setCoords(int newX, int newY) {
         xMove = newX;
         yMove = newY;
@@ -44,10 +51,6 @@ public abstract class Enemy implements Observable {
     public void movement() {
         location.setxCord(location.getxCord() + xMove);
         location.setyCord(location.getyCord() + yMove);
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public void setHealth(int health) {

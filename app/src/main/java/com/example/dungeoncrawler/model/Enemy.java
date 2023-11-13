@@ -67,7 +67,7 @@ public abstract class Enemy implements Observer {
     public boolean checkCollision(Location entityLocation, int changeX, int changeY) {
         int newX = entityLocation.getxCord() + changeX;
         int newY = entityLocation.getyCord() + changeY;
-        if (Math.abs(newX - location.getxCord()) <= 10 && Math.abs(newY - location.getyCord()) <= 10) {
+        if (Math.abs(newX - location.getxCord()) <= 25 && Math.abs(newY - location.getyCord()) <= 25) {
             return true;
         }
         return false;

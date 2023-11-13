@@ -11,7 +11,6 @@ import com.example.dungeoncrawler.model.MovementStrategy;
 import com.example.dungeoncrawler.model.Observer;
 import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.model.WalkStrategy;
-import com.example.dungeoncrawler.model.Wall;
 
 
 public class PlayerViewModel extends ViewModel {

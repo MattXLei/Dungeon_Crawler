@@ -13,7 +13,6 @@ import com.example.dungeoncrawler.model.Mage;
 import com.example.dungeoncrawler.model.ScytheSkeleton;
 import com.example.dungeoncrawler.model.Spirit;
 import com.example.dungeoncrawler.model.SwordSkeleton;
-import com.example.dungeoncrawler.model.Wall;
 
 public class EnemyView extends View {
     private Location location;

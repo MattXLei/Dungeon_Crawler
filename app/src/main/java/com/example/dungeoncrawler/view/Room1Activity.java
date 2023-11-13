@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.List;
 //import java.util.Map;
 //import java.util.Random;
+import com.example.dungeoncrawler.model.Enemy;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.ScytheSkeletonSpawner;
@@ -230,13 +231,15 @@ public class Room1Activity extends GameActivity {
     }
     public void createEnemy(ConstraintLayout gameLayout) {
         spawner = new SpiritSpawner();
-        Location temp = new Location(0, 0);
-        enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
-        enemyVM1 = new EnemyViewModel(spawner.spawnEnemy());
+        Location temp = new Location(500, 500);
+        Enemy enemy1 = spawner.spawnEnemy();
+        enemyView1 = new EnemyView(this, temp, enemy1);
+        enemyVM1 = new EnemyViewModel(enemy1);
         spawner = new ScytheSkeletonSpawner();
-        Location temp2 = new Location(100, 100);
-        enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
-        enemyVM2 = new EnemyViewModel(spawner.spawnEnemy());
+        Location temp2 = new Location(500, 1000);
+        Enemy enemy2 = spawner.spawnEnemy();
+        enemyView2 = new EnemyView(this, temp2, enemy2);
+        enemyVM2 = new EnemyViewModel(enemy2);
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
     }

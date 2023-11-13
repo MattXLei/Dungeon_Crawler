@@ -6,6 +6,7 @@ public class ScytheSkeleton extends Enemy {
         defense = 10;
         damage = 25;
         location = new Location(0, 0);
+
         movementCycleY = new int[] {-5, -5, -5, -5, -5, -5, -5, 5, 5, 5, 5, 5, 5, 5};
         movementCycleX = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         tickCount = 0;

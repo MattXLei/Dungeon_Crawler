@@ -45,6 +45,7 @@ public abstract class Enemy implements Observer {
     public void movement() {
         location.setxCord(location.getxCord() + movementCycleX[tickCount % movementCycleX.length]);
         location.setyCord(location.getyCord() + movementCycleY[tickCount % movementCycleY.length]);
+
         tickCount++;
     }
 
@@ -74,5 +75,8 @@ public abstract class Enemy implements Observer {
 
     public void update(Location location) {
         playerLocation = location;
+    }
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

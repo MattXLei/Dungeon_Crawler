@@ -9,12 +9,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.dungeoncrawler.model.Attempt;
 import com.example.dungeoncrawler.viewmodel.LeaderboardViewModel;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class EndActivity extends AppCompatActivity {
 
     private LeaderboardViewModel leaderboardVM;
     private PlayerViewModel playerVM;
+    private DateFormat date = new SimpleDateFormat("MMM dd yyyy, h:mm");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +71,11 @@ public class EndActivity extends AppCompatActivity {
         }
 
         TextView recent = findViewById(R.id.textRecent);
-        recent.setText(leaderboardVM.getMostRecent().toString());
+        if (playerVM.getHealth() > 0) {
+            recent.setText(leaderboardVM.getMostRecent().toString());
+        } else {
+            recent.setText(new Attempt(playerVM.getName(), playerVM.getScore(),
+                    date.format(Calendar.getInstance().getTime())).toString());
+        }
     }
 }

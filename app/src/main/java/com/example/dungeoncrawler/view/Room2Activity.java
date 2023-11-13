@@ -90,36 +90,36 @@ public class Room2Activity extends GameActivity {
 
         //upper left up wall
         Wall up1 = new Wall(new Location(-20, 600), new Location(150, 600), 3);
-        playerVM.addWall(up1);
+        playerVM.addObserver(up1);
         //upper left left wall
         Wall left1 = new Wall(new Location(150, 380), new Location(150, 600), 2);
-        playerVM.addWall(left1);
+        playerVM.addObserver(left1);
         //upper middle wall
         Wall up2 = new Wall(new Location(0, 380), new Location(1000, 380),
                 3);
-        playerVM.addWall(up2);
+        playerVM.addObserver(up2);
         //upper right right wall
         Wall right1 = new Wall(new Location(775, 380), new Location(775, 600), 0);
-        playerVM.addWall(right1);
+        playerVM.addObserver(right1);
         //upper right up wall
         Wall up3 = new Wall(new Location(775, 600), new Location(1000, 600), 3);
-        playerVM.addWall(up3);
+        playerVM.addObserver(up3);
 
         //lower left down wall
         Wall down1 = new Wall(new Location(-20, 950), new Location(150, 950), 1);
-        playerVM.addWall(down1);
+        playerVM.addObserver(down1);
         //lower left left wall
         Wall left2 = new Wall(new Location(150, 950), new Location(150, 1175), 2);
-        playerVM.addWall(left2);
+        playerVM.addObserver(left2);
         //middle down wall
         Wall down2 = new Wall(new Location(0, 1150), new Location(1000, 1150), 1);
-        playerVM.addWall(down2);
+        playerVM.addObserver(down2);
         //lower right right wall
         Wall right2 = new Wall(new Location(775, 950), new Location(775, 1175), 0);
-        playerVM.addWall(right2);
+        playerVM.addObserver(right2);
         //lower right down wall
         Wall down3 = new Wall(new Location(775, 950), new Location(1000, 950), 1);
-        playerVM.addWall(down3);
+        playerVM.addObserver(down3);
 
         playerVM.startScore();
         playerVM.setMovementStrategy(new WalkStrategy());

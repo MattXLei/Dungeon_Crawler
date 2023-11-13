@@ -18,11 +18,13 @@ public class EnemyViewModel {
 
     private Enemy enemy;
 
-    public EnemyViewModel() {
-//        enemy = Enemy.getEnemy();
+    public EnemyViewModel(Enemy enemy) {
+        this.enemy = enemy;
     }
 
-
+    public Enemy getEnemy() {
+        return enemy;
+    }
 
     public void movement() {
         enemy.movement();
@@ -37,26 +39,17 @@ public class EnemyViewModel {
         enemy.setCoords(0, 0);
     }
 
-    public boolean callValidMove(int changeX, int changeY) {
-        if (enemy.validMove(changeX, changeY)) {
-            return true;
-        }
-        return false;
+    public int getHealth() {
+        return enemy.getHealth();
     }
 
-    public void addWall(Wall wall) {
-        enemy.addObserver(wall);
+    public void setHealth(int health) {
+        enemy.setHealth(health);
     }
 
-    public void removeWall(Wall wall) {
-        enemy.removeObserver(wall);
+    public void setDamageMultiplier(int diff) {
+        enemy.setDamageMultiplier(diff);
     }
 
-    public void removeAllObservers() {
-        enemy.removeAllObservers();
-    }
 
-    public void notifyObservers() {
-        enemy.notifyObservers();
-    }
 }

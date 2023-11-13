@@ -3,36 +3,30 @@ package com.example.dungeoncrawler.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Enemy implements Observable {
+public abstract class Enemy implements Observer {
     protected int health;
-    protected int xMove;
-    protected int yMove;
     protected int defense;
     protected int damage;
+
+    protected int[] movementCycleX;
+    protected int[] movementCycleY;
+
+    protected int tickCount;
     protected int damageMultiplier = 1;
 
     protected Location location;
     protected Location playerLocation;
 
-    private List<Observer> wallList;
-
-    public Enemy(int health, int xMove, int yMove, int defense, int damage,
-                 Location location) {
+    public Enemy(int health, int defense, int damage, Location location) {
         this.health = health;
-        this.xMove = xMove;
-        this.yMove = yMove;
         this.defense = defense;
         this.damage = damage;
         this.location = new Location(location.getxCord(), location.getyCord());
-        wallList = new ArrayList<>();
+        tickCount = 0;
     }
 
     public Enemy() {
 
-    }
-
-    public void update(Location location) {
-        playerLocation = location;
     }
 
     public Location getLocation() {
@@ -44,45 +38,21 @@ public abstract class Enemy implements Observable {
     }
 
     public void setCoords(int newX, int newY) {
-        xMove = newX;
-        yMove = newY;
+        location.setxCord(newX);
+        location.setyCord(newY);
     }
 
     public void movement() {
-        location.setxCord(location.getxCord() + xMove);
-        location.setyCord(location.getyCord() + yMove);
+        location.setxCord(location.getxCord() + (tickCount % movementCycleX.length));
+        location.setyCord(location.getyCord() + (tickCount % movementCycleY.length));
+        tickCount++;
     }
 
     public void setHealth(int health) {
         this.health = health;
     }
 
-    public void addObserver(Observer wall) {
-        wallList.add(wall);
-    }
 
-    public void removeObserver(Observer wall) {
-        wallList.remove(wall);
-    }
-
-    public void removeAllObservers() {
-        wallList = new ArrayList<>();
-    }
-
-    public boolean validMove(int changeX, int changeY) {
-        for (Observer currWall : wallList) {
-            if (currWall.checkCollision(location, changeX, changeY)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void notifyObservers() {
-        for(Observer o: wallList) {
-            o.update(location);
-        }
-    }
     public int getHealth() {
         return health;
     }
@@ -92,10 +62,17 @@ public abstract class Enemy implements Observable {
     public int getDamage() {
         return damage;
     }
-    public int getxMove() {
-        return xMove;
+
+    public boolean checkCollision(Location entityLocation, int changeX, int changeY) {
+        int newX = entityLocation.getxCord() + changeX;
+        int newY = entityLocation.getyCord() + changeY;
+        if (Math.abs(newX - location.getxCord()) <= 10 && Math.abs(newY - location.getyCord()) <= 10) {
+            return true;
+        }
+        return false;
     }
-    public int getyMove() {
-        return yMove;
+
+    public void update(Location location) {
+        playerLocation = location;
     }
 }

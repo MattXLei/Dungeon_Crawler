@@ -8,9 +8,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MovementStrategy;
+import com.example.dungeoncrawler.model.Observer;
 import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
+
 
 public class PlayerViewModel extends ViewModel {
 
@@ -153,12 +155,12 @@ public class PlayerViewModel extends ViewModel {
         return false;
     }
 
-    public void addWall(Wall wall) {
-        player.addObserver(wall);
+    public void addObserver(Observer observer) {
+        player.addObserver(observer);
     }
 
-    public void removeWall(Wall wall) {
-        player.removeObserver(wall);
+    public void removeObserver(Observer observer) {
+        player.removeObserver(observer);
     }
 
     public void removeAllObservers() {

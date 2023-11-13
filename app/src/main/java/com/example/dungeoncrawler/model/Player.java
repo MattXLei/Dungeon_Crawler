@@ -159,9 +159,15 @@ public class Player extends Entity implements Observable {
     }
 
     public boolean validMove(int changeX, int changeY) {
-        for (Observer currWall : wallList) {
-            if (currWall.checkCollision(location, changeX, changeY)) {
-                return false;
+        for (Observer observer : wallList) {
+            if (observer instanceof Wall) {
+                if (observer.checkCollision(location, changeX, changeY)) {
+                    return false;
+                }
+            } else {
+                if (observer.checkCollision(location, changeX, changeY)) {
+                    player.setHealth(health - difficulty * ((Enemy)observer).getDamage());
+                }
             }
         }
         return true;

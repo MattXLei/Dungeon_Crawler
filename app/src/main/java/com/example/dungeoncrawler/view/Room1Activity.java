@@ -24,6 +24,7 @@ import com.example.dungeoncrawler.model.ScytheSkeletonSpawner;
 import com.example.dungeoncrawler.model.Spawner;
 import com.example.dungeoncrawler.model.SpiritSpawner;
 import com.example.dungeoncrawler.model.Wall;
+import com.example.dungeoncrawler.viewmodel.EnemyViewModel;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 
@@ -43,6 +44,10 @@ public class Room1Activity extends GameActivity {
 
     private PlayerViewModel playerVM;
 
+    private EnemyViewModel enemyVM1;
+
+    private EnemyViewModel enemyVM2;
+
     private PlayerView playerView;
     private EnemyView enemyView1;
     private EnemyView enemyView2;
@@ -54,6 +59,10 @@ public class Room1Activity extends GameActivity {
     private Runnable update = new Runnable() {
         @Override
         public void run() {
+            enemyVM1.movement();
+            enemyView1.updatePosition();
+            enemyVM2.movement();
+            enemyView2.updatePosition();
             score.setText("Score: " + playerVM.getScore());
             health.setText("Health: " + playerVM.getHealth());
             handler.postDelayed(this, 50);
@@ -105,28 +114,31 @@ public class Room1Activity extends GameActivity {
         //main upper wall
         Wall wallUp1 = new Wall(new Location(0, 380), new Location(900, 380),
                 3);
-        playerVM.addWall(wallUp1);
+        playerVM.addObserver(wallUp1);
         //right upper wall
         Wall wallRight1 = new Wall(new Location(775, 360), new Location(775, 580), 0);
-        playerVM.addWall(wallRight1);
+        playerVM.addObserver(wallRight1);
         //smaller upper wall
         Wall wallUp2 = new Wall(new Location(775, 580), new Location(1000, 580), 3);
-        playerVM.addWall(wallUp2);
+        playerVM.addObserver(wallUp2);
         //main down wall
         Wall wallDown1 = new Wall(new Location(100, 1150), new Location(1000, 1150),
                 1);
         //right lower wall
         Wall wallRight2 = new Wall(new Location(775, 950), new Location(775, 1200), 0);
-        playerVM.addWall(wallRight2);
+        playerVM.addObserver(wallRight2);
         //smaller lower wall
         Wall wallDown2 = new Wall(new Location(775, 950), new Location(1000, 950), 1);
-        playerVM.addWall(wallDown2);
+        playerVM.addObserver(wallDown2);
         //main lower wall
-        playerVM.addWall(wallDown1);
+        playerVM.addObserver(wallDown1);
         //main left wall
         Wall left = new Wall(new Location(125, 380), new Location(125, 1300),
                 2);
-        playerVM.addWall(left);
+        playerVM.addObserver(left);
+
+
+
 
         playerVM.startScore();
 
@@ -139,6 +151,9 @@ public class Room1Activity extends GameActivity {
         handler.post(update);
 
         createEnemy(gameLayout);
+
+        playerVM.addObserver(enemyVM1.getEnemy());
+        playerVM.addObserver(enemyVM2.getEnemy());
     }
 
     @Override
@@ -217,9 +232,11 @@ public class Room1Activity extends GameActivity {
         spawner = new SpiritSpawner();
         Location temp = new Location(0, 0);
         enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
+        enemyVM1 = new EnemyViewModel(spawner.spawnEnemy());
         spawner = new ScytheSkeletonSpawner();
         Location temp2 = new Location(100, 100);
         enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
+        enemyVM2 = new EnemyViewModel(spawner.spawnEnemy());
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
     }

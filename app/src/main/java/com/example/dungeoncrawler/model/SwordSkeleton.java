@@ -3,10 +3,11 @@ package com.example.dungeoncrawler.model;
 public class SwordSkeleton extends Enemy {
     SwordSkeleton() {
         health = 100;
-        xMove = -20;
-        yMove = 0;
         defense = 20;
-        damage = 25;
+        damage = 15;
         location = new Location(0, 0);
+        movementCycleX = new int[] {-5, -5, -5, -5, 5, 5, 5, 5};
+        movementCycleY = new int[] {-5, -5, -5, -5, 5, 5, 5, 5};
+        tickCount = 0;
     }
 }

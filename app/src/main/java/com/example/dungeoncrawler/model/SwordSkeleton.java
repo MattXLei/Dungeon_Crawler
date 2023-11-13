@@ -6,8 +6,8 @@ public class SwordSkeleton extends Enemy {
         defense = 20;
         damage = 15;
         location = new Location(0, 0);
-        int[] movementCycleX = {-5, -5, -5, -5, 5, 5, 5, 5};
-        int[] movementCycleY = {-5, -5, -5, -5, 5, 5, 5, 5};
+        movementCycleX = new int[]{-5, -5, -5, -5, 5, 5, 5, 5};
+        movementCycleY = new int[]{-5, -5, -5, -5, 5, 5, 5, 5};
         tickCount = 0;
     }
 }

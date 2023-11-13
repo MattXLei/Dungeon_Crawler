@@ -26,6 +26,7 @@ public class EnemyView extends View {
     public EnemyView(Context context, Location location, Enemy enemy) {
         super(context);
         this.location = location;
+        enemy.setLocation(location);
         this.enemy = enemy;
     }
 

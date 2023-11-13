@@ -1,5 +1,6 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+import com.example.dungeoncrawler.model.Enemy;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MageSpawner;
 import com.example.dungeoncrawler.model.RunStrategy;
@@ -7,6 +8,7 @@ import com.example.dungeoncrawler.model.Spawner;
 import com.example.dungeoncrawler.model.SwordSkeletonSpawner;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
+import com.example.dungeoncrawler.viewmodel.EnemyViewModel;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
 import android.content.Intent;
@@ -37,10 +39,18 @@ public class Room2Activity extends GameActivity {
     private EnemyView enemyView1;
     private EnemyView enemyView2;
 
+    private EnemyViewModel enemyVM1;
+
+    private EnemyViewModel enemyVM2;
+
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
         public void run() {
+            enemyVM1.movement();
+            enemyView1.updatePosition();
+            enemyVM2.movement();
+            enemyView2.updatePosition();
             score.setText("Score: " + playerVM.getScore());
             handler.postDelayed(this, 50);
             health.setText("Health: " + playerVM.getHealth());
@@ -129,6 +139,9 @@ public class Room2Activity extends GameActivity {
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
         createEnemy(gameLayout);
+
+        playerVM.addObserver(enemyVM1.getEnemy());
+        playerVM.addObserver(enemyVM2.getEnemy());
     }
 
     @Override
@@ -215,11 +228,15 @@ public class Room2Activity extends GameActivity {
     }
     public void createEnemy(ConstraintLayout gameLayout) {
         Spawner spawner = new SwordSkeletonSpawner();
-        Location temp = new Location(0, 0);
-        enemyView1 = new EnemyView(this, temp, spawner.spawnEnemy());
+        Location temp = new Location(500, 500);
+        Enemy enemy1 = spawner.spawnEnemy();
+        enemyView1 = new EnemyView(this, temp, enemy1);
+        enemyVM1 = new EnemyViewModel(enemy1);
         spawner = new MageSpawner();
-        Location temp2 = new Location(100, 100);
-        enemyView2 = new EnemyView(this, temp2, spawner.spawnEnemy());
+        Enemy enemy2 = spawner.spawnEnemy();
+        Location temp2 = new Location(500, 1000);
+        enemyView2 = new EnemyView(this, temp2, enemy2);
+        enemyVM2 = new EnemyViewModel(enemy2);
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
     }

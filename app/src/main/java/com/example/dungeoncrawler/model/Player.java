@@ -166,7 +166,7 @@ public class Player extends Entity implements Observable {
                 }
             } else {
                 if (observer.checkCollision(location, changeX, changeY)) {
-                    player.setHealth(health - difficulty * ((Enemy)observer).getDamage());
+                    player.setHealth(health - difficulty * ((Enemy) observer).getDamage());
                 }
             }
         }

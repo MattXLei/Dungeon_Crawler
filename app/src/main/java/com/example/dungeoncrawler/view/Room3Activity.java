@@ -38,7 +38,8 @@ public class Room3Activity extends GameActivity {
     private EnemyView enemyView1;
     private EnemyView enemyView2;
 
-    private EnemyViewModel enemyVM2, enemyVM1;
+    private EnemyViewModel enemyVM2;
+    private EnemyViewModel enemyVM1;
 
     private LeaderboardViewModel leaderboardVM;
 

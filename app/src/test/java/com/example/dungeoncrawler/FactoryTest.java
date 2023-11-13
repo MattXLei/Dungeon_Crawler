@@ -20,10 +20,8 @@ public class FactoryTest {
 
         Enemy enemy = spiritSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(10, enemy.getDamage());
+        assertEquals(5, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(25, enemy.getxMove());
-        assertEquals(-25, enemy.getyMove());
     }
     @Test
     public void mageTest() {
@@ -31,10 +29,8 @@ public class FactoryTest {
 
         Enemy enemy = mageSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(15, enemy.getDamage());
+        assertEquals(10, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(-15, enemy.getxMove());
-        assertEquals(15, enemy.getyMove());
     }
     @Test
     public void swordSkeletonTest() {
@@ -42,10 +38,8 @@ public class FactoryTest {
 
         Enemy enemy = swordSkeletonSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(25, enemy.getDamage());
+        assertEquals(15, enemy.getDamage());
         assertEquals(20, enemy.getDefense());
-        assertEquals(-20, enemy.getxMove());
-        assertEquals(0, enemy.getyMove());
     }
     @Test
     public void scytheSkeletonTest() {
@@ -53,10 +47,8 @@ public class FactoryTest {
 
         Enemy enemy = scytheSkeletonSpawner.spawnEnemy();
         assertEquals(120, enemy.getHealth());
-        assertEquals(50, enemy.getDamage());
+        assertEquals(25, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(0, enemy.getxMove());
-        assertEquals(10, enemy.getyMove());
     }
     @Test
     public void spiritMageTest() {
@@ -65,24 +57,18 @@ public class FactoryTest {
 
         Enemy enemy = spiritSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(10, enemy.getDamage());
+        assertEquals(5, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(25, enemy.getxMove());
-        assertEquals(-25, enemy.getyMove());
 
         enemy = mageSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(15, enemy.getDamage());
+        assertEquals(10, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(-15, enemy.getxMove());
-        assertEquals(15, enemy.getyMove());
 
         enemy = spiritSpawner.spawnEnemy();
         assertFalse(enemy.getHealth() != 100);
         assertFalse(enemy.getDamage() == 15);
         assertFalse(enemy.getDefense() != 10);
-        assertFalse(enemy.getxMove() == -15);
-        assertFalse(enemy.getyMove() == 15);
     }
     @Test
     public void swordScytheSkeletonTest() {
@@ -91,24 +77,18 @@ public class FactoryTest {
 
         Enemy enemy = swordSkeletonSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(25, enemy.getDamage());
+        assertEquals(15, enemy.getDamage());
         assertEquals(20, enemy.getDefense());
-        assertEquals(-20, enemy.getxMove());
-        assertEquals(0, enemy.getyMove());
 
         enemy = scytheSkeletonSpawner.spawnEnemy();
         assertEquals(120, enemy.getHealth());
-        assertEquals(50, enemy.getDamage());
+        assertEquals(25, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(0, enemy.getxMove());
-        assertEquals(10, enemy.getyMove());
 
         enemy = swordSkeletonSpawner.spawnEnemy();
         assertFalse(enemy.getHealth() == 120);
         assertFalse(enemy.getDamage() == 50);
         assertFalse(enemy.getDefense() == 10);
-        assertFalse(enemy.getxMove() == 0);
-        assertFalse(enemy.getyMove() == 10);
     }
     @Test
     public void spiritSwordSkeletonTest() {
@@ -117,24 +97,18 @@ public class FactoryTest {
 
         Enemy enemy = swordSkeletonSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(25, enemy.getDamage());
+        assertEquals(15, enemy.getDamage());
         assertEquals(20, enemy.getDefense());
-        assertEquals(-20, enemy.getxMove());
-        assertEquals(0, enemy.getyMove());
 
         enemy = spiritSpawner.spawnEnemy();
         assertEquals(100, enemy.getHealth());
-        assertEquals(10, enemy.getDamage());
+        assertEquals(5, enemy.getDamage());
         assertEquals(10, enemy.getDefense());
-        assertEquals(25, enemy.getxMove());
-        assertEquals(-25, enemy.getyMove());
 
         enemy = swordSkeletonSpawner.spawnEnemy();
         assertFalse(enemy.getHealth() != 100);
         assertFalse(enemy.getDamage() == 10);
         assertFalse(enemy.getDefense() == 10);
-        assertFalse(enemy.getxMove() == 25);
-        assertFalse(enemy.getyMove() == -25);
     }
     @Test
     public void spawnerNullTest() {

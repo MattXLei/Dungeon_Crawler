@@ -2,7 +2,7 @@ package com.example.dungeoncrawler.model;
 
 public class Powerup {
     private static Location location;
-
+    private int speed;
     private static final long POWERUPSCORE = 50;
 
     public Powerup(Location location) {
@@ -19,5 +19,8 @@ public class Powerup {
 
     public static long getPowerupScore() {
         return POWERUPSCORE;
+    }
+    public int getSpeed() {
+        return speed;
     }
 }

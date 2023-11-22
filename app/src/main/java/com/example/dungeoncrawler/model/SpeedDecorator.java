@@ -5,4 +5,7 @@ public class SpeedDecorator extends PowerupDecorator  {
     public SpeedDecorator(Powerup p) {
         powerup = p;
     }
+    public int getSpeed() {
+        return powerup.getSpeed() + 10;
+    }
 }

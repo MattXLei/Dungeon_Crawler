@@ -5,4 +5,7 @@ public class DamageDecorator extends PowerupDecorator {
     public DamageDecorator(Powerup p) {
         powerup = p;
     }
+    public int getDamage() {
+        return powerup.getDamage() + 40;
+    }
 }

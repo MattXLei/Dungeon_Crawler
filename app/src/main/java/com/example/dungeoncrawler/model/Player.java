@@ -10,6 +10,8 @@ public class Player extends Entity implements Observable {
 
     private int speed;
 
+    private int damage;
+
     private int direction;
 
     private long score;
@@ -27,10 +29,13 @@ public class Player extends Entity implements Observable {
 
     private List<Observer> wallList;
 
+    private Powerupable powerup;
+
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         super(null);
         this.health = health;
         this.speed = speed;
+        damage = 0;
         this.direction = direction;
         this.score = score;
         this.name = name;
@@ -177,5 +182,12 @@ public class Player extends Entity implements Observable {
         for (Observer o: wallList) {
             o.update(location);
         }
+    }
+
+    public void setPowerup(Powerupable powerup) {
+        this.powerup = powerup;
+        speed = powerup.getSpeed();
+        health += powerup.getHealth();
+        damage = powerup.getDamage();
     }
 }

@@ -1,6 +1,6 @@
 package com.example.dungeoncrawler.model;
 
-public class Powerup {
+public class Powerup implements Powerupable {
     private static Location location;
     private int speed;
     private int health;

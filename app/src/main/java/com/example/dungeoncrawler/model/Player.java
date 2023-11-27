@@ -186,8 +186,16 @@ public class Player extends Entity implements Observable {
 
     public void setPowerup(Powerupable powerup) {
         this.powerup = powerup;
-        speed = powerup.getSpeed();
+        speed += powerup.getSpeed();
         health += powerup.getHealth();
-        damage = powerup.getDamage();
+        damage += powerup.getDamage();
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

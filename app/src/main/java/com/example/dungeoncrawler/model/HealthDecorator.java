@@ -5,4 +5,7 @@ public class HealthDecorator extends PowerupDecorator {
     public HealthDecorator(Powerup p) {
         powerup = p;
     }
+    public int getHealth() {
+        return powerup.getHealth() + 20;
+    }
 }

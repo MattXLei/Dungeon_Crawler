@@ -6,6 +6,8 @@ public abstract class Weapon {
     }
 
     public void attack(Enemy enemy) {
-        enemy.setHealth(0);
+        enemy.kill();
     }
+
+    public abstract boolean checkEnemy(Location location, Enemy enemy);
 }

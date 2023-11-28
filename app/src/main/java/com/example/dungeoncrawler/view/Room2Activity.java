@@ -186,9 +186,11 @@ public class Room2Activity extends GameActivity {
         case KeyEvent.KEYCODE_P:
             playerVM.setHealth(playerVM.getHealth() - 5);
             break;
-            case KeyEvent.KEYCODE_F:
-                rotate();
-                break;
+        case KeyEvent.KEYCODE_F:
+            playerVM.attack(enemyVM1.getEnemy());
+            playerVM.attack(enemyVM2.getEnemy());
+            rotate();
+            break;
         default:
             break;
         }

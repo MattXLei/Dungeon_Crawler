@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.dungeoncrawler.model.Enemy;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MovementStrategy;
 import com.example.dungeoncrawler.model.Observer;
@@ -168,5 +169,9 @@ public class PlayerViewModel extends ViewModel {
 
     public void notifyObservers() {
         player.notifyObservers();
+    }
+
+    public void attack(Enemy enemy) {
+        player.attack(enemy);
     }
 }

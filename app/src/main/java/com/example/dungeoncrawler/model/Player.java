@@ -1,4 +1,6 @@
 package com.example.dungeoncrawler.model;
+import android.util.Log;
+
 import java.util.*;
 
 public class Player extends Entity implements Observable {
@@ -31,6 +33,8 @@ public class Player extends Entity implements Observable {
 
     private boolean isInvulnerable;
 
+    private Weapon weapon;
+
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         super(null);
         this.health = health;
@@ -41,6 +45,7 @@ public class Player extends Entity implements Observable {
         this.location = new Location(0, 0);
         this.difficulty = difficulty;
         wallList = new ArrayList<>();
+        weapon = new Sword();
         isInvulnerable = false;
     }
 
@@ -198,4 +203,10 @@ public class Player extends Entity implements Observable {
         health += powerup.getHealth();
     }
 
+    public void attack(Enemy enemy) {
+        if (weapon.checkEnemy(location, enemy)) {
+            score += 20;
+            Log.d("score", ""+score);
+        }
+    }
 }

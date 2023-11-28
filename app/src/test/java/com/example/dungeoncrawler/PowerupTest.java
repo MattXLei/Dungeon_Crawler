@@ -67,7 +67,7 @@ public class PowerupTest {
     }
 
     @Test
-    public void Test1() {
+    public void MultipleSpeedTest() {
         Powerup base = new Powerup(new Location(0, 0));
         SpeedDecorator temp = new SpeedDecorator(new SpeedDecorator(new SpeedDecorator(base)));
         player.setPowerup(temp);
@@ -75,7 +75,7 @@ public class PowerupTest {
     }
 
     @Test
-    public void Test2() {
+    public void MultipleDamageTest() {
         Powerup base = new Powerup(new Location(0, 0));
         DamageDecorator temp = new DamageDecorator(new DamageDecorator(new DamageDecorator(base)));
         player.setPowerup(temp);
@@ -83,10 +83,58 @@ public class PowerupTest {
     }
 
     @Test
-    public void Test3() {
+    public void MultipleHealthTest() {
         Powerup base = new Powerup(new Location(0, 0));
         HealthDecorator temp = new HealthDecorator(new HealthDecorator(new HealthDecorator(base)));
         player.setPowerup(temp);
+        assertEquals(baseHealth + 60, player.getHealth());
+    }
+
+    @Test
+    public void HealthAdditionTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        HealthDecorator temp = new HealthDecorator(new HealthDecorator(new HealthDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseHealth + 60, player.getHealth());
+        temp = new HealthDecorator(new SpeedDecorator(new HealthDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseHealth + 100, player.getHealth());
+        assertEquals(baseSpeed + 10, player.getSpeed());
+    }
+
+    @Test
+    public void DamageAdditionTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        DamageDecorator temp = new DamageDecorator(new DamageDecorator(new DamageDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseDamage + 120, player.getDamage());
+        temp = new DamageDecorator(new HealthDecorator(new DamageDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseDamage + 200, player.getDamage());
+        assertEquals(baseHealth + 20, player.getHealth());
+    }
+
+    @Test
+    public void SpeedAdditionTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        SpeedDecorator temp = new SpeedDecorator(new SpeedDecorator(new SpeedDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseSpeed + 30, player.getSpeed());
+        temp = new SpeedDecorator(new DamageDecorator(new SpeedDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseSpeed + 50, player.getSpeed());
+        assertEquals(baseDamage + 40, player.getDamage());
+    }
+
+    @Test
+    public void ChangeTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        HealthDecorator temp = new HealthDecorator(new HealthDecorator(new HealthDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(baseHealth + 60, player.getHealth());
+        SpeedDecorator temp2 = new SpeedDecorator(new SpeedDecorator(new SpeedDecorator(base)));
+        player.setPowerup(temp2);
+        assertEquals(baseSpeed + 30, player.getSpeed());
         assertEquals(baseHealth + 60, player.getHealth());
     }
 }

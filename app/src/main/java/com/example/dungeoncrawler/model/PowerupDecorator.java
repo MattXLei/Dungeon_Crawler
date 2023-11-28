@@ -9,4 +9,7 @@ public abstract class PowerupDecorator implements Powerupable {
     public int getHealth() {
         return powerup.getHealth();
     }
+    public boolean getInvulnerability() {
+        return powerup.getInvulnerability();
+    }
 }

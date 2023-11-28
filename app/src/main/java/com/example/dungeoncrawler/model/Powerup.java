@@ -28,7 +28,7 @@ public class Powerup implements Powerupable {
     public int getHealth() {
         return health;
     }
-    public int getDamage() {
-        return damage;
+    public boolean getInvulnerability() {
+        return false;
     }
 }

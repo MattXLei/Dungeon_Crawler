@@ -4,4 +4,8 @@ public class InvulnerableDecorator extends PowerupDecorator {
     public InvulnerableDecorator(Powerupable p) {
         powerup = p;
     }
+
+    public boolean getInvulnerability() {
+        return true;
+    }
 }

@@ -12,6 +12,9 @@ import com.example.dungeoncrawler.viewmodel.EnemyViewModel;
 import com.example.dungeoncrawler.viewmodel.LeaderboardViewModel;
 import com.example.dungeoncrawler.viewmodel.PlayerViewModel;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -37,6 +40,8 @@ public class Room3Activity extends GameActivity {
     private PlayerView playerView;
     private EnemyView enemyView1;
     private EnemyView enemyView2;
+
+    private WeaponView weaponView;
 
     private EnemyViewModel enemyVM2;
     private EnemyViewModel enemyVM1;
@@ -140,6 +145,12 @@ public class Room3Activity extends GameActivity {
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());
+
+        Location temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
+        temp.setxCord(temp.getxCord() + 190);
+        temp.setyCord(temp.getyCord() - 130);
+        weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
+        gameLayout.addView(weaponView);
     }
 
     @Override
@@ -172,10 +183,15 @@ public class Room3Activity extends GameActivity {
         case KeyEvent.KEYCODE_P:
             playerVM.setHealth(playerVM.getHealth() - 5);
             break;
+        case KeyEvent.KEYCODE_F:
+            rotate();
         default:
             break;
         }
+        weaponView.playerOffset(playerVM.getLocation());
+        weaponView.updatePosition();
         playerView.updatePosition();
+        playerVM.notifyObservers();
         return false;
     }
     @Override
@@ -237,6 +253,20 @@ public class Room3Activity extends GameActivity {
         enemyVM2 = new EnemyViewModel(enemy2);
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
+    }
+    public void rotate() {
+        weaponView.setPivotX(weaponView.getLocation().getxCord()+25);
+        weaponView.setPivotY(weaponView.getLocation().getyCord() +60);
+        ObjectAnimator rotate = ObjectAnimator.ofFloat(weaponView, "rotation", 0f, 110f);
+        rotate.setDuration(500);
+        rotate.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                weaponView.setRotation(0f); // Reset to original position
+            }
+        });
+        rotate.start();
     }
 }
 

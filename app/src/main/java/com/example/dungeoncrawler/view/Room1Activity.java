@@ -1,5 +1,9 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 //import android.graphics.RectF;
 import android.graphics.BitmapFactory;
@@ -52,6 +56,8 @@ public class Room1Activity extends GameActivity {
     private PlayerView playerView;
     private EnemyView enemyView1;
     private EnemyView enemyView2;
+
+    private WeaponView weaponView;
     private TextView temp;
 
     private Spawner spawner;
@@ -111,6 +117,12 @@ public class Room1Activity extends GameActivity {
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
+        Location temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
+        temp.setxCord(temp.getxCord() + 190);
+        temp.setyCord(temp.getyCord() - 130);
+        weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
+
+
 
         //main upper wall
         Wall wallUp1 = new Wall(new Location(0, 380), new Location(900, 380),
@@ -147,6 +159,7 @@ public class Room1Activity extends GameActivity {
         ConstraintLayout gameLayout = findViewById(R.id.room1);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
+        gameLayout.addView(weaponView);
 
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
@@ -187,9 +200,14 @@ public class Room1Activity extends GameActivity {
         case KeyEvent.KEYCODE_P:
             playerVM.setHealth(playerVM.getHealth() - 5);
             break;
+        case KeyEvent.KEYCODE_F:
+            rotate();
+            break;
         default:
             break;
         }
+        weaponView.playerOffset(playerVM.getLocation());
+        weaponView.updatePosition();
         playerView.updatePosition();
         playerVM.notifyObservers();
         return false;
@@ -242,5 +260,21 @@ public class Room1Activity extends GameActivity {
         enemyVM2 = new EnemyViewModel(enemy2);
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
+    }
+
+
+    public void rotate() {
+        weaponView.setPivotX(weaponView.getLocation().getxCord()+25);
+        weaponView.setPivotY(weaponView.getLocation().getyCord() +60);
+        ObjectAnimator rotate = ObjectAnimator.ofFloat(weaponView, "rotation", 0f, 110f);
+        rotate.setDuration(500);
+        rotate.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                weaponView.setRotation(0f); // Reset to original position
+            }
+        });
+        rotate.start();
     }
 }

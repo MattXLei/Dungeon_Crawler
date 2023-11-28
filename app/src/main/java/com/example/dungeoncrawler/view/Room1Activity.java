@@ -1,5 +1,9 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 //import android.graphics.RectF;
 import android.graphics.BitmapFactory;
@@ -196,6 +200,9 @@ public class Room1Activity extends GameActivity {
         case KeyEvent.KEYCODE_P:
             playerVM.setHealth(playerVM.getHealth() - 5);
             break;
+        case KeyEvent.KEYCODE_F:
+            rotate();
+            break;
         default:
             break;
         }
@@ -253,5 +260,21 @@ public class Room1Activity extends GameActivity {
         enemyVM2 = new EnemyViewModel(enemy2);
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
+    }
+
+
+    public void rotate() {
+        weaponView.setPivotX(weaponView.getLocation().getxCord()+25);
+        weaponView.setPivotY(weaponView.getLocation().getyCord() +60);
+        ObjectAnimator rotate = ObjectAnimator.ofFloat(weaponView, "rotation", 0f, 110f);
+        rotate.setDuration(500);
+        rotate.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                weaponView.setRotation(0f); // Reset to original position
+            }
+        });
+        rotate.start();
     }
 }

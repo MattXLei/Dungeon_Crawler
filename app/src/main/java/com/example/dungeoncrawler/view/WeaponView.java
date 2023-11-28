@@ -35,4 +35,8 @@ public class WeaponView extends View {
         temp.setyCord(temp.getyCord() + 50);
         this.location = temp;
     }
+
+    public Location getLocation() {
+        return location;
+    }
 }

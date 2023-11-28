@@ -38,6 +38,8 @@ public class Room3Activity extends GameActivity {
     private EnemyView enemyView1;
     private EnemyView enemyView2;
 
+    private WeaponView weaponView;
+
     private EnemyViewModel enemyVM2;
     private EnemyViewModel enemyVM1;
 
@@ -140,6 +142,12 @@ public class Room3Activity extends GameActivity {
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());
+
+        Location temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
+        temp.setxCord(temp.getxCord() + 190);
+        temp.setyCord(temp.getyCord() - 130);
+        weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
+        gameLayout.addView(weaponView);
     }
 
     @Override
@@ -175,7 +183,10 @@ public class Room3Activity extends GameActivity {
         default:
             break;
         }
+        weaponView.playerOffset(playerVM.getLocation());
+        weaponView.updatePosition();
         playerView.updatePosition();
+        playerVM.notifyObservers();
         return false;
     }
     @Override

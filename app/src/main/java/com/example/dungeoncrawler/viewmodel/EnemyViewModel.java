@@ -30,14 +30,6 @@ public class EnemyViewModel {
         enemy.setCoords(0, 0);
     }
 
-    public int getHealth() {
-        return enemy.getHealth();
-    }
-
-    public void setHealth(int health) {
-        enemy.setHealth(health);
-    }
-
     public void setDamageMultiplier(int diff) {
         enemy.setDamageMultiplier(diff);
     }

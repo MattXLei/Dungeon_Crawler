@@ -34,5 +34,7 @@ public class EnemyViewModel {
         enemy.setDamageMultiplier(diff);
     }
 
-
+    public boolean alive() {
+        return enemy.alive();
+    }
 }

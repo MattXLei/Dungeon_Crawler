@@ -20,6 +20,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -54,6 +55,14 @@ public class Room3Activity extends GameActivity {
     private Runnable update = new Runnable() {
         @Override
         public void run() {
+            if (!enemyVM1.alive()) {
+                enemyView1.setVisibility(View.GONE);
+                playerVM.removeObserver(enemyVM1.getEnemy());
+            }
+            if (!enemyVM2.alive()) {
+                enemyView2.setVisibility(View.GONE);
+                playerVM.removeObserver(enemyVM2.getEnemy());
+            }
             enemyVM1.movement();
             enemyView1.updatePosition();
             enemyVM2.movement();
@@ -184,7 +193,10 @@ public class Room3Activity extends GameActivity {
             playerVM.setHealth(playerVM.getHealth() - 5);
             break;
         case KeyEvent.KEYCODE_F:
+            playerVM.attack(enemyVM1.getEnemy());
+            playerVM.attack(enemyVM2.getEnemy());
             rotate();
+            break;
         default:
             break;
         }

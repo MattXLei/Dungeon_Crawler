@@ -3,8 +3,8 @@ package com.example.dungeoncrawler.model;
 
 public abstract class Enemy implements Observer {
 
+    protected boolean alive;
     protected int damage;
-
     protected int[] movementCycleX;
     protected int[] movementCycleY;
 
@@ -18,10 +18,11 @@ public abstract class Enemy implements Observer {
         this.damage = damage;
         this.location = new Location(location.getxCord(), location.getyCord());
         tickCount = 0;
+        alive = true;
     }
 
     public Enemy() {
-
+        alive = true;
     }
 
     public Location getLocation() {
@@ -63,5 +64,13 @@ public abstract class Enemy implements Observer {
     }
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public void kill() {
+        alive = false;
+    }
+
+    public boolean alive() {
+        return alive;
     }
 }

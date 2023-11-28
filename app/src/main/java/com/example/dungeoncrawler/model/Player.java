@@ -29,6 +29,8 @@ public class Player extends Entity implements Observable {
 
     private Powerupable powerup;
 
+    private boolean isInvulnerable;
+
     private Player(int health, int speed, int direction, long score, String name, int difficulty) {
         super(null);
         this.health = health;
@@ -39,6 +41,7 @@ public class Player extends Entity implements Observable {
         this.location = new Location(0, 0);
         this.difficulty = difficulty;
         wallList = new ArrayList<>();
+        isInvulnerable = false;
     }
 
     private Player() {
@@ -105,6 +108,14 @@ public class Player extends Entity implements Observable {
         this.direction = direction;
     }
 
+    public boolean getInvulnerability() {
+        return isInvulnerable;
+    }
+
+    public void setInvulnerability(boolean state) {
+        isInvulnerable = state;
+    }
+
     public long getScore() {
         return score;
     }
@@ -167,7 +178,7 @@ public class Player extends Entity implements Observable {
                     return false;
                 }
             } else {
-                if (observer.checkCollision(location, changeX, changeY)) {
+                if (!isInvulnerable && observer.checkCollision(location, changeX, changeY)) {
                     player.setHealth(health - difficulty * ((Enemy) observer).getDamage());
                 }
             }

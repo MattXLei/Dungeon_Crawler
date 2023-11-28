@@ -6,5 +6,6 @@ public abstract class Weapon {
     }
 
     public void attack(Enemy enemy) {
+        enemy.setHealth(0);
     }
 }

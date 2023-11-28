@@ -52,6 +52,8 @@ public class Room1Activity extends GameActivity {
     private PlayerView playerView;
     private EnemyView enemyView1;
     private EnemyView enemyView2;
+
+    private WeaponView weaponView;
     private TextView temp;
 
     private Spawner spawner;
@@ -111,6 +113,12 @@ public class Room1Activity extends GameActivity {
         } else if (character == 2) {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
+        Location temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
+        temp.setxCord(temp.getxCord() + 190);
+        temp.setyCord(temp.getyCord() - 130);
+        weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
+
+
 
         //main upper wall
         Wall wallUp1 = new Wall(new Location(0, 380), new Location(900, 380),
@@ -147,6 +155,7 @@ public class Room1Activity extends GameActivity {
         ConstraintLayout gameLayout = findViewById(R.id.room1);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
+        gameLayout.addView(weaponView);
 
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
@@ -190,6 +199,8 @@ public class Room1Activity extends GameActivity {
         default:
             break;
         }
+        weaponView.playerOffset(playerVM.getLocation());
+        weaponView.updatePosition();
         playerView.updatePosition();
         playerVM.notifyObservers();
         return false;

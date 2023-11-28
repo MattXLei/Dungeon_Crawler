@@ -13,9 +13,6 @@ public class WeaponView extends View {
 
     private Location location;
 
-
-
-
     private Bitmap sprite;
     public WeaponView(Context context, Location location, Bitmap sprite) {
         super(context);
@@ -27,5 +24,15 @@ public class WeaponView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(sprite, location.getxCord(), location.getyCord(), null);
+    }
+    public void updatePosition() {
+        invalidate();
+    }
+
+    public void playerOffset(Location location) {
+        Location temp = new Location(location.getxCord(), location.getyCord());
+        temp.setxCord(temp.getxCord() + 130);
+        temp.setyCord(temp.getyCord() + 50);
+        this.location = temp;
     }
 }

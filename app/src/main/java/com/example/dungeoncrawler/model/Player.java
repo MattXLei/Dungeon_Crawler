@@ -10,8 +10,6 @@ public class Player extends Entity implements Observable {
 
     private int speed;
 
-    private int damage;
-
     private int direction;
 
     private long score;
@@ -35,7 +33,6 @@ public class Player extends Entity implements Observable {
         super(null);
         this.health = health;
         this.speed = speed;
-        damage = 0;
         this.direction = direction;
         this.score = score;
         this.name = name;
@@ -188,14 +185,6 @@ public class Player extends Entity implements Observable {
         this.powerup = powerup;
         speed += powerup.getSpeed();
         health += powerup.getHealth();
-        damage += powerup.getDamage();
     }
 
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
 }

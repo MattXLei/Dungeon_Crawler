@@ -6,6 +6,5 @@ public abstract class Weapon {
     }
 
     public void attack(Enemy enemy) {
-        enemy.setHealth(enemy.getHealth() - Player.getPlayer().getDamage());
     }
 }

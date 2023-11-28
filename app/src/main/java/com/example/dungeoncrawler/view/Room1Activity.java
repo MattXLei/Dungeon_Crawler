@@ -206,10 +206,6 @@ public class Room1Activity extends GameActivity {
                 playerVM.moveRight();
             }
             break;
-        //for testing health and game over
-        case KeyEvent.KEYCODE_P:
-            playerVM.setHealth(playerVM.getHealth() - 5);
-            break;
         case KeyEvent.KEYCODE_F:
             playerVM.attack(enemyVM1.getEnemy());
             playerVM.attack(enemyVM2.getEnemy());

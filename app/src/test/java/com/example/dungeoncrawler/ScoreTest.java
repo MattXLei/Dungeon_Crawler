@@ -51,7 +51,7 @@ public class ScoreTest {
 
         player.setScore(0);
         Powerup powerup = new Powerup(location);
-        player.increaseScore(powerup.getPowerupScore());
+        player.increaseScore(powerup.getScore());
         assertEquals(50, player.getScore());
 
         player.setScore(0);

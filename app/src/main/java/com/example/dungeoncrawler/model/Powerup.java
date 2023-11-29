@@ -1,13 +1,15 @@
 package com.example.dungeoncrawler.model;
 
 public class Powerup implements Powerupable, Observer {
+    private boolean used;
     private Location location;
     private Location playerLocation;
     private int speed;
     private int health;
-    private static final long POWERUPSCORE = 50;
+    private static final int POWERUPSCORE = 50;
 
     public Powerup(Location location) {
+        used = false;
         this.location = new Location(location.getxCord(), location.getyCord());
     }
 
@@ -19,7 +21,7 @@ public class Powerup implements Powerupable, Observer {
         location.setyCord(newY);
     }
 
-    public long getPowerupScore() {
+    public int getScore() {
         return POWERUPSCORE;
     }
     public int getSpeed() {
@@ -47,5 +49,11 @@ public class Powerup implements Powerupable, Observer {
     @Override
     public void update(Location location) {
         playerLocation = location;
+    }
+    public void use() {
+        used = true;
+    }
+    public boolean isUsed() {
+        return used;
     }
 }

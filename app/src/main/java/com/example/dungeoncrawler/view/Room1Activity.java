@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.Map;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Enemy;
+import com.example.dungeoncrawler.model.HealthDecorator;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.Powerup;
 import com.example.dungeoncrawler.model.Powerupable;
@@ -63,12 +64,13 @@ public class Room1Activity extends GameActivity {
     private EnemyView enemyView2;
 
     private WeaponView weaponView;
+    private PowerUpView powerUpView;
     private TextView temp;
 
     private Spawner spawner;
 
     private Powerup powerup;
-    private SpeedDecorator speed;
+    private HealthDecorator healthDecorator;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
@@ -81,6 +83,10 @@ public class Room1Activity extends GameActivity {
             if (!enemyVM2.alive()) {
                 enemyView2.setVisibility(View.GONE);
                 playerVM.removeObserver(enemyVM2.getEnemy());
+            }
+            if (healthDecorator.isUsed()) {
+                powerUpView.setVisibility(View.GONE);
+                playerVM.removeObserver(healthDecorator);
             }
             enemyVM1.movement();
             enemyView1.updatePosition();
@@ -138,7 +144,11 @@ public class Room1Activity extends GameActivity {
         temp.setyCord(temp.getyCord() - 130);
         weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
 
-
+        Powerup base = new Powerup(new Location(300,600));
+        healthDecorator = new HealthDecorator(base);
+        temp = new Location(base.getLocation().getxCord(), base.getLocation().getyCord());
+        powerUpView = new PowerUpView(this, temp, base, healthDecorator);
+        powerUpView.setSprite();
 
         //main upper wall
         Wall wallUp1 = new Wall(new Location(0, 380), new Location(900, 380),
@@ -176,6 +186,7 @@ public class Room1Activity extends GameActivity {
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
         gameLayout.addView(weaponView);
+        gameLayout.addView(powerUpView);
 
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
@@ -184,6 +195,7 @@ public class Room1Activity extends GameActivity {
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());
+        playerVM.addObserver(healthDecorator);
     }
 
     @Override

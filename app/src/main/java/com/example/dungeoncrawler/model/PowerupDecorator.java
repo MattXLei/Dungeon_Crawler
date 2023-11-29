@@ -1,9 +1,13 @@
 package com.example.dungeoncrawler.model;
 
 public abstract class PowerupDecorator implements Powerupable, Observer {
+    protected boolean used;
     protected Powerupable powerup;
     protected Location location;
     protected Location playerLocation;
+    public PowerupDecorator() {
+        used = false;
+    }
     public int getSpeed() {
         return powerup.getSpeed();
     }
@@ -28,5 +32,20 @@ public abstract class PowerupDecorator implements Powerupable, Observer {
     @Override
     public void update(Location location) {
         playerLocation = location;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void use() {
+        used = true;
+    }
+    public boolean isUsed() {
+        return used;
+    }
+
+    public int getScore() {
+        return powerup.getScore();
     }
 }

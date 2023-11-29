@@ -4,7 +4,6 @@ public class Powerup implements Powerupable {
     private static Location location;
     private int speed;
     private int health;
-    private int damage;
     private static final long POWERUPSCORE = 50;
 
     public Powerup(Location location) {

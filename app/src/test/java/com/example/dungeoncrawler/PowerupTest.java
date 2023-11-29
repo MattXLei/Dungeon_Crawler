@@ -3,6 +3,7 @@ package com.example.dungeoncrawler;
 import static org.junit.Assert.assertEquals;
 
 import com.example.dungeoncrawler.model.HealthDecorator;
+import com.example.dungeoncrawler.model.InvulnerableDecorator;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.Player;
 import com.example.dungeoncrawler.model.Powerup;
@@ -20,6 +21,7 @@ public class PowerupTest {
         player.setPowerup(base);
         assertEquals(baseHealth, player.getHealth());
         assertEquals(baseSpeed, player.getSpeed());
+        assertEquals(false, player.getInvulnerability());
     }
 
     @Test
@@ -29,6 +31,7 @@ public class PowerupTest {
         player.setPowerup(health);
         assertEquals(baseHealth + 20, player.getHealth());
         assertEquals(baseSpeed, player.getSpeed());
+        assertEquals(false, player.getInvulnerability());
     }
 
     @Test
@@ -38,6 +41,33 @@ public class PowerupTest {
         player.setPowerup(speed);
         assertEquals(baseHealth, player.getHealth());
         assertEquals(baseSpeed + 10, player.getSpeed());
+        assertEquals(false, player.getInvulnerability());
+    }
+
+    @Test
+    public void SpeedHealthTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        SpeedDecorator speed = new SpeedDecorator(new HealthDecorator(base));
+        player.setPowerup(speed);
+        assertEquals(baseHealth + 20, player.getHealth());
+        assertEquals(baseSpeed + 10, player.getSpeed());
+        assertEquals(false, player.getInvulnerability());
+    }
+
+    @Test
+    public void InvulnerabilityTest() {
+        Powerup base = new Powerup(new Location(0,0));
+        InvulnerableDecorator invul = new InvulnerableDecorator(base);
+        player.setPowerup(invul);
+        assertEquals(true, player.getInvulnerability());
+    }
+
+    @Test
+    public void MultipleInvulTest() {
+        Powerup base = new Powerup(new Location(0,0));
+        SpeedDecorator temp = new SpeedDecorator((new InvulnerableDecorator(base)));
+        player.setPowerup(temp);
+        assertEquals(true, player.getInvulnerability());
     }
 
     @Test
@@ -79,4 +109,5 @@ public class PowerupTest {
         assertEquals(baseSpeed + 30, player.getSpeed());
         assertEquals(baseHealth + 60, player.getHealth());
     }
+
 }

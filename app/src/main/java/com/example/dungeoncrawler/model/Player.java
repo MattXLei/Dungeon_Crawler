@@ -202,6 +202,7 @@ public class Player extends Entity implements Observable {
         this.powerup = powerup;
         speed += powerup.getSpeed();
         health += powerup.getHealth();
+        isInvulnerable = powerup.getInvulnerability();
     }
 
     public void attack(Enemy enemy) {

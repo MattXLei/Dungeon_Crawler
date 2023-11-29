@@ -68,8 +68,6 @@ public class Room1Activity extends GameActivity {
     private TextView temp;
 
     private Spawner spawner;
-
-    private Powerup powerup;
     private HealthDecorator healthDecorator;
 
     private Handler handler = new Handler();

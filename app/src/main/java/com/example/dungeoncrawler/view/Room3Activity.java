@@ -57,8 +57,8 @@ public class Room3Activity extends GameActivity {
     private EnemyViewModel enemyVM1;
 
     private LeaderboardViewModel leaderboardVM;
-
-
+    private InvulnerableDecorator invulnerableDecorator;
+    private PowerUpView powerUpView;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
@@ -71,6 +71,10 @@ public class Room3Activity extends GameActivity {
             if (!enemyVM2.alive()) {
                 enemyView2.setVisibility(View.GONE);
                 playerVM.removeObserver(enemyVM2.getEnemy());
+            }
+            if (invulnerableDecorator.isUsed()) {
+                powerUpView.setVisibility(View.GONE);
+                playerVM.removeObserver(invulnerableDecorator);
             }
             enemyVM1.movement();
             enemyView1.updatePosition();
@@ -128,6 +132,12 @@ public class Room3Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
+        Powerup base = new Powerup(new Location(300,600));
+        invulnerableDecorator = new InvulnerableDecorator(base);
+        Location temp = new Location(base.getLocation().getxCord(), base.getLocation().getyCord());
+        powerUpView = new PowerUpView(this, temp, base, invulnerableDecorator);
+        powerUpView.setSprite();
+
         //upper left up wall
         Wall up1 = new Wall(new Location(-20, 600), new Location(150, 600), 3);
         playerVM.addObserver(up1);
@@ -164,12 +174,14 @@ public class Room3Activity extends GameActivity {
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());
+        playerVM.addObserver(invulnerableDecorator);
 
-        Location temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
+        temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
         temp.setxCord(temp.getxCord() + 190);
         temp.setyCord(temp.getyCord() - 130);
         weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
         gameLayout.addView(weaponView);
+        gameLayout.addView(powerUpView);
     }
 
     @Override
@@ -238,6 +250,7 @@ public class Room3Activity extends GameActivity {
         intent.putExtra("startx", 900);
         startActivity(intent);
         playerVM.endScore();
+        playerVM.removeAllObservers();
         handler.removeCallbacks(update);
         finish();
     }
@@ -246,6 +259,7 @@ public class Room3Activity extends GameActivity {
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();
+        playerVM.setInvulnerability(false);
         handler.removeCallbacks(update);
         finish();
     }

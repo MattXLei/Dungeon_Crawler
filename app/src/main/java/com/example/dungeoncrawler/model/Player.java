@@ -187,7 +187,9 @@ public class Player extends Entity implements Observable {
                     player.setHealth(health - difficulty * ((Enemy) observer).getDamage());
                 }
             } else /*instance of powerup*/ {
-                setPowerup((Powerupable) observer);
+                if (observer.checkCollision(location, changeX, changeY)) {
+                    setPowerup((Powerupable) observer);
+                }
             }
         }
         return true;
@@ -200,10 +202,12 @@ public class Player extends Entity implements Observable {
     }
 
     public void setPowerup(Powerupable powerup) {
+        powerup.use();
         this.powerup = powerup;
         speed += powerup.getSpeed();
         health += powerup.getHealth();
         isInvulnerable = powerup.getInvulnerability();
+        score += powerup.getScore();
     }
 
     public void attack(Enemy enemy) {

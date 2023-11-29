@@ -174,4 +174,8 @@ public class PlayerViewModel extends ViewModel {
     public void attack(Enemy enemy) {
         player.attack(enemy);
     }
+
+    public void setInvulnerability(boolean invul) {
+        player.setInvulnerability(false);
+    }
 }

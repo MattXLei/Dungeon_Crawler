@@ -26,9 +26,12 @@ import androidx.lifecycle.ViewModelProvider;
 //import java.util.Random;
 import com.example.dungeoncrawler.model.Enemy;
 import com.example.dungeoncrawler.model.Location;
+import com.example.dungeoncrawler.model.Powerup;
+import com.example.dungeoncrawler.model.Powerupable;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.ScytheSkeletonSpawner;
 import com.example.dungeoncrawler.model.Spawner;
+import com.example.dungeoncrawler.model.SpeedDecorator;
 import com.example.dungeoncrawler.model.SpiritSpawner;
 import com.example.dungeoncrawler.model.Wall;
 import com.example.dungeoncrawler.viewmodel.EnemyViewModel;
@@ -63,6 +66,9 @@ public class Room1Activity extends GameActivity {
     private TextView temp;
 
     private Spawner spawner;
+
+    private Powerup powerup;
+    private SpeedDecorator speed;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {

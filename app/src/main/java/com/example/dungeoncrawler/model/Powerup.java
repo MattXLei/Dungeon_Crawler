@@ -1,7 +1,8 @@
 package com.example.dungeoncrawler.model;
 
-public class Powerup implements Powerupable {
-    private static Location location;
+public class Powerup implements Powerupable, Observer {
+    private Location location;
+    private Location playerLocation;
     private int speed;
     private int health;
     private static final long POWERUPSCORE = 50;
@@ -10,15 +11,15 @@ public class Powerup implements Powerupable {
         this.location = new Location(location.getxCord(), location.getyCord());
     }
 
-    public static Location getLocation() {
+    public Location getLocation() {
         return location;
     }
-    public static void setLocation(int newX, int newY) {
-        Powerup.location.setxCord(newX);
-        Powerup.location.setyCord(newY);
+    public void setLocation(int newX, int newY) {
+        location.setxCord(newX);
+        location.setyCord(newY);
     }
 
-    public static long getPowerupScore() {
+    public long getPowerupScore() {
         return POWERUPSCORE;
     }
     public int getSpeed() {
@@ -29,5 +30,22 @@ public class Powerup implements Powerupable {
     }
     public boolean getInvulnerability() {
         return false;
+    }
+
+
+    @Override
+    public boolean checkCollision(Location entityLocation, int changeX, int changeY) {
+        int newX = entityLocation.getxCord() + changeX;
+        int newY = entityLocation.getyCord() + changeY;
+        if (Math.abs(newX - location.getxCord()) <= 50
+                && Math.abs(newY - location.getyCord()) <= 50) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void update(Location location) {
+        playerLocation = location;
     }
 }

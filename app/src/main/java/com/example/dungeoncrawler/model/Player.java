@@ -181,11 +181,13 @@ public class Player extends Entity implements Observable {
                 if (observer.checkCollision(location, changeX, changeY)) {
                     return false;
                 }
-            } else {
+            } else if (observer instanceof Enemy) {
                 if (!isInvulnerable && observer.checkCollision(location, changeX, changeY)) {
                     player.decreaseScore(health - difficulty * ((Enemy) observer).getDamage());
                     player.setHealth(health - difficulty * ((Enemy) observer).getDamage());
                 }
+            } else /*instance of powerup*/ {
+                setPowerup((Powerupable) observer);
             }
         }
         return true;

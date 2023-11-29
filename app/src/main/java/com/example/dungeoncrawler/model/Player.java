@@ -208,7 +208,7 @@ public class Player extends Entity implements Observable {
     public void attack(Enemy enemy) {
         if (weapon.checkEnemy(location, enemy)) {
             score += 20;
-            Log.d("score", ""+score);
+//            Log.d("score", ""+score);
         }
     }
 }

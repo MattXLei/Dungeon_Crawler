@@ -28,7 +28,7 @@ public class PowerUpView extends View {
         super(context);
         this.location = location;
         powerup.setLocation(location.getxCord(), location.getyCord());
-        this.powerUpDec = powerUpDec;
+        this.powerup = powerup;
         this.powerUpDec = powerUpDec;
     }
 

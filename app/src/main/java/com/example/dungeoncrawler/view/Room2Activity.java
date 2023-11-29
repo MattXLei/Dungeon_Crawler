@@ -1,10 +1,13 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Enemy;
+import com.example.dungeoncrawler.model.HealthDecorator;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MageSpawner;
+import com.example.dungeoncrawler.model.Powerup;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.Spawner;
+import com.example.dungeoncrawler.model.SpeedDecorator;
 import com.example.dungeoncrawler.model.SwordSkeletonSpawner;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
@@ -44,6 +47,12 @@ public class Room2Activity extends GameActivity {
     private EnemyView enemyView2;
 
     private WeaponView weaponView;
+
+    private PowerUpView powerUpView;
+
+    private Powerup powerup;
+
+    private HealthDecorator healthPower;
 
     private EnemyViewModel enemyVM1;
 
@@ -269,6 +278,15 @@ public class Room2Activity extends GameActivity {
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
     }
+
+    public void createPowerUp(ConstraintLayout gameLayout) {
+        Location powerUpLocation = new Location(300, 600);
+        powerup = new Powerup(powerUpLocation);
+        healthPower = new HealthDecorator(powerup);
+        powerUpView = new PowerUpView(this, powerUpLocation, powerup, healthPower);
+        gameLayout.addView(powerUpView);
+    }
+
     public void rotate() {
         weaponView.setPivotX(weaponView.getLocation().getxCord()+25);
         weaponView.setPivotY(weaponView.getLocation().getyCord() +60);

@@ -63,6 +63,8 @@ public class Room1Activity extends GameActivity {
     private EnemyView enemyView2;
 
     private WeaponView weaponView;
+
+    private PowerUpView powerUpView;
     private TextView temp;
 
     private Spawner spawner;
@@ -274,6 +276,14 @@ public class Room1Activity extends GameActivity {
         enemyVM2 = new EnemyViewModel(enemy2);
         gameLayout.addView(enemyView1);
         gameLayout.addView(enemyView2);
+    }
+
+    public void createPowerUp(ConstraintLayout gameLayout) {
+        Location powerUpLocation = new Location(300, 600);
+        powerup = new Powerup(powerUpLocation);
+        speed = new SpeedDecorator(powerup);
+        powerUpView = new PowerUpView(this, powerUpLocation, powerup, speed);
+        gameLayout.addView(powerUpView);
     }
 
 

@@ -183,6 +183,7 @@ public class Room1Activity extends GameActivity {
         handler.post(update);
 
         createEnemy(gameLayout);
+        createPowerUp(gameLayout);
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());

@@ -162,6 +162,7 @@ public class Room2Activity extends GameActivity {
         playerVM.setLocation(getIntent().getIntExtra("startx", 500), 800);
         handler.post(update);
         createEnemy(gameLayout);
+        createPowerUp(gameLayout);
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());

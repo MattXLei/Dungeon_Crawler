@@ -126,7 +126,7 @@ public class Room3Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
-        Powerup base = new Powerup(new Location(300,600));
+        Powerup base = new Powerup(new Location(250,600));
         invulnerableDecorator = new InvulnerableDecorator(base);
         Location temp = new Location(base.getLocation().getxCord(), base.getLocation().getyCord());
         powerUpView = new PowerUpView(this, temp, base, invulnerableDecorator);

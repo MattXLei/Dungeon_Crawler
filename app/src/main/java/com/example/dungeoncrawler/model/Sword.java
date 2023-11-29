@@ -1,7 +1,5 @@
 package com.example.dungeoncrawler.model;
 
-import android.util.Log;
-
 public class Sword extends Weapon {
     public boolean checkEnemy(Location location, Enemy enemy) {
         if (checkX(location.getxCord(), enemy) && checkY(location.getyCord(), enemy)) {

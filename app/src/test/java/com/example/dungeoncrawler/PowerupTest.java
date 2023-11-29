@@ -121,6 +121,6 @@ public class PowerupTest {
     @Test
     public void PowerupScoreTest() {
         Powerup base = new Powerup(new Location(0, 0));
-        assertEquals(50, base.getPowerupScore());
+        assertEquals(50, base.getScore());
     }
 }

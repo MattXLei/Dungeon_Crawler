@@ -7,4 +7,6 @@ public interface MovementStrategy {
     void moveRight();
 
     int getStep();
+
+    void setStep(int newStep);
 }

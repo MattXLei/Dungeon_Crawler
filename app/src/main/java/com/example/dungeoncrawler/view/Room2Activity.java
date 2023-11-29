@@ -4,6 +4,7 @@ import com.example.dungeoncrawler.model.Enemy;
 import com.example.dungeoncrawler.model.HealthDecorator;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MageSpawner;
+import com.example.dungeoncrawler.model.MovementStrategy;
 import com.example.dungeoncrawler.model.Powerup;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.Spawner;
@@ -54,6 +55,10 @@ public class Room2Activity extends GameActivity {
     private SpeedDecorator speedDecorator;
     private PowerUpView powerUpView;
 
+    private WalkStrategy room2Walk;
+
+    private RunStrategy room2Run;
+
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
         @Override
@@ -67,6 +72,9 @@ public class Room2Activity extends GameActivity {
                 playerVM.removeObserver(enemyVM2.getEnemy());
             }
             if (speedDecorator.isUsed()) {
+                room2Walk.setStep(100);
+                playerVM.setMovementStrategy(room2Walk);
+                room2Run.setStep(200);
                 powerUpView.setVisibility(View.GONE);
                 playerVM.removeObserver(speedDecorator);
             }
@@ -161,7 +169,9 @@ public class Room2Activity extends GameActivity {
         playerVM.addObserver(down3);
 
         playerVM.startScore();
-        playerVM.setMovementStrategy(new WalkStrategy());
+        room2Walk = new WalkStrategy();
+        room2Run = new RunStrategy();
+        playerVM.setMovementStrategy(room2Walk);
         ConstraintLayout gameLayout = findViewById(R.id.room2);
         super.setPlayerView(playerView);
         gameLayout.addView(super.playerView);
@@ -185,7 +195,7 @@ public class Room2Activity extends GameActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
         case KeyEvent.KEYCODE_SHIFT_LEFT:
-            playerVM.setMovementStrategy(new RunStrategy());
+            playerVM.setMovementStrategy(room2Run);
             break;
         case KeyEvent.KEYCODE_W:
             if (playerVM.callValidMove(0, -1 * playerVM.getMovementStrategy().getStep())) {
@@ -250,6 +260,8 @@ public class Room2Activity extends GameActivity {
         finish();
     }
     public void launchNextActivity() {
+        room2Walk.setStep(25);
+        room2Run.setStep(50);
         Intent intent = new Intent(this, Room3Activity.class);
         intent.putExtra("startx", 50);
         startActivity(intent);
@@ -264,6 +276,8 @@ public class Room2Activity extends GameActivity {
         }
     }
     public void launchGameOver() {
+        room2Walk.setStep(25);
+        room2Run.setStep(50);
         Intent intent = new Intent(this, EndActivity.class);
         startActivity(intent);
         playerVM.endScore();

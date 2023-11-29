@@ -1,10 +1,13 @@
 package com.example.dungeoncrawler.view;
 import com.example.dungeoncrawler.R;
 import com.example.dungeoncrawler.model.Enemy;
+import com.example.dungeoncrawler.model.HealthDecorator;
 import com.example.dungeoncrawler.model.Location;
 import com.example.dungeoncrawler.model.MageSpawner;
+import com.example.dungeoncrawler.model.Powerup;
 import com.example.dungeoncrawler.model.RunStrategy;
 import com.example.dungeoncrawler.model.Spawner;
+import com.example.dungeoncrawler.model.SpeedDecorator;
 import com.example.dungeoncrawler.model.SwordSkeletonSpawner;
 import com.example.dungeoncrawler.model.WalkStrategy;
 import com.example.dungeoncrawler.model.Wall;
@@ -48,6 +51,8 @@ public class Room2Activity extends GameActivity {
     private EnemyViewModel enemyVM1;
 
     private EnemyViewModel enemyVM2;
+    private SpeedDecorator speedDecorator;
+    private PowerUpView powerUpView;
 
     private Handler handler = new Handler();
     private Runnable update = new Runnable() {
@@ -60,6 +65,10 @@ public class Room2Activity extends GameActivity {
             if (!enemyVM2.alive()) {
                 enemyView2.setVisibility(View.GONE);
                 playerVM.removeObserver(enemyVM2.getEnemy());
+            }
+            if (speedDecorator.isUsed()) {
+                powerUpView.setVisibility(View.GONE);
+                playerVM.removeObserver(speedDecorator);
             }
             enemyVM1.movement();
             enemyView1.updatePosition();
@@ -112,6 +121,12 @@ public class Room2Activity extends GameActivity {
             playerView.setSprite(BitmapFactory.decodeResource(getResources(), R.drawable.mage));
         }
 
+        Powerup base = new Powerup(new Location(300,600));
+        speedDecorator = new SpeedDecorator(base);
+        Location temp = new Location(base.getLocation().getxCord(), base.getLocation().getyCord());
+        powerUpView = new PowerUpView(this, temp, base, speedDecorator);
+        powerUpView.setSprite();
+
         //upper left up wall
         Wall up1 = new Wall(new Location(-20, 600), new Location(150, 600), 3);
         playerVM.addObserver(up1);
@@ -156,13 +171,14 @@ public class Room2Activity extends GameActivity {
 
         playerVM.addObserver(enemyVM1.getEnemy());
         playerVM.addObserver(enemyVM2.getEnemy());
+        playerVM.addObserver(speedDecorator);
 
-        Location temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
+        temp = new Location(playerVM.getLocation().getxCord(), playerVM.getLocation().getyCord());
         temp.setxCord(temp.getxCord() + 190);
         temp.setyCord(temp.getyCord() - 130);
         weaponView = new WeaponView(this, temp, BitmapFactory.decodeResource(getResources(), R.drawable.sword));
         gameLayout.addView(weaponView);
-
+        gameLayout.addView(powerUpView);
     }
 
     @Override

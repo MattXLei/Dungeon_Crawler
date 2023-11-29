@@ -32,7 +32,6 @@ public class Powerup implements Powerupable, Observer {
         return false;
     }
 
-
     @Override
     public boolean checkCollision(Location entityLocation, int changeX, int changeY) {
         int newX = entityLocation.getxCord() + changeX;

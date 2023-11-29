@@ -110,4 +110,17 @@ public class PowerupTest {
         assertEquals(baseHealth + 60, player.getHealth());
     }
 
+    @Test
+    public void MovePowerupTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        base.setLocation(10,10);
+        assertEquals(10, base.getLocation().getxCord());
+        assertEquals(10, base.getLocation().getyCord());
+    }
+
+    @Test
+    public void PowerupScoreTest() {
+        Powerup base = new Powerup(new Location(0, 0));
+        assertEquals(50, base.getPowerupScore());
+    }
 }

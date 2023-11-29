@@ -243,6 +243,7 @@ public class Room3Activity extends GameActivity {
         intent.putExtra("startx", 900);
         startActivity(intent);
         playerVM.endScore();
+        playerVM.removeAllObservers();
         handler.removeCallbacks(update);
         finish();
     }
@@ -251,6 +252,7 @@ public class Room3Activity extends GameActivity {
         startActivity(intent);
         playerVM.endScore();
         playerVM.removeAllObservers();
+        playerVM.setInvulnerability(false);
         handler.removeCallbacks(update);
         finish();
     }

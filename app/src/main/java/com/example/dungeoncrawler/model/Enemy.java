@@ -69,6 +69,10 @@ public abstract class Enemy implements Observer {
     public void setLocation(Location location) {
         this.location = location;
     }
+    public void setLocation(int newX, int newY) {
+        location.setxCord(newX);
+        location.setyCord(newY);
+    }
 
     public void kill() {
         alive = false;

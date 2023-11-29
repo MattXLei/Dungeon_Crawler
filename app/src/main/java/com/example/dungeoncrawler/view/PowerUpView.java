@@ -46,13 +46,11 @@ public class PowerUpView extends View {
     //gonna continue to edit
     public void setSprite() {
         if (powerUpDec instanceof HealthDecorator) {
-            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.mage_enemy);
-        } else if (enemy instanceof ScytheSkeleton) {
-            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.skeleton_scythe_enemy);
-        }  else if (enemy instanceof Spirit) {
-            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.spirit_enemy);
-        }  else if (enemy instanceof SwordSkeleton) {
-            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.skeleton_sword_enemy);
+            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.health);
+        } else if (powerUpDec instanceof SpeedDecorator) {
+            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.speed);
+        }  else if (powerUpDec instanceof InvulnerableDecorator) {
+            sprite = BitmapFactory.decodeResource(getResources(), R.drawable.invulnerable);
         }
     }
 }
